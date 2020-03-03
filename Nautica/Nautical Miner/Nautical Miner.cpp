@@ -11,6 +11,7 @@
 
 
 // TODO:
+// -Implement GrowingArray
 // -Implement TextureContainer
 // -Implement Scene model for different game states
 // -Implement Timeline interface for i.e tutorials
@@ -19,14 +20,18 @@
 
 int main()
 {
-	std::string tempGameName = "Subnautical Mining Inc.";
+	// Subnautical Well Incorporated Mining
+	std::string tempGameName = "S.W.I.M.";
 
 	// Init focus tracker
 	bool isWindowInFocus = true;
 
 	// Init RNG
+#ifdef DEBUG
+	srand(RNG_SEED);
+#else
 	srand((time(NULL)));
-
+#endif
 	// Configure window
 	sf::RenderWindow window(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), tempGameName);
 	window.setVerticalSyncEnabled(VSYNC);
@@ -76,5 +81,4 @@ int main()
 			window.display();
 		}
 	}
-
 }

@@ -13,47 +13,92 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Postmaster">
+      <UniqueIdentifier>{5143f5bb-3231-4124-9d4b-e35659fdbb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Super">
+      <UniqueIdentifier>{e333482c-bf01-42a6-aea8-d2f5da58fd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{624c9493-b3a9-4f2a-b26b-bebd223d9e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{c1a0eca2-58d2-4ff4-9837-1cb3bcfdd81f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factories">
+      <UniqueIdentifier>{067cd807-4c65-40dc-824b-1416f7e5e7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{93ef906e-be1b-45e6-af28-692d4ddaeea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{3376e73d-1b13-455d-98b6-1dd6ae66a329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical">
+      <UniqueIdentifier>{c9fcdd7b-790c-4a48-90cb-95fe697f3662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{8356386a-cc54-408b-b53a-8c99124be1f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Nautical Miner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PostMaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Message.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Subscriber.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PostMaster.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Subscriber.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Nautical Miner.cpp">
+      <Filter>Super</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GrowingArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PostMaster.h">
-      <Filter>Header Files</Filter>
+      <Filter>Postmaster</Filter>
     </ClInclude>
     <ClInclude Include="Message.h">
-      <Filter>Header Files</Filter>
+      <Filter>Postmaster</Filter>
     </ClInclude>
     <ClInclude Include="Subscriber.h">
-      <Filter>Header Files</Filter>
+      <Filter>Postmaster</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Super</Filter>
     </ClInclude>
     <ClInclude Include="Enums.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GrowingArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
