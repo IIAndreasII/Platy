@@ -19,7 +19,7 @@ template<typename T>
 inline void GrowingArray<T>::Add(T element)
 {
 	if ((mySize + 1) / myCapacity > DEFAULT_LOAD_FACTOR) {
-		Resize();
+		Grow();
 	}
 	myArray[mySize] = element;
 	mySize++;
@@ -62,7 +62,7 @@ const unsigned& GrowingArray<T>::size()
 }
 
 template<typename T>
-inline void GrowingArray<T>::Resize()
+inline void GrowingArray<T>::Grow()
 {
 	myCapacity *= 2;
 	T* tempArray = new T[myCapacity];

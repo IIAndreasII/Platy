@@ -21,7 +21,7 @@ public:
 
 private:
 
-	void Resize();
+	void Grow();
 
 	T myArray [DEFAULT_CAPACITY];
 
