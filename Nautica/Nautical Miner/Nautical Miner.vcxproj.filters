@@ -67,7 +67,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GrowingArray.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureContainer.cpp">
+      <Filter>Graphical</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +102,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GrowingArray.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureContainer.h">
+      <Filter>Graphical</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nautical Miner.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

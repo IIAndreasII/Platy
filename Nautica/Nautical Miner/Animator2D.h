@@ -5,7 +5,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "SFML/System/Vector2.hpp"
 
-
 typedef sf::Texture* TexturePtr;
 
 class Animator2D

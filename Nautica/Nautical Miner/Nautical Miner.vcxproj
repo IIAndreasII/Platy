@@ -107,7 +107,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>STATIC_SFML;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>STATIC_SFML;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\andeb\Desktop\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -149,7 +149,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>STATIC_SFML;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>STATIC_SFML;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\andeb\Desktop\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -172,6 +172,7 @@
     <ClCompile Include="PostMaster.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Subscriber.cpp" />
+    <ClCompile Include="TextureContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator2D.h" />
@@ -182,8 +183,14 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PostMaster.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Subscriber.h" />
+    <ClInclude Include="TextureContainer.h" />
+    <ClInclude Include="Typedefs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nautical Miner.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

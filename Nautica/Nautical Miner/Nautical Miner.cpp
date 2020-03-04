@@ -15,7 +15,7 @@
 // -Implement TextureContainer
 // -Implement Scene model for different game states
 // -Implement Timeline interface for i.e tutorials
-// -Implement save file system (saving and loading gamestates)
+// -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 
 int main()
@@ -63,11 +63,11 @@ int main()
 			}
 		}
 
-		// Get delta time
 
 		// Update game only if window is in focus
 		if (isWindowInFocus)
 		{
+			// Get delta time
 			tempDeltaTime = tempClock.restart().asSeconds();
 #ifdef DEBUG
 			std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;

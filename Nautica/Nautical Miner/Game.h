@@ -3,12 +3,15 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <vector>
+
+class Scene;
+
 
 class Game
 {
 public:
 
-	Game();
 	Game(sf::RenderWindow& aRenderWindow);
 	~Game();
 
@@ -22,6 +25,8 @@ private:
 	bool myPauseFlag;
 
 	sf::RenderWindow& myWindow;
+
+	std::vector<Scene*> myScenes;
 
 };
 

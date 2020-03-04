@@ -12,7 +12,6 @@ Game::~Game()
 {
 	// TODO: Safely delete all pointers
 
-
 }
 
 void Game::Update(const float& deltaTime)
