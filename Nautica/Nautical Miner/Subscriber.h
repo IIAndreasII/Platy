@@ -17,7 +17,7 @@ public:
 	void SendMessage(const EMessageType aMessageType);
 
 	virtual void ReceiveMessage(const EMessageType& aMessageType);
-	virtual void ReceiveMessage(Message& aMessage, const EMessageType& aMessageType) = 0;
+	virtual void ReceiveMessage(Message& aMessage, const EMessageType& aMessageType);
 
 	void Subscribe(const EMessageType aMessageType);
 	void RemoveAllSubscriptions();

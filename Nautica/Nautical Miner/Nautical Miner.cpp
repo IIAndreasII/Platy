@@ -65,7 +65,7 @@ int main()
 
 
 		// Update game only if window is in focus
-		if (isWindowInFocus)
+		if (true)//isWindowInFocus)
 		{
 			// Get delta time
 			tempDeltaTime = tempClock.restart().asSeconds();

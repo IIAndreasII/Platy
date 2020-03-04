@@ -4,11 +4,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Subscriber.h"
 
 class Scene;
 
+typedef Scene* ScenePtr;
 
-class Game
+class Game : Subscriber
 {
 public:
 
@@ -18,6 +20,8 @@ public:
 	void Update(const float &deltaTime);
 	void Draw();
 
+	void ReceiveMessage(const EMessageType& aMessageType) override;
+
 	void TogglePause();
 
 private:
@@ -26,7 +30,9 @@ private:
 
 	sf::RenderWindow& myWindow;
 
-	std::vector<Scene*> myScenes;
+	std::vector<ScenePtr> myScenes;
+
+	ScenePtr myCurrentScene;
 
 };
 

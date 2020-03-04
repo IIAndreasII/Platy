@@ -7,7 +7,7 @@
 constexpr unsigned RNG_SEED = 123456;
 
 constexpr unsigned DEFAULT_WINDOW_WIDTH  = 800;
-constexpr unsigned DEFAULT_WINDOW_HEIGHT = 800;
+constexpr unsigned DEFAULT_WINDOW_HEIGHT = 1000;
 constexpr bool VSYNC = false;
 
 #include <random>

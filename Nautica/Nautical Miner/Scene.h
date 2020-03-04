@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Graphics/View.hpp"
 
 class Entity;
 
@@ -23,6 +24,7 @@ public:
 private:
 
 	std::vector<EntityPtr> myEntities;
+
 
 
 

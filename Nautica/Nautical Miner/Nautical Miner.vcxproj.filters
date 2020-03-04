@@ -42,9 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PostMaster.cpp">
       <Filter>Postmaster</Filter>
     </ClCompile>
@@ -60,23 +57,32 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Animator2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GrowingArray.cpp">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="TextureContainer.cpp">
       <Filter>Graphical</Filter>
     </ClCompile>
+    <ClCompile Include="Animator2D.cpp">
+      <Filter>Graphical</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Super</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMotor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PostMaster.h">
       <Filter>Postmaster</Filter>
     </ClInclude>
@@ -95,12 +101,6 @@
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Animator2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GrowingArray.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -112,6 +112,24 @@
     </ClInclude>
     <ClInclude Include="TextureContainer.h">
       <Filter>Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator2D.h">
+      <Filter>Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Super</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMotor.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

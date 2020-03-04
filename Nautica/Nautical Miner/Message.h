@@ -1,10 +1,13 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
+enum EMessageType
+{
+	TOGGLE_PAUSE,
+	COUNT // Not to be used as a type
+};
 
-enum EMessageType;
-
-struct Message
+class Message
 {
 public:
 

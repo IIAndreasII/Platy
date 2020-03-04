@@ -1,6 +1,7 @@
 #include "Game.h"
-
-
+#include "Scene.h"
+#include "Message.h"
+#include "Enums.h"
 
 Game::Game(sf::RenderWindow& aRenderWindow) :
 	myWindow(aRenderWindow),
@@ -20,12 +21,26 @@ void Game::Update(const float& deltaTime)
 	if (!myPauseFlag) 
 	{
 		// Update stuff here
+
+		//myCurrentScene->Update(deltaTime);
+
 	}
 }
 
 void Game::Draw()
 {
-	// TODO: Draw stuff
+	//myCurrentScene->Draw(myWindow);
+}
+
+void Game::ReceiveMessage(const EMessageType& aMessageType)
+{
+	switch (aMessageType) {
+		case EMessageType::TOGGLE_PAUSE:
+			TogglePause();
+			break;
+		default:
+			break;
+	}
 }
 
 void Game::TogglePause()
