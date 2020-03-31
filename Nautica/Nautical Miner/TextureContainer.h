@@ -18,7 +18,7 @@ public:
 private:
 	TextureContainer();
 
-	static void ImportTextures();
+	static void LoadTextures();
 
 	static std::vector<TexturePtr> myTexturePtrs;
 

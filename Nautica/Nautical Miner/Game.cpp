@@ -47,3 +47,8 @@ void Game::TogglePause()
 {
 	myPauseFlag = !myPauseFlag;
 }
+
+void Game::Pause()
+{
+	myPauseFlag = true;
+}

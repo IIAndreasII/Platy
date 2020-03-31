@@ -23,6 +23,7 @@ public:
 	void ReceiveMessage(const EMessageType& aMessageType) override;
 
 	void TogglePause();
+	void Pause();
 
 private:
 

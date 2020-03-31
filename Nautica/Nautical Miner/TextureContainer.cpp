@@ -22,7 +22,7 @@ TextureContainer::~TextureContainer()
 void TextureContainer::Init()
 {
 	myTexturePtrs = std::vector<TexturePtr>();
-	ImportTextures();
+	LoadTextures();
 }
 
 TexturePtr TextureContainer::GetTextureAt(const unsigned index)
@@ -30,11 +30,12 @@ TexturePtr TextureContainer::GetTextureAt(const unsigned index)
 	return myTexturePtrs.at(index);
 }
 
-void TextureContainer::ImportTextures()
+void TextureContainer::LoadTextures()
 {
 	std::ifstream myTxtFile(FILEPATH);
 	std::vector<std::string> tempFilePaths = std::vector<std::string>();
 
+	// Acquire filepaths
 	if (myTxtFile.is_open())
 	{
 		std::string tempPath;

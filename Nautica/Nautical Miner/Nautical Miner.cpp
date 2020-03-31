@@ -11,8 +11,6 @@
 
 
 // TODO:
-// -Implement GrowingArray
-// -Implement TextureContainer
 // -Implement Scene model for different game states
 // -Implement Timeline interface for i.e tutorials
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
@@ -20,7 +18,7 @@
 
 int main()
 {
-	// Subnautical Well Incorporated Mining
+	// Subnautical Whimsy Incorporated Mining
 	std::string tempGameName = "S.W.I.M.";
 
 	// Init focus tracker
@@ -60,12 +58,13 @@ int main()
 			else if (tempEvent.type == sf::Event::LostFocus)
 			{
 				isWindowInFocus = false;
+				tempGame.Pause();
 			}
 		}
 
 
 		// Update game only if window is in focus
-		if (true)//isWindowInFocus)
+		if (isWindowInFocus)
 		{
 			// Get delta time
 			tempDeltaTime = tempClock.restart().asSeconds();
