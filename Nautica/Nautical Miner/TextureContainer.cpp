@@ -32,18 +32,18 @@ TexturePtr TextureContainer::GetTextureAt(const unsigned index)
 
 void TextureContainer::LoadTextures()
 {
-	std::ifstream myTxtFile(FILEPATH);
+	std::ifstream tempTxtFile(FILEPATH);
 	std::vector<std::string> tempFilePaths = std::vector<std::string>();
 
 	// Acquire filepaths
-	if (myTxtFile.is_open())
+	if (tempTxtFile.is_open())
 	{
 		std::string tempPath;
-		while (std::getline(myTxtFile, tempPath))
+		while (std::getline(tempTxtFile, tempPath))
 		{
 			tempFilePaths.push_back(tempPath);
 		}
-		myTxtFile.close();
+		tempTxtFile.close();
 	}
 #ifdef DEBUG
 	else
