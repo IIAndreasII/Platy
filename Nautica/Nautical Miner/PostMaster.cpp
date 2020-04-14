@@ -4,7 +4,7 @@
 #include "Message.h"
 #include "Enums.h"
 
-std::vector<std::vector<Subscriber*>> PostMaster::mySubscribers;
+std::vector<std::vector<SubPtr>> PostMaster::mySubscribers;
 
 PostMaster::PostMaster()
 {
@@ -18,23 +18,23 @@ void PostMaster::Init()
 {
 	for (size_t i = 0; i < EMessageType::COUNT; i++)
 	{
-		mySubscribers.push_back(std::vector<Subscriber*>());
+		mySubscribers.push_back(std::vector<SubPtr>());
 	}
 }
 
-void PostMaster::Subscribe(Subscriber* aSubPtr, const EMessageType aMessage)
+void PostMaster::Subscribe(SubPtr aSubPtr, const EMessageType aMessage)
 {
 	mySubscribers.at(aMessage).push_back(aSubPtr);
 }
 
-void PostMaster::Unsubscribe(Subscriber* aSubptr, const EMessageType aEMessageType)
+void PostMaster::Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType)
 {
 	mySubscribers.at(aEMessageType).erase(std::find(mySubscribers.at(aEMessageType).begin(), mySubscribers.at(aEMessageType).end(), aSubptr));
 }
 
 void PostMaster::ReceiveMessage(Message& aMessage, EMessageType aEMessageType)
 {
-	for (Subscriber* tempSub : mySubscribers.at(aEMessageType))
+	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
 	{
 		if (tempSub != nullptr)
 		{
@@ -45,7 +45,7 @@ void PostMaster::ReceiveMessage(Message& aMessage, EMessageType aEMessageType)
 
 void PostMaster::ReceiveMessage(EMessageType aEMessageType)
 {
-	for (Subscriber* tempSub : mySubscribers.at(aEMessageType))
+	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
 	{
 		if (tempSub != nullptr)
 		{

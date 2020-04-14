@@ -12,15 +12,15 @@ constexpr bool VSYNC = false;
 
 #include <random>
 
-template<typename C> inline void SafeDelete(C*& aPtrToDelete)
+#ifdef DEBUG
+#include <iostream>
+#endif // DEBUG
+
+template<typename C>
+inline void SafeDelete(C*& aPtrToDelete)
 {
 	delete aPtrToDelete;
 	aPtrToDelete = nullptr;
-}
-
-inline float RandomInt(const int min, const int max) 
-{
-	return std::rand() % min + max;
 }
 
 #endif

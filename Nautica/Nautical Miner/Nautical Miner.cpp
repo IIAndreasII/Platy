@@ -7,6 +7,10 @@
 #include <SFML/Window/Keyboard.hpp>
 
 
+#include "ParticleFountain.h"
+
+
+
 #include <iostream>
 
 
@@ -41,6 +45,11 @@ int main()
 	sf::Clock tempClock;
 	float tempDeltaTime;
 
+
+
+	ParticleFountain testEmitter = ParticleFountain(&sf::Vector2f(250, 250), sf::Color(0, 100, 100), 90, 25, 200, 50, 15, true);
+
+
 	// Main loop
 	while (window.isOpen())
 	{
@@ -62,7 +71,6 @@ int main()
 			}
 		}
 
-
 		// Update game only if window is in focus
 		if (isWindowInFocus)
 		{
@@ -74,9 +82,23 @@ int main()
 			// Update the game
 			tempGame.Update(tempDeltaTime);
 
+
+			// BEGIN Tests
+			testEmitter.Update(tempDeltaTime);
+			testEmitter.SetPosition(&sf::Vector2f(sf::Mouse::getPosition(window).x , sf::Mouse::getPosition(window).y));
+			// END Tests
+
+
 			// Draw the game
 			window.clear();
-			tempGame.Draw();
+			tempGame.Draw(window);
+
+
+			// BEGIN Tests
+			testEmitter.Draw(window);
+			// END Tests
+
+
 			window.display();
 		}
 	}

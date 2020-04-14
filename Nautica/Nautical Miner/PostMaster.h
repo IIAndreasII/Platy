@@ -8,6 +8,8 @@ enum EMessageType;
 class Message;
 class Subscriber;
 
+typedef Subscriber* SubPtr;
+
 class PostMaster
 {
 public:
@@ -15,21 +17,21 @@ public:
 
 	static void Init();
 
-	static void Subscribe(Subscriber* aSubPtr, const EMessageType aEMessageType);
+	static void Subscribe(SubPtr aSubPtr, const EMessageType aEMessageType);
 
-	static void Unsubscribe(Subscriber* aSubptr, const EMessageType aEMessageType);
+	static void Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType);
 
 	static void ReceiveMessage(Message& aMessage, EMessageType aEMessageType);
 
 	static void ReceiveMessage(EMessageType aEMessageType);
 
-	static std::vector<Subscriber*>& GetSubscribers(const EMessageType aMessage);
+	static std::vector<SubPtr>& GetSubscribers(const EMessageType aMessage);
 
 
 private:
 	PostMaster();
 
-	static std::vector<std::vector<Subscriber*>> mySubscribers;
+	static std::vector<std::vector<SubPtr>> mySubscribers;
 
 
 };

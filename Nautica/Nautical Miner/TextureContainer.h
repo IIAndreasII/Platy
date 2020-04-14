@@ -13,7 +13,7 @@ public:
 
 	static void Init();
 
-	static TexturePtr GetTextureAt(const unsigned index);
+	static TexturePtr GetTexture(const unsigned index);
 
 private:
 	TextureContainer();

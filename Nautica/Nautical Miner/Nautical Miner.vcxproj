@@ -167,15 +167,20 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GrowingArray.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Nautical Miner.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleEmitter.cpp" />
+    <ClCompile Include="ParticleFountain.cpp" />
+    <ClCompile Include="ParticleExplosion.cpp" />
+    <ClCompile Include="ParticleFactory.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerMotor.cpp" />
     <ClCompile Include="PostMaster.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="TextureContainer.cpp" />
+    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator2D.h" />
@@ -183,8 +188,12 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingArray.h" />
-    <ClInclude Include="Helper.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleEmitter.h" />
+    <ClInclude Include="ParticleFountain.h" />
+    <ClInclude Include="ParticleExplosion.h" />
+    <ClInclude Include="ParticleFactory.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMotor.h" />
@@ -194,6 +203,7 @@
     <ClInclude Include="Subscriber.h" />
     <ClInclude Include="TextureContainer.h" />
     <ClInclude Include="Typedefs.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Nautical Miner.rc" />

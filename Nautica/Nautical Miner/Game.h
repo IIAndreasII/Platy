@@ -18,7 +18,7 @@ public:
 	~Game();
 
 	void Update(const float &deltaTime);
-	void Draw();
+	void Draw(sf::RenderWindow& aWindow);
 
 	void ReceiveMessage(const EMessageType& aMessageType) override;
 

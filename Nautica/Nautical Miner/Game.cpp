@@ -27,9 +27,9 @@ void Game::Update(const float& deltaTime)
 	}
 }
 
-void Game::Draw()
+void Game::Draw(sf::RenderWindow &aWindow)
 {
-	//myCurrentScene->Draw(myWindow);
+	//myCurrentScene->Draw(aWindow);
 }
 
 void Game::ReceiveMessage(const EMessageType& aMessageType)

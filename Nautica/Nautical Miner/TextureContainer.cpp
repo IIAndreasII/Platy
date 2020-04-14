@@ -25,7 +25,7 @@ void TextureContainer::Init()
 	LoadTextures();
 }
 
-TexturePtr TextureContainer::GetTextureAt(const unsigned index)
+TexturePtr TextureContainer::GetTexture(const unsigned index)
 {
 	return myTexturePtrs.at(index);
 }

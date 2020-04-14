@@ -40,6 +40,12 @@
     <Filter Include="Util">
       <UniqueIdentifier>{8356386a-cc54-408b-b53a-8c99124be1f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphical\Particles">
+      <UniqueIdentifier>{82c3150a-a3ba-46fb-bde1-8f3583180a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{da9dcfa5-f52d-4a42-b837-7420ccfd7d9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PostMaster.cpp">
@@ -60,9 +66,6 @@
     <ClCompile Include="GrowingArray.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="TextureContainer.cpp">
-      <Filter>Graphical</Filter>
-    </ClCompile>
     <ClCompile Include="Animator2D.cpp">
       <Filter>Graphical</Filter>
     </ClCompile>
@@ -72,14 +75,32 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Helper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMotor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Graphical\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleExplosion.cpp">
+      <Filter>Graphical\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFactory.cpp">
+      <Filter>Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleFountain.cpp">
+      <Filter>Graphical\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleEmitter.cpp">
+      <Filter>Graphical\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureContainer.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +131,6 @@
     <ClInclude Include="Typedefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextureContainer.h">
-      <Filter>Graphical</Filter>
-    </ClInclude>
     <ClInclude Include="Animator2D.h">
       <Filter>Graphical</Filter>
     </ClInclude>
@@ -122,14 +140,32 @@
     <ClInclude Include="Scene.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMotor.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Graphical\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleExplosion.h">
+      <Filter>Graphical\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFactory.h">
+      <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleFountain.h">
+      <Filter>Graphical\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>Graphical\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureContainer.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
