@@ -5,7 +5,6 @@
 #include "SFML/Graphics/Color.hpp"
 
 
-
 class ParticleFountain : public ParticleEmitter
 {
 public:
@@ -16,19 +15,14 @@ public:
 					const float anIntensity, 
 					const float aFrequency, 
 					const int aMaxParticleSize,
-					const bool useGravity = true);
+					const float gravity);
 	~ParticleFountain();
 
 	void Update(float& deltaTime) override;
 	void Draw(sf::RenderWindow& aWindow) override;
-
 	void SetPosition(sf::Vector2f* aPosition);
 
-	void ToggleGravity();
-
 private:
-
-	bool myUseGravity;
 
 	float myEmissionAngle;
 	float mySpreadAngle;
@@ -39,6 +33,8 @@ private:
 	unsigned myMaxParticleSize;
 
 	sf::Color myColor;
+
+	void MakeParticle() override;
 };
 
 #endif

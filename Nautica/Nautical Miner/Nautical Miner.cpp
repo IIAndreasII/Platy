@@ -6,12 +6,16 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+#include "ParticleFactory.h"
+
+#include "ParticleManager.h"
 
 #include "ParticleFountain.h"
-
-
+#include "ParticleEmitterFactory.h"
+#include "Util.h"
 
 #include <iostream>
+#include <future>
 
 
 // TODO:
@@ -38,6 +42,12 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), tempGameName);
 	window.setVerticalSyncEnabled(VSYNC);
 
+	// Init factories
+	ParticleFactory::Init();
+
+	// Init managers
+	ParticleManager::Init();
+
 	// Init game (there should only be one game!)
 	Game tempGame(window);
 
@@ -46,9 +56,17 @@ int main()
 	float tempDeltaTime;
 
 
+	// BEGIN Tests
+	
+	float explosionTimer = 0;
 
-	ParticleFountain testEmitter = ParticleFountain(&sf::Vector2f(250, 250), sf::Color(0, 100, 100), 90, 25, 200, 50, 15, true);
+	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+	//ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 180, 20, 200, 50, 8, 9.82f);
+	//ParticleEmitterFactory::CreateExplosion(sf::Vector2f(250, 250), sf::Color(255, 0, 100), 200, 4, 250, 0, 2.5f);
+	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL, sf::Vector2f(0, 0), sf::Color(100, 100, 255), DEFAULT_WINDOW_HEIGHT, 1500, 500, .75f, 5, G);
+	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL_INVERTED, sf::Vector2f(800, 300), sf::Color(255, 255, 255), 200, 500, 500, 5, 5, G);
 
+	// END Tests
 
 	// Main loop
 	while (window.isOpen())
@@ -77,15 +95,24 @@ int main()
 			// Get delta time
 			tempDeltaTime = tempClock.restart().asSeconds();
 #ifdef DEBUG
-			std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;
+			//std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;
 #endif
 			// Update the game
 			tempGame.Update(tempDeltaTime);
 
 
 			// BEGIN Tests
-			testEmitter.Update(tempDeltaTime);
-			testEmitter.SetPosition(&sf::Vector2f(sf::Mouse::getPosition(window).x , sf::Mouse::getPosition(window).y));
+
+			mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+			ParticleManager::Update(tempDeltaTime);
+
+			explosionTimer -= tempDeltaTime;
+			if (explosionTimer <= 0)
+			{
+				ParticleEmitterFactory::CreateExplosion(sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 200, 6, 250, 0, 2.5f);
+				explosionTimer = .5;
+			}
+
 			// END Tests
 
 
@@ -95,7 +122,9 @@ int main()
 
 
 			// BEGIN Tests
-			testEmitter.Draw(window);
+
+			ParticleManager::Draw(window);
+
 			// END Tests
 
 

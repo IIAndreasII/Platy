@@ -20,3 +20,13 @@ void ParticleEmitter::Draw(sf::RenderWindow& aWindow)
 		it.Draw(aWindow);
 	}
 }
+
+void ParticleEmitter::Deactivate()
+{
+	myIsActive = false;
+}
+
+const bool& ParticleEmitter::GetActive()
+{
+	return myIsActive;
+}

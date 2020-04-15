@@ -15,14 +15,17 @@ void ParticleFactory::Init()
 	}
 }
 
-const Particle ParticleFactory::CreateParticle(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f dimensions, const float aLifespan, const bool useGravity)
+const Particle ParticleFactory::CreateParticle(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f aSize, const float aLifespan, const float gravity)
 {
-	if (myParticlePool.size() < PARTICLE_POOL_SIZE / 3)
+	//if (myParticlePool.size() < PARTICLE_POOL_SIZE / 3)
 	{
-		RefillPool();
+	//	RefillPool();
 	}
 	// TODO: make stuff work as intended
-	return Particle(aPosition, aVelocity, aColor, dimensions, aLifespan, useGravity);
+	//Particle tempParticle = myParticlePool.at(0);
+	//myParticlePool.erase(myParticlePool.begin());
+	//tempParticle.SetTraits(aPosition, aVelocity, aColor, dimensions, aLifespan, useGravity);
+	return Particle(aPosition, aVelocity, aColor, aSize, aLifespan, gravity);
 }
 
 void ParticleFactory::RefillPool()

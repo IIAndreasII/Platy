@@ -16,19 +16,17 @@ float Util::RandFloat(const float min, const float max)
 	return min + static_cast<float> (rand()) / (static_cast<float>(RAND_MAX / (max - min)));
 }
 
-float Util::ClampDeg(const float& anAngle)
+void Util::ClampDeg(float& anAngle)
 {
 	if (anAngle > 360)
 	{
-		return anAngle - 360;
+		anAngle -= 360;
 	}
 	else if (anAngle < 0)
 	{
-		return anAngle + 360;
+		anAngle += 360;
 	}
-	return anAngle;
 }
-
 
 template<typename T>
 inline T Util::Clamp(const T min, const T max, T& value)
@@ -44,8 +42,9 @@ inline T Util::Clamp(const T min, const T max, T& value)
 	return value;
 }
 
-sf::Vector2f Util::DegToVec2(const float& anAngle)
+sf::Vector2f Util::DegToVec2(float& anAngle)
 {
+	ClampDeg(anAngle);
 	return sf::Vector2f(cos(anAngle * DEGTORAD), sin(anAngle * DEGTORAD));
 }
 

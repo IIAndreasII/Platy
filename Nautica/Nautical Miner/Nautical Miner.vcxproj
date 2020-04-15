@@ -171,9 +171,12 @@
     <ClCompile Include="Nautical Miner.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleEmitter.cpp" />
+    <ClCompile Include="ParticleEmitterFactory.cpp" />
     <ClCompile Include="ParticleFountain.cpp" />
     <ClCompile Include="ParticleExplosion.cpp" />
     <ClCompile Include="ParticleFactory.cpp" />
+    <ClCompile Include="ParticleManager.cpp" />
+    <ClCompile Include="ParticleShower.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerMotor.cpp" />
     <ClCompile Include="PostMaster.cpp" />
@@ -191,9 +194,12 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleEmitter.h" />
+    <ClInclude Include="ParticleEmitterFactory.h" />
     <ClInclude Include="ParticleFountain.h" />
     <ClInclude Include="ParticleExplosion.h" />
     <ClInclude Include="ParticleFactory.h" />
+    <ClInclude Include="ParticleManager.h" />
+    <ClInclude Include="ParticleShower.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMotor.h" />
