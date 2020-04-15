@@ -2,6 +2,7 @@
 #define PARTICLEMANAGER_H
 
 #include <vector>
+#include <future>
 #include "SFML/Graphics/RenderWindow.hpp"
 
 class ParticleEmitter;
@@ -23,6 +24,7 @@ private:
 	ParticleManager();
 
 	static std::vector<ParticleEmitterPtr> myParticleEmitters;
+	static std::vector<std::future<void>> myFutures;
 };
 
 #endif
