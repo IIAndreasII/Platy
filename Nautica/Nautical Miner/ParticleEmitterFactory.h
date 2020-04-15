@@ -4,7 +4,7 @@
 #include "SFML/System/Vector2.hpp"
 #include "SFML/Graphics/Color.hpp"
 
-enum EOrientation;
+enum class EOrientation;
 class ParticleFountain;
 class ParticleExplosion;
 

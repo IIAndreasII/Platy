@@ -61,7 +61,7 @@ int main()
 	float explosionTimer = 0;
 
 	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	//ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 180, 20, 200, 50, 8, 9.82f);
+	ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f);
 	//ParticleEmitterFactory::CreateExplosion(sf::Vector2f(250, 250), sf::Color(255, 0, 100), 200, 4, 250, 0, 2.5f);
 	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL, sf::Vector2f(0, 0), sf::Color(100, 100, 255), DEFAULT_WINDOW_HEIGHT, 1500, 500, .75f, 5, G);
 	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL_INVERTED, sf::Vector2f(800, 300), sf::Color(255, 255, 255), 200, 500, 500, 5, 5, G);
