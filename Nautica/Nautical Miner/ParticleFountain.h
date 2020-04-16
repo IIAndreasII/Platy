@@ -2,7 +2,8 @@
 #define PARTICLEFOUNTAIN_H
 
 #include "ParticleEmitter.h"
-#include "SFML/Graphics/Color.hpp"
+
+#include "Colors.h"
 
 
 class ParticleFountain : public ParticleEmitter

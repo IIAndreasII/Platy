@@ -108,11 +108,11 @@
     <ClCompile Include="ParticleFactory.cpp">
       <Filter>Factories\Effects</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleShower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Nautical Miner.cpp">
       <Filter>Game\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleShower.cpp">
+      <Filter>Graphical\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +135,6 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Typedefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Animator2D.h">
@@ -182,8 +179,14 @@
     <ClInclude Include="ParticleFactory.h">
       <Filter>Factories\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>Util</Filter>
+    </ClInclude>
     <ClInclude Include="ParticleShower.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphical\Particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

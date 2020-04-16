@@ -1,9 +1,10 @@
 #ifndef PARTICLEEMITTERFACTORY_H
 #define PARTICLEEMITTERFACTORY_H
 
-#include "SFML/System/Vector2.hpp"
-#include "SFML/Graphics/Color.hpp"
 #include "Util.h"
+#include "Colors.h"
+#include "SFML/System/Vector2.hpp"
+
 
 enum class EOrientation;
 class ParticleFountain;

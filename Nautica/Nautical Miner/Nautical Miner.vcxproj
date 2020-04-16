@@ -187,7 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator2D.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingArray.h" />
     <ClInclude Include="Message.h" />
@@ -207,7 +209,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Subscriber.h" />
     <ClInclude Include="TextureContainer.h" />
-    <ClInclude Include="Typedefs.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>

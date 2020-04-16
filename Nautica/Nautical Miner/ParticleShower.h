@@ -3,21 +3,22 @@
 
 #include "ParticleEmitter.h"
 
+#include "Enum.h"
 
 class ParticleShower : public ParticleEmitter
 {
 public:
 	ParticleShower(
 		const EOrientation anOrientation,
-		sf::Vector2f aPosition,
-		const sf::Color aColor,
-		const float aLength,
-		const float anIntensity,
-		const float aFrequency,
-		const float aLifeSpan,
-		const int aMaxParticleSize,
-		const float gravity,
-		const float anEmissionAngle);
+		sf::Vector2f& aPosition,
+		const sf::Color& aColor,
+		const float& aLength,
+		const float& anIntensity,
+		const float& aFrequency,
+		const float& aLifeSpan,
+		const int& aMaxParticleSize,
+		const float& gravity,
+		const float& anEmissionAngle);
 
 	~ParticleShower();
 

@@ -1,10 +1,9 @@
 #ifndef PARTICLEFACTORY_H
 #define PARTICLEFACTORY_H
 
-#include <vector>
-
+#include "Colors.h"
 #include "SFML/System/Vector2.hpp"
-#include "SFML/Graphics/Color.hpp"
+
 
 constexpr unsigned PARTICLE_POOL_SIZE = 2000;
 

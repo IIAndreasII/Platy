@@ -4,7 +4,6 @@
 
 ParticleEmitter::~ParticleEmitter()
 {
-
 }
 
 void ParticleEmitter::Update(float& deltaTime)

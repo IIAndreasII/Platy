@@ -1,10 +1,12 @@
 #include "pch.h"
+
+#include "Util.h"
 #include "ParticleShower.h"
 #include "ParticleFactory.h"
-#include <cmath>
-#include "Util.h"
 
-ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f aPosition, const sf::Color aColor, const float aLength, const float anIntensity, const float aFrequency, const float aLifeSpan, const int aMaxParticleSize, const float gravity, const float anEmissionAngle)
+#include <cmath>
+
+ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f& aPosition, const sf::Color& aColor, const float& aLength, const float& anIntensity, const float& aFrequency, const float& aLifeSpan, const int& aMaxParticleSize, const float& gravity, const float& anEmissionAngle)
 	: myOrientation(anOrientation),
 	myLength(aLength),
 	myIntensity(anIntensity),
@@ -47,7 +49,6 @@ void ParticleShower::Update(float& deltaTime)
 			}
 		}
 	}
-	std::cout << myParticles.size() << std::endl;
 	ParticleEmitter::Update(deltaTime);
 }
 

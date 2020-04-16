@@ -2,9 +2,12 @@
 #define UTIL_H
 
 #include "SFML/System/Vector2.hpp"
+#include "Enum.h"
 
 constexpr float DEGTORAD = 0.0174533f;
 constexpr float G = 2 * 9.82f;
+
+
 
 class Util
 {
