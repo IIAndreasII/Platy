@@ -15,6 +15,7 @@ ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f aP
 	mySpawnTimer(0),
 	myPosition(aPosition)
 {
+	myNbrOfParticles = aLifeSpan * aFrequency;
 	myColor = aColor;
 	myIsActive = true;
 	myGravity = gravity;
@@ -27,23 +28,26 @@ ParticleShower::~ParticleShower()
 
 void ParticleShower::Update(float& deltaTime)
 {
-	if (1.f / myFrequency < deltaTime)
+	if (myParticles.size() < myNbrOfParticles)
 	{
-		for (size_t i = 0; i < deltaTime / (1.f / myFrequency); i++)
+		if (1.f / myFrequency < deltaTime)
 		{
-			MakeParticle();
+			for (size_t i = 0; i < deltaTime / (1.f / myFrequency); i++)
+			{
+				MakeParticle();
+			}
+		}
+		else
+		{
+			mySpawnTimer -= deltaTime;
+			if (mySpawnTimer <= 0)
+			{
+				MakeParticle();
+				mySpawnTimer = 1.f / myFrequency;
+			}
 		}
 	}
-	else
-	{
-		mySpawnTimer -= deltaTime;
-		if (mySpawnTimer <= 0)
-		{
-			MakeParticle();
-			mySpawnTimer = 1.f / myFrequency;
-		}
-	}
-
+	std::cout << myParticles.size() << std::endl;
 	ParticleEmitter::Update(deltaTime);
 }
 

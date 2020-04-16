@@ -13,10 +13,13 @@ Particle::Particle()
 {
 }
 
-Particle::Particle(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color &aColor, const sf::Vector2f aSize, const float aLifespan, const float gravity)
+Particle::Particle(const sf::Vector2f& aPosition, const sf::Vector2f aVelocity, const sf::Color &aColor, const sf::Vector2f aSize, const float& aLifespan, const float& gravity)
 	: myPosition(aPosition),
+	myInitPosition(aPosition),
+	myInitVelocity(aVelocity),
 	myVelocity(aVelocity),
 	myLifespan(aLifespan),
+	myInitLifespan(aLifespan),
 	myGravity(2 * gravity),
 	myShape(aSize)
 {
@@ -31,6 +34,10 @@ Particle::~Particle()
 void Particle::Update(float& deltaTime)
 {
 	myLifespan -= deltaTime;
+	if (myLifespan <= 0)
+	{
+		Reset();
+	}
 	if (myGravity != 0)
 	{
 		myVelocity.y += myGravity * myGravity * deltaTime;
@@ -42,7 +49,13 @@ void Particle::Update(float& deltaTime)
 void Particle::Draw(sf::RenderWindow& aWindow)
 {
 	aWindow.draw(myShape);
-	
+}
+
+void Particle::Reset()
+{
+	myPosition = myInitPosition;
+	myVelocity = myInitVelocity;
+	myLifespan = myInitLifespan;
 }
 
 inline void Particle::SetTraits(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f aSize, const float aLifespan, const bool useGravity)

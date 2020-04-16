@@ -1,11 +1,11 @@
 #include "ParticleExplosion.h"
 #include "ParticleFactory.h"
 #include "Util.h"
+#include <iostream>
 
 
 
-
-ParticleExplosion::ParticleExplosion(const sf::Vector2f aPosition, const sf::Color aColor, const unsigned nbrOfParticles, const float aParticleMaxSize, const float anIntensity, const float gravity, const float aLifeSpan)
+ParticleExplosion::ParticleExplosion(const sf::Vector2f& aPosition, const sf::Color& aColor, const unsigned& nbrOfParticles, const float& aParticleMaxSize, const float& anIntensity, const float& gravity, const float& aLifeSpan)
 	: myLifespan(aLifeSpan)
 {
 	myInensityModulation = anIntensity / INTENSITY_MODULATION_DIVISER;
@@ -17,7 +17,7 @@ ParticleExplosion::ParticleExplosion(const sf::Vector2f aPosition, const sf::Col
 			Util::DegToVec2(tempAngle) * (anIntensity + Util::RandFloat(-myInensityModulation, myInensityModulation)),
 			aColor,
 			sf::Vector2f(Util::RandFloat(2, aParticleMaxSize), Util::RandFloat(2, aParticleMaxSize)),
-			anIntensity,
+			aLifeSpan,
 			gravity));
 	}
 }

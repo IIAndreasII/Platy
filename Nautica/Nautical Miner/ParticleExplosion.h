@@ -12,13 +12,13 @@ class ParticleExplosion : public ParticleEmitter
 {
 public:
 	ParticleExplosion(
-		const sf::Vector2f aPosition, 
-		const sf::Color aColor, 
-		const unsigned nbrOfParticles, 
-		const float aParticleMaxSize, 
-		const float anIntensity, 
-		const float gravity, 
-		const float aLifeSpan);
+		const sf::Vector2f& aPosition, 
+		const sf::Color& aColor, 
+		const unsigned& nbrOfParticles, 
+		const float& aParticleMaxSize, 
+		const float& anIntensity, 
+		const float& gravity, 
+		const float& aLifeSpan);
 
 	~ParticleExplosion();
 

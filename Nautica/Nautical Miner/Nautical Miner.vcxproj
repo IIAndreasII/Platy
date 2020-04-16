@@ -188,7 +188,6 @@
   <ItemGroup>
     <ClInclude Include="Animator2D.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Enums.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingArray.h" />
     <ClInclude Include="Message.h" />

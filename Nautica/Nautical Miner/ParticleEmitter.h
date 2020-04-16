@@ -21,6 +21,7 @@ constexpr float COLOR_MODULATION = 150;
 class ParticleEmitter
 {
 public:
+	virtual ~ParticleEmitter() = 0;
 	virtual void Update(float& deltaTime);
 	virtual void Draw(sf::RenderWindow& aWindow);
 
@@ -31,6 +32,7 @@ protected:
 	
 	float myGravity;
 	float myInensityModulation;
+	float myNbrOfParticles;
 
 	bool myIsActive;
 	

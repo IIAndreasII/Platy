@@ -13,7 +13,7 @@ public:
 					const float anEmissionAngle,
 					const float aSpreadAngle,
 					const float anIntensity, 
-					const float aFrequency, 
+					const float aFrequency,
 					const int aMaxParticleSize,
 					const float gravity);
 	~ParticleFountain();

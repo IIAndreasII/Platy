@@ -19,9 +19,6 @@
     <Filter Include="Super">
       <UniqueIdentifier>{e333482c-bf01-42a6-aea8-d2f5da58fd0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Enum">
-      <UniqueIdentifier>{624c9493-b3a9-4f2a-b26b-bebd223d9e3a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{c1a0eca2-58d2-4ff4-9837-1cb3bcfdd81f}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,9 @@
     <Filter Include="Factories\Effects">
       <UniqueIdentifier>{f104d315-3843-4387-b479-9b5560c4b011}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Main">
+      <UniqueIdentifier>{bec4d093-d78c-4be0-82d4-b783e44561e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PostMaster.cpp">
@@ -59,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Postmaster</Filter>
-    </ClCompile>
-    <ClCompile Include="Nautical Miner.cpp">
-      <Filter>Super</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
@@ -114,6 +111,9 @@
     <ClCompile Include="ParticleShower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Nautical Miner.cpp">
+      <Filter>Game\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PostMaster.h">
@@ -127,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Super</Filter>
-    </ClInclude>
-    <ClInclude Include="Enums.h">
-      <Filter>Enum</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>

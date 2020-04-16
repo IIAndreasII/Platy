@@ -18,6 +18,7 @@ ParticleFountain::ParticleFountain(sf::Vector2f* aPosition, const sf::Color aCol
 	mySpreadAngle(aSpreadAngle),
 	mySpawnTimer()
 {
+	myNbrOfParticles = LIFESPAN_MAX * aFrequency;
 	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER;
 	myGravity = gravity;
 	myIsActive = true;
@@ -30,11 +31,14 @@ ParticleFountain::~ParticleFountain()
 
 void ParticleFountain::Update(float& deltaTime)
 {
-	mySpawnTimer -= deltaTime;
-	if (mySpawnTimer <= 0)
+	if (myParticles.size() < myNbrOfParticles)
 	{
-		MakeParticle();
-		mySpawnTimer = 1.f / myFrequency;
+		mySpawnTimer -= deltaTime;
+		if (mySpawnTimer <= 0)
+		{
+			MakeParticle();
+			mySpawnTimer = 1.f / myNbrOfParticles;
+		}
 	}
 	ParticleEmitter::Update(deltaTime);
 }

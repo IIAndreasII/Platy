@@ -1,15 +1,17 @@
+#include "pch.h"
 #include "ParticleEmitter.h"
 #include "Particle.h"
 
+ParticleEmitter::~ParticleEmitter()
+{
+
+}
+
 void ParticleEmitter::Update(float& deltaTime)
 {
-	for (int i = myParticles.size() - 1; i >= 0; i--)
+	for (size_t i = 0; i < myParticles.size(); i++)
 	{
 		myParticles.at(i).Update(deltaTime);
-		if (!myParticles.at(i).GetAlive())
-		{
-			myParticles.erase(myParticles.begin() + i);
-		}
 	}
 }
 

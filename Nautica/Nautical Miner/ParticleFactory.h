@@ -17,14 +17,17 @@ public:
 
 	static void Init();
 
-	static const Particle CreateParticle(const sf::Vector2f& aPosition, const sf::Vector2f& aSize, const sf::Color& aColor, const sf::Vector2f dimensions, const float aLifespan, const float gravity);
+	static Particle CreateParticle(
+		const sf::Vector2f& aPosition, 
+		const sf::Vector2f& aVelocity, 
+		const sf::Color& aColor, 
+		const sf::Vector2f& aSize, 
+		const float& aLifespan, 
+		const float& gravity);
 
 private:
 	ParticleFactory();
 
-	static void RefillPool();
-
-	static std::vector<Particle> myParticlePool;
 };
 
 #endif

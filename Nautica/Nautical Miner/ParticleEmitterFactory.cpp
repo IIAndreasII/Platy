@@ -13,7 +13,7 @@ void ParticleEmitterFactory::CreateFountain(sf::Vector2f* aPosition, const sf::C
 	ParticleManager::AddEmitter(new ParticleFountain(aPosition, aColor, anEmissionAngle, aSpreadAngle, anIntensity, aFrequency, aMaxParticleSize, gravity));
 }
 
-void ParticleEmitterFactory::CreateExplosion(const sf::Vector2f& aPosition, const sf::Color aColor, const unsigned nbrOfParticles, const float aParticleMaxSize, const float anInensity, const float gravity, const float aLifeSpan)
+void ParticleEmitterFactory::CreateExplosion(const sf::Vector2f& aPosition, const sf::Color aColor, const unsigned nbrOfParticles, const float aParticleMaxSize, const float anInensity, const float aLifeSpan, const float gravity)
 {
 	ParticleManager::AddEmitter(new ParticleExplosion(aPosition, aColor, nbrOfParticles, aParticleMaxSize, anInensity, gravity, aLifeSpan));
 }

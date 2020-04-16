@@ -3,6 +3,7 @@
 
 #include "SFML/System/Vector2.hpp"
 #include "SFML/Graphics/Color.hpp"
+#include "Util.h"
 
 enum class EOrientation;
 class ParticleFountain;
@@ -21,7 +22,7 @@ public:
 		const float anIntensity, 
 		const float aFrequency, 
 		const int aMaxParticleSize, 
-		const float gravity);
+		const float gravity = G);
 	
 	static void CreateExplosion(
 		const sf::Vector2f& aPosition,
@@ -29,8 +30,8 @@ public:
 		const unsigned nbrOfParticles,
 		const float aParticleMaxSize,
 		const float anInensity,
-		const float gravity,
-		const float aLifeSpan);
+		const float aLifeSpan,
+		const float gravity = G);
 
 	static void CreateShower(
 		const EOrientation anOrientation,
@@ -41,7 +42,7 @@ public:
 		const float aFrequency,
 		const float aLifeSpan,
 		const int aMaxParticleSize,
-		const float gravity,
+		const float gravity = G,
 		const float anEmissionAngle = 90);
 
 private:
