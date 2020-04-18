@@ -68,7 +68,7 @@ void ParticleManager::Draw(sf::RenderWindow& aWindow)
 	}
 }
 
-void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter)
+void ParticleManager::AddEmitter(const ParticleEmitterPtr anEmitter)
 {
 	myParticleEmitters.push_back(anEmitter);
 }

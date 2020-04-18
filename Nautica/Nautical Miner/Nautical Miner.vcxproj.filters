@@ -93,9 +93,6 @@
     <ClCompile Include="ParticleEmitter.cpp">
       <Filter>Graphical\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="TextureContainer.cpp">
-      <Filter>Containers</Filter>
-    </ClCompile>
     <ClCompile Include="Util.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -113,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="ParticleShower.cpp">
       <Filter>Graphical\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="Spritesheet.cpp">
+      <Filter>Graphical</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetContainer.cpp">
+      <Filter>Containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +167,6 @@
     <ClInclude Include="ParticleEmitter.h">
       <Filter>Graphical\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="TextureContainer.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Util.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -187,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="ParticleShower.h">
       <Filter>Graphical\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Spritesheet.h">
+      <Filter>Graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetContainer.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

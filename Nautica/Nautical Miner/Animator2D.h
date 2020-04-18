@@ -1,42 +1,36 @@
 #ifndef ANIMATOR2D
 #define ANIMATOR2D
 
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Texture.hpp>
+#include "Spritesheet.h"
 #include "SFML/System/Vector2.hpp"
+#include <SFML/Graphics/Sprite.hpp>
 
-typedef sf::Texture* TexturePtr;
 
 class Animator2D
 {
 public:
 
-	Animator2D();
-	Animator2D(TexturePtr aTexturePtr, const unsigned frameCount, const unsigned frameRate);
+	Animator2D(const SpriteSheet& aSpritesheet, const bool shouldLoop = true);
 	~Animator2D();
 	
 	void Update(const float& deltaTime, const sf::Vector2f& aPosition);
 
-	void SetAnim(TexturePtr aTexturePtr, const unsigned aFrameCount, const unsigned frameRate);
+	void SetAnim(const SpriteSheet& aSpritesheet);
 
 	void TogglePlaying();
 	void ToggleLooping();
 
-	const sf::Sprite& GetCurrentFrame();
+	const sf::Sprite& GetCurrentFrame() const;
 
 private:
 
-	TexturePtr mySpriteSheet;
+	SpriteSheet mySpriteSheet;
 	sf::Sprite mySprite;
 
 	bool myIsPlaying;
 	bool myIsLooping;
-
-	unsigned myFrameCount;
-	unsigned myFrameRate;
-
+	
 	float myCurrentFrame;
-
 };
 
 #endif

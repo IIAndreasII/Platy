@@ -27,7 +27,7 @@ void ParticleEmitter::Deactivate()
 	myIsActive = false;
 }
 
-const bool& ParticleEmitter::GetActive()
+const bool& ParticleEmitter::GetActive() const
 {
 	return myIsActive;
 }

@@ -181,8 +181,9 @@
     <ClCompile Include="PlayerMotor.cpp" />
     <ClCompile Include="PostMaster.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Spritesheet.cpp" />
     <ClCompile Include="Subscriber.cpp" />
-    <ClCompile Include="TextureContainer.cpp" />
+    <ClCompile Include="AssetContainer.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -207,8 +208,9 @@
     <ClInclude Include="PostMaster.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Spritesheet.h" />
     <ClInclude Include="Subscriber.h" />
-    <ClInclude Include="TextureContainer.h" />
+    <ClInclude Include="AssetContainer.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,8 @@ Particle::Particle()
 	myVelocity(),
 	myLifespan(),
 	myGravity(),
-	myShape()
+	myShape(),
+	myInitLifespan()
 {
 }
 
@@ -68,7 +69,7 @@ inline void Particle::SetTraits(const sf::Vector2f& aPosition, const sf::Vector2
 	myGravity = useGravity;
 }
 
-const bool Particle::GetAlive()
+const bool Particle::GetAlive() const
 {
 	return myLifespan > 0;
 }

@@ -1,53 +1,49 @@
 #include "Animator2D.h"
 
-Animator2D::Animator2D()
-{
-}
 
-Animator2D::Animator2D(TexturePtr aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate) :
-	mySpriteSheet(aTexturePtr),
-	myFrameCount(aFrameCount),
-	myFrameRate(aFrameRate),
-	mySprite(*mySpriteSheet),
+Animator2D::Animator2D(const SpriteSheet& aSpritesheet, const bool shouldLoop) :
+	mySpriteSheet(aSpritesheet),
+	mySprite(*mySpriteSheet.GetTexturePtr()),
 	myIsPlaying(true),
-	myIsLooping(true),
+	myIsLooping(shouldLoop),
 	myCurrentFrame(0)
 {
 }
 
 Animator2D::~Animator2D()
 {
-	mySpriteSheet = nullptr;
 }
 
 
 void Animator2D::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 {
-	if (myIsPlaying)
+	if (myIsPlaying) 
 	{
 		mySprite.setPosition(aPosition);
-		myCurrentFrame += myFrameRate * deltaTime;
+		myCurrentFrame += mySpriteSheet.GetFrameRate() * deltaTime;
 		
-		if (myCurrentFrame >= myFrameCount)
+		if (myCurrentFrame >= mySpriteSheet.GetFrameCount())
 		{
 			myCurrentFrame = 0;
+			if (!myIsLooping)
+			{
+				myIsPlaying = false;
+			}
 		}
 
-		sf::IntRect tempIntRect(mySpriteSheet->getSize().x / myFrameCount * static_cast<int>(myCurrentFrame),
+		sf::IntRect tempIntRect(mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
 								0,
-								mySpriteSheet->getSize().x / myFrameCount,
-								mySpriteSheet->getSize().y);
+								mySpriteSheet.GetFrameWidth() / mySpriteSheet.GetFrameCount(),
+								mySpriteSheet.GetFrameHeight());
 
 		mySprite.setTextureRect(tempIntRect);
 	}
 }
 
-void Animator2D::SetAnim(TexturePtr aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)
+void Animator2D::SetAnim(const SpriteSheet& aSpritesheet)
 {
-	mySpriteSheet = aTexturePtr;
-	mySprite.setTexture(*mySpriteSheet);
-	myFrameCount = aFrameCount;
-	myFrameRate = aFrameRate;
+	mySpriteSheet = aSpritesheet;
+	mySprite.setTexture(*mySpriteSheet.GetTexturePtr());
 	myCurrentFrame = 0;
 }
 
@@ -61,7 +57,7 @@ void Animator2D::ToggleLooping()
 	myIsLooping = !myIsLooping;
 }
 
-const sf::Sprite& Animator2D::GetCurrentFrame()
+const sf::Sprite& Animator2D::GetCurrentFrame() const
 {
 	return mySprite;
 }

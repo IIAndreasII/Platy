@@ -19,7 +19,7 @@ public:
 	virtual void Draw(sf::RenderWindow& aWindow);
 
 	void Deactivate();
-	virtual const bool& GetActive();
+	virtual const bool& GetActive() const;
 
 protected:
 	

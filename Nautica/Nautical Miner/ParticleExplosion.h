@@ -25,7 +25,7 @@ public:
 	void Update(float& deltaTime) override;
 	void Draw(sf::RenderWindow& aWindow) override;
 
-	const bool& GetActive() override;
+	const bool& GetActive() const override;
 
 private:
 	

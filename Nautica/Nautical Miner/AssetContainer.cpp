@@ -1,38 +1,51 @@
 #include "pch.h"
-#include "TextureContainer.h"
+#include "AssetContainer.h"
 #include <fstream>
 
 #ifdef DEBUG
 #include <iostream>
 #endif
 
-constexpr const char* FILEPATH = "Textures/Filepaths.txt";
+constexpr const char* FILEPATH_TEXTURES = "Textures/Filepaths_Textures.txt";
+constexpr const char* FILEPATH_SPRITESHEETS = "Assets/Filepaths_SpriteSheets.txt";
 
-std::vector<TexturePtr> TextureContainer::myTexturePtrs;
+std::vector<TexturePtr> AssetContainer::myTexturePtrs;
+std::vector<SpriteSheetPtr> AssetContainer::mySpriteSheetPtrs;
 
-TextureContainer::~TextureContainer()
+
+AssetContainer::~AssetContainer()
 {
 	for (auto it : myTexturePtrs) 
 	{
 		SafeDelete(it);
 	}
+	for (auto it : mySpriteSheetPtrs)
+	{
+		SafeDelete(it);
+	}
 	myTexturePtrs.clear();
+	mySpriteSheetPtrs.clear();
 }
 
-void TextureContainer::Init()
+void AssetContainer::Init()
 {
 	myTexturePtrs = std::vector<TexturePtr>();
 	LoadTextures();
 }
 
-TexturePtr TextureContainer::GetTexture(const unsigned index)
+const TexturePtr AssetContainer::GetTexturePtr(const unsigned index)
 {
 	return myTexturePtrs.at(index);
 }
 
-void TextureContainer::LoadTextures()
+const SpriteSheetPtr AssetContainer::GetSpritesheetPtr(const unsigned index)
 {
-	std::ifstream tempTxtFile(FILEPATH);
+	return mySpriteSheetPtrs.at(index);
+}
+
+void AssetContainer::LoadTextures()
+{
+	std::ifstream tempTxtFile(FILEPATH_TEXTURES);
 	std::vector<std::string> tempFilePaths = std::vector<std::string>();
 
 	// Acquire filepaths
@@ -58,4 +71,9 @@ void TextureContainer::LoadTextures()
 		myTexturePtrs.push_back(new sf::Texture());
 		myTexturePtrs.at(i)->loadFromFile(tempFilePaths.at(i));
 	}
+}
+
+void AssetContainer::LoadAndParseSpriteSheets()
+{
+	// TODO: Load in filepath, frame count, frame rate and parse it
 }

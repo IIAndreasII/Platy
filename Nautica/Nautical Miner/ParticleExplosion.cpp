@@ -29,6 +29,10 @@ ParticleExplosion::~ParticleExplosion()
 void ParticleExplosion::Update(float& deltaTime)
 {
 	myLifespan -= deltaTime;
+	if (myLifespan <= 0)
+	{
+		myIsActive = false;
+	}
 	ParticleEmitter::Update(deltaTime);
 }
 
@@ -37,9 +41,9 @@ void ParticleExplosion::Draw(sf::RenderWindow& aWindow)
 	ParticleEmitter::Draw(aWindow);
 }
 
-const bool& ParticleExplosion::GetActive()
+const bool& ParticleExplosion::GetActive() const
 {
-	return myLifespan > 0;
+	return myIsActive;
 }
 
 void ParticleExplosion::MakeParticle()

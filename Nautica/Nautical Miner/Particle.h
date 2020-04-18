@@ -25,8 +25,7 @@ public:
 
 	inline void SetTraits(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f aSize, const float aLifespan, const bool useGravity);
 
-	const bool GetAlive();
-	const sf::Vector2f GetPos();
+	const bool GetAlive() const;
 
 private:
 
