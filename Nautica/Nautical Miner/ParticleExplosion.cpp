@@ -8,6 +8,7 @@
 ParticleExplosion::ParticleExplosion(const sf::Vector2f& aPosition, const sf::Color& aColor, const unsigned& nbrOfParticles, const float& aParticleMaxSize, const float& anIntensity, const float& gravity, const float& aLifeSpan)
 	: myLifespan(aLifeSpan)
 {
+	myIsActive = true;
 	myInensityModulation = anIntensity / INTENSITY_MODULATION_DIVISER;
 	for (size_t i = 0; i < nbrOfParticles; i++)
 	{
