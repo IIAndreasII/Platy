@@ -57,7 +57,7 @@ int main()
 	float explosionTimer = 0;
 
 	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	//ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f);
+	ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f, true);
 	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(150, 500), sf::Color(255, 100, 100), 315, 25, 200, 50, 8, 9.82f);
 	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(650, 500), sf::Color(0, 255, 100), 225, 25, 200, 50, 8, 9.82f);
 	//ParticleEmitterFactory::CreateExplosion(sf::Vector2f(250, 250), sf::Color(255, 0, 100), 200, 4, 250, 0, 2.5f);
@@ -106,7 +106,7 @@ int main()
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 500, 6, 250, 1.75f, 0);
+			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 500, 6, 250, 1.75f, 0, true);
 			explosionTimer = .5;
 		}
 #endif

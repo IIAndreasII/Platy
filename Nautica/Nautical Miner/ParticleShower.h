@@ -18,7 +18,8 @@ public:
 		const float& aLifeSpan,
 		const int& aMaxParticleSize,
 		const float& gravity,
-		const float& anEmissionAngle);
+		const float& anEmissionAngle,
+		const bool& shouldParticlesFade);
 
 	~ParticleShower();
 
@@ -42,7 +43,7 @@ private:
 	EOrientation myOrientation;
 
 	void MakeParticle() override;
-	const sf::Vector2f GetPosition();
+	sf::Vector2f* GetPosition();
 	const sf::Vector2f GetVelocity();
 };
 

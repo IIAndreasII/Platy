@@ -17,12 +17,13 @@ public:
 	static void Init();
 
 	static Particle CreateParticle(
-		const sf::Vector2f& aPosition, 
+		sf::Vector2f* aPosition, 
 		const sf::Vector2f& aVelocity, 
 		const sf::Color& aColor, 
 		const sf::Vector2f& aSize, 
 		const float& aLifespan, 
-		const float& gravity);
+		const float& gravity,
+		const bool& shouldFade);
 
 private:
 	ParticleFactory();

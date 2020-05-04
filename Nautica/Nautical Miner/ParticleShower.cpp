@@ -6,7 +6,7 @@
 
 #include <cmath>
 
-ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f& aPosition, const sf::Color& aColor, const float& aLength, const float& anIntensity, const float& aFrequency, const float& aLifeSpan, const int& aMaxParticleSize, const float& gravity, const float& anEmissionAngle)
+ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f& aPosition, const sf::Color& aColor, const float& aLength, const float& anIntensity, const float& aFrequency, const float& aLifeSpan, const int& aMaxParticleSize, const float& gravity, const float& anEmissionAngle, const bool& shouldParticlesFade)
 	: myOrientation(anOrientation),
 	myLength(aLength),
 	myIntensity(anIntensity),
@@ -22,6 +22,7 @@ ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f& a
 	myIsActive = true;
 	myGravity = gravity;
 	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER;
+	myShouldParticlesFade = shouldParticlesFade;
 }
 
 ParticleShower::~ParticleShower()
@@ -66,23 +67,24 @@ void ParticleShower::MakeParticle()
 			sf::Color(myColor.r, myColor.g, myColor.b, myColor.a - Util::RandFloat(0, COLOR_MODULATION)),
 			sf::Vector2f(Util::RandFloat(2, myMaxParticleSize), Util::RandFloat(2, myMaxParticleSize)),
 			myParticleLifeSpan,
-			myGravity));
+			myGravity,
+			myShouldParticlesFade));
 }
 
-const sf::Vector2f ParticleShower::GetPosition()
+sf::Vector2f* ParticleShower::GetPosition()
 {
 	switch (myOrientation)
 	{
 	case EOrientation::HORIZONTAL:
-		return sf::Vector2f(myPosition.x + Util::RandFloat(0, myLength), myPosition.y);
+		return new sf::Vector2f(myPosition.x + Util::RandFloat(0, myLength), myPosition.y);
 	case EOrientation::HORIZONTAL_INVERTED:
-		return sf::Vector2f(Util::RandFloat(myPosition.x, myPosition.x + myLength), myPosition.y);
+		return new sf::Vector2f(Util::RandFloat(myPosition.x, myPosition.x + myLength), myPosition.y);
 	case EOrientation::VERTICAL:
-		return sf::Vector2f(myPosition.x, Util::RandFloat(myPosition.y, myPosition.y + myLength));
+		return new sf::Vector2f(myPosition.x, Util::RandFloat(myPosition.y, myPosition.y + myLength));
 	case EOrientation::VERTICAL_INVERTED:
-		return sf::Vector2f(myPosition.x, Util::RandFloat(myPosition.y, myPosition.y + myLength));
+		return new sf::Vector2f(myPosition.x, Util::RandFloat(myPosition.y, myPosition.y + myLength));
 	default:
-		return myPosition;
+		return &myPosition;
 	}
 }
 

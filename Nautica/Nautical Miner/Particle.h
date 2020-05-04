@@ -9,13 +9,14 @@
 class Particle
 {
 public:
-	Particle();
-	Particle(const sf::Vector2f& aPosition, 
+	//Particle();
+	Particle(sf::Vector2f* aPosition, 
 			 const sf::Vector2f aVelocity, 
 			 const sf::Color &aColor, 
 			 const sf::Vector2f aSize, 
 			 const float& aLifespan, 
-			 const float& gravity);
+			 const float& gravity,
+			 const bool& shouldFade);
 	~Particle();
 
 	void Update(float& deltaTime);
@@ -23,7 +24,13 @@ public:
 
 	void Reset();
 
-	inline void SetTraits(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f aSize, const float aLifespan, const bool useGravity);
+	inline void SetTraits(
+		const sf::Vector2f& aPosition, 
+		const sf::Vector2f& aVelocity, 
+		const sf::Color& aColor, 
+		const sf::Vector2f aSize, 
+		const float aLifespan, 
+		const bool useGravity);
 
 	const bool GetAlive() const;
 
@@ -33,14 +40,20 @@ private:
 
 	float myLifespan;
 	float myInitLifespan;
+	float myFadeRate;
 
 	sf::RectangleShape myShape;
 
 	sf::Vector2f myPosition;
 	sf::Vector2f myVelocity;
 
-	const sf::Vector2f myInitPosition;
+	sf::Color myColor;
+	unsigned myInitAlpha;
+
+	sf::Vector2f* myInitPosition;
 	const sf::Vector2f myInitVelocity;
+
+	const bool myIsFading;
 };
 
 #endif

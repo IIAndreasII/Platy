@@ -5,7 +5,7 @@
 
 
 
-ParticleExplosion::ParticleExplosion(const sf::Vector2f& aPosition, const sf::Color& aColor, const unsigned& nbrOfParticles, const float& aParticleMaxSize, const float& anIntensity, const float& gravity, const float& aLifeSpan)
+ParticleExplosion::ParticleExplosion(sf::Vector2f* aPosition, const sf::Color& aColor, const unsigned& nbrOfParticles, const float& aParticleMaxSize, const float& anIntensity, const float& gravity, const float& aLifeSpan, const bool &shouldParticlesFade)
 	: myLifespan(aLifeSpan)
 {
 	myIsActive = true;
@@ -19,7 +19,8 @@ ParticleExplosion::ParticleExplosion(const sf::Vector2f& aPosition, const sf::Co
 			aColor,
 			sf::Vector2f(Util::RandFloat(2, aParticleMaxSize), Util::RandFloat(2, aParticleMaxSize)),
 			aLifeSpan,
-			gravity));
+			gravity,
+			shouldParticlesFade));
 	}
 }
 

@@ -10,13 +10,14 @@ class ParticleFountain : public ParticleEmitter
 {
 public:
 	ParticleFountain(sf::Vector2f* aPosition, 
-					const sf::Color aColor,
-					const float anEmissionAngle,
-					const float aSpreadAngle,
-					const float anIntensity, 
-					const float aFrequency,
-					const int aMaxParticleSize,
-					const float gravity);
+					const sf::Color& aColor,
+					const float& anEmissionAngle,
+					const float& aSpreadAngle,
+					const float& anIntensity, 
+					const float& aFrequency,
+					const int& aMaxParticleSize,
+					const float& gravity,
+					const bool& shouldParticlesFade);
 	~ParticleFountain();
 
 	void Update(float& deltaTime) override;

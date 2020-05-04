@@ -23,16 +23,18 @@ public:
 		const float anIntensity, 
 		const float aFrequency, 
 		const int aMaxParticleSize, 
-		const float gravity = G);
+		const float gravity = G,
+		const bool shouldParticlesFade = false);
 	
 	static void CreateExplosion(
-		const sf::Vector2f& aPosition,
+		sf::Vector2f* aPosition,
 		const sf::Color aColor,
 		const unsigned nbrOfParticles,
 		const float aParticleMaxSize,
 		const float anInensity,
 		const float aLifeSpan,
-		const float gravity = G);
+		const float gravity = G,
+		const bool shouldParticlesFade = false);
 
 	static void CreateShower(
 		const EOrientation anOrientation,
@@ -44,7 +46,8 @@ public:
 		const float aLifeSpan,
 		const int aMaxParticleSize,
 		const float gravity = G,
-		const float anEmissionAngle = 90);
+		const float anEmissionAngle = 90,
+		const bool shouldParticlesFade = false);
 
 private:
 	ParticleEmitterFactory();

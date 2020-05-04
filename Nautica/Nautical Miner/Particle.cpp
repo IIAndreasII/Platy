@@ -4,7 +4,7 @@
 
 
 
-Particle::Particle()
+/*Particle::Particle()
 	: myPosition(),
 	myVelocity(),
 	myLifespan(),
@@ -12,18 +12,27 @@ Particle::Particle()
 	myShape(),
 	myInitLifespan()
 {
-}
+}*/
 
-Particle::Particle(const sf::Vector2f& aPosition, const sf::Vector2f aVelocity, const sf::Color &aColor, const sf::Vector2f aSize, const float& aLifespan, const float& gravity)
-	: myPosition(aPosition),
+Particle::Particle(sf::Vector2f* aPosition, const sf::Vector2f aVelocity, const sf::Color &aColor, const sf::Vector2f aSize, const float& aLifespan, const float& gravity, const bool& shouldFade)
+	: myPosition(*aPosition),
 	myInitPosition(aPosition),
 	myInitVelocity(aVelocity),
 	myVelocity(aVelocity),
 	myLifespan(aLifespan),
 	myInitLifespan(aLifespan),
 	myGravity(2 * gravity),
-	myShape(aSize)
+	myShape(aSize),
+	myIsFading(shouldFade),
+	myColor(aColor),
+	myFadeRate(),
+	myInitAlpha()
 {
+	if (shouldFade)
+	{
+		myFadeRate = aColor.a / aLifespan;
+		myInitAlpha = aColor.a;
+	}
 	myShape.setFillColor(aColor);
 	myShape.setPosition(myPosition);
 }
@@ -34,6 +43,12 @@ Particle::~Particle()
 
 void Particle::Update(float& deltaTime)
 {
+	if (myIsFading && myFadeRate * deltaTime < myColor.a)
+	{
+		myColor.a -= myFadeRate * deltaTime;
+		myShape.setFillColor(myColor);
+	}	
+
 	myLifespan -= deltaTime;
 	if (myLifespan <= 0)
 	{
@@ -54,9 +69,13 @@ void Particle::Draw(sf::RenderWindow& aWindow)
 
 void Particle::Reset()
 {
-	myPosition = myInitPosition;
+	myPosition = *myInitPosition;
 	myVelocity = myInitVelocity;
 	myLifespan = myInitLifespan;
+	if (myIsFading) 
+	{
+		myColor.a = myInitAlpha;
+	}
 }
 
 inline void Particle::SetTraits(const sf::Vector2f& aPosition, const sf::Vector2f& aVelocity, const sf::Color& aColor, const sf::Vector2f aSize, const float aLifespan, const bool useGravity)

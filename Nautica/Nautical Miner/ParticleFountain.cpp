@@ -9,7 +9,7 @@ constexpr float LIFESPAN_MIN = .5f;
 constexpr float LIFESPAN_MAX = 2;
 
 
-ParticleFountain::ParticleFountain(sf::Vector2f* aPosition, const sf::Color aColor, const float anEmissionAngle, const float aSpreadAngle, const float anIntensity, const float aFrequency, const int aMaxParticleSize, const float gravity)
+ParticleFountain::ParticleFountain(sf::Vector2f* aPosition, const sf::Color& aColor, const float& anEmissionAngle, const float& aSpreadAngle, const float& anIntensity, const float& aFrequency, const int& aMaxParticleSize, const float& gravity, const bool& shouldParticlesFade)
 	: myEmissionAngle(anEmissionAngle),
 	myColor(aColor),
 	myIntensity(anIntensity),
@@ -23,6 +23,7 @@ ParticleFountain::ParticleFountain(sf::Vector2f* aPosition, const sf::Color aCol
 	myGravity = gravity;
 	myIsActive = true;
 	myPosition = aPosition;
+	myShouldParticlesFade = shouldParticlesFade;
 }
 
 ParticleFountain::~ParticleFountain()
@@ -58,10 +59,11 @@ void ParticleFountain::MakeParticle()
 	float tempAngle = Util::RandFloat(myEmissionAngle - mySpreadAngle, myEmissionAngle + mySpreadAngle);
 	myParticles.push_back(
 		ParticleFactory::CreateParticle(
-			*myPosition,
+			myPosition,
 			Util::DegToVec2(tempAngle) * (myIntensity + Util::RandFloat(-myInensityModulation, myInensityModulation)),
 			sf::Color(myColor.r, myColor.g, myColor.b, myColor.a - Util::RandFloat(0, COLOR_MODULATION)),
 			sf::Vector2f(Util::RandFloat(2, myMaxParticleSize), Util::RandFloat(2, myMaxParticleSize)),
 			Util::RandFloat(LIFESPAN_MIN, LIFESPAN_MAX),
-			myGravity));
+			myGravity,
+			myShouldParticlesFade));
 }

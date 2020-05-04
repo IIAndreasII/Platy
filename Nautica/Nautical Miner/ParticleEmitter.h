@@ -28,6 +28,8 @@ protected:
 	float myNbrOfParticles;
 
 	bool myIsActive;
+	bool myShouldParticlesFade;
+
 	
 	sf::Vector2f* myPosition;
 	sf::Color myColor;
