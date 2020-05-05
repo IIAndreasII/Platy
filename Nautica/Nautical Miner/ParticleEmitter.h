@@ -8,7 +8,9 @@
 #include "SFML/Graphics/RenderWindow.hpp"
 
 
-constexpr float INTENSITY_MODULATION_DIVISER = 6;
+constexpr float INTENSITY_MODULATION_DIVISER_EXPLOSION = 1.5f;
+constexpr float INTENSITY_MODULATION_DIVISER_FOUNTAIN = 6;
+constexpr float INTENSITY_MODULATION_DIVISER_SHOWER = 6;
 constexpr float COLOR_MODULATION = 150;
 
 class ParticleEmitter

@@ -9,4 +9,9 @@ enum class EOrientation
 	VERTICAL_INVERTED
 };
 
+enum class EParticleShape
+{
+	RECTANGLE,
+	CIRCLE
+};
 #endif

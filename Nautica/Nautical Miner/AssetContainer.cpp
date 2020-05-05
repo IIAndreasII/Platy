@@ -2,7 +2,7 @@
 #include "AssetContainer.h"
 #include <fstream>
 
-#ifdef DEBUG
+#if DEBUG
 #include <iostream>
 #endif
 
@@ -58,7 +58,7 @@ void AssetContainer::LoadTextures()
 		}
 		tempTxtFile.close();
 	}
-#ifdef DEBUG
+#if DEBUG
 	else
 	{
 		std::cout << "TextureContainer:: Unable to open file" << std::endl;

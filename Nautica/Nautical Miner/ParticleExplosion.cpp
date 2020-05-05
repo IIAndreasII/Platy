@@ -9,7 +9,7 @@ ParticleExplosion::ParticleExplosion(sf::Vector2f* aPosition, const sf::Color& a
 	: myLifespan(aLifeSpan)
 {
 	myIsActive = true;
-	myInensityModulation = anIntensity / INTENSITY_MODULATION_DIVISER;
+	myInensityModulation = anIntensity / INTENSITY_MODULATION_DIVISER_EXPLOSION;
 	for (size_t i = 0; i < nbrOfParticles; i++)
 	{
 		float tempAngle = Util::RandFloat(0, 360);

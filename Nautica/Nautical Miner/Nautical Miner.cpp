@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Enum.h"
 
 #include "Game.h"
 
@@ -22,6 +23,8 @@
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 
+constexpr float FPS_WRITEOUT_INTERVAL = 1;
+
 int main()
 {
 	// Subnautical Whimsy Incorporated Mining
@@ -31,7 +34,7 @@ int main()
 	bool isWindowInFocus = true;
 
 	// Init RNG
-#ifdef DEBUG
+#if DEBUG
 	srand(RNG_SEED);
 #else
 	srand((time(NULL)));
@@ -39,6 +42,7 @@ int main()
 	// Configure window
 	sf::RenderWindow window(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), tempGameName);
 	window.setVerticalSyncEnabled(VSYNC);
+	window.setFramerateLimit(144);
 
 	// Init managers
 	ParticleManager::Init();
@@ -49,6 +53,12 @@ int main()
 	// Init clock and delta time
 	sf::Clock tempClock;
 	float tempDeltaTime;
+
+
+	// BEGIN Debug variables
+	float fpsTimer = 0;
+
+	// END Debug variables
 
 #define TESTING 1
 
@@ -85,16 +95,20 @@ int main()
 				isWindowInFocus = false;
 				tempGame.Pause();
 			}
-		}
+		}	
 
-		// Update game only if window is in focus
-
-			// Get delta time
+		// Get delta time
 		tempDeltaTime = tempClock.restart().asSeconds();
-#ifdef DEBUG
-		//std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;
+
+#if DEBUG
+		fpsTimer -= tempDeltaTime;
+		if (fpsTimer <= 0)
+		{
+			fpsTimer = FPS_WRITEOUT_INTERVAL;
+			std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;
+		}
 #endif
-			// Update the game
+		// Update the game
 		tempGame.Update(tempDeltaTime);
 
 
@@ -106,7 +120,7 @@ int main()
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 500, 6, 250, 1.75f, 0, true);
+			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 350, 6, 250, 1.5f, 5, true);
 			explosionTimer = .5;
 		}
 #endif

@@ -6,10 +6,11 @@
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 
+
 class Particle
 {
 public:
-	//Particle();
+
 	Particle(sf::Vector2f* aPosition, 
 			 const sf::Vector2f aVelocity, 
 			 const sf::Color &aColor, 
@@ -22,25 +23,17 @@ public:
 	void Update(float& deltaTime);
 	void Draw(sf::RenderWindow& aWindow);
 
-	void Reset();
-
-	inline void SetTraits(
-		const sf::Vector2f& aPosition, 
-		const sf::Vector2f& aVelocity, 
-		const sf::Color& aColor, 
-		const sf::Vector2f aSize, 
-		const float aLifespan, 
-		const bool useGravity);
+	inline void Reset();
 
 	const bool GetAlive() const;
 
 private:
 
-	float myGravity;
+	const float myGravity;
 
 	float myLifespan;
-	float myInitLifespan;
-	float myFadeRate;
+	const float myInitLifespan;
+	const float myFadeRate;
 
 	sf::RectangleShape myShape;
 
@@ -48,7 +41,7 @@ private:
 	sf::Vector2f myVelocity;
 
 	sf::Color myColor;
-	unsigned myInitAlpha;
+	const unsigned myInitAlpha;
 
 	sf::Vector2f* myInitPosition;
 	const sf::Vector2f myInitVelocity;

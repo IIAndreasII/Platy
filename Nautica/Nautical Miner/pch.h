@@ -1,7 +1,7 @@
 #ifndef PCH_H
 #define PCH_H
 
-#define DEBUG
+#define DEBUG 1
 
 // Window constants
 constexpr unsigned RNG_SEED = 123456;
@@ -12,9 +12,9 @@ constexpr bool VSYNC = false;
 
 #include <random>
 
-#ifdef DEBUG
+#if DEBUG
 #include <iostream>
-#endif // DEBUG
+#endif
 
 template<typename C>
 inline void SafeDelete(C*& aPtrToDelete)

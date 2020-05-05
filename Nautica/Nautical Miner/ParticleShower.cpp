@@ -21,7 +21,7 @@ ParticleShower::ParticleShower(const EOrientation anOrientation, sf::Vector2f& a
 	myColor = aColor;
 	myIsActive = true;
 	myGravity = gravity;
-	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER;
+	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER_SHOWER;
 	myShouldParticlesFade = shouldParticlesFade;
 }
 

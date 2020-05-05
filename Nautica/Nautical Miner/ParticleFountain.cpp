@@ -19,7 +19,7 @@ ParticleFountain::ParticleFountain(sf::Vector2f* aPosition, const sf::Color& aCo
 	mySpawnTimer()
 {
 	myNbrOfParticles = LIFESPAN_MAX * aFrequency;
-	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER;
+	myInensityModulation = myIntensity / INTENSITY_MODULATION_DIVISER_FOUNTAIN;
 	myGravity = gravity;
 	myIsActive = true;
 	myPosition = aPosition;
