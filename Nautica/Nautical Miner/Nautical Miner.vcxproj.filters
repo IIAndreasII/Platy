@@ -49,6 +49,9 @@
     <Filter Include="Game\Main">
       <UniqueIdentifier>{bec4d093-d78c-4be0-82d4-b783e44561e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Logic">
+      <UniqueIdentifier>{aad5a4e0-2f54-4cb4-8a35-0ae561324d38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PostMaster.cpp">
@@ -60,9 +63,6 @@
     <ClCompile Include="Message.cpp">
       <Filter>Postmaster</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="GrowingArray.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -72,14 +72,8 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Super</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMotor.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Graphical\Particles</Filter>
@@ -117,6 +111,21 @@
     <ClCompile Include="AssetContainer.cpp">
       <Filter>Containers</Filter>
     </ClCompile>
+    <ClCompile Include="DrawManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PostMaster.h">
@@ -131,9 +140,6 @@
     <ClInclude Include="pch.h">
       <Filter>Super</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="GrowingArray.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -146,14 +152,8 @@
     <ClInclude Include="Entity.h">
       <Filter>Super</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMotor.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Graphical\Particles</Filter>
@@ -193,6 +193,21 @@
     </ClInclude>
     <ClInclude Include="AssetContainer.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiceManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

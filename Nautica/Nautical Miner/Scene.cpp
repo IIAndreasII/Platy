@@ -24,7 +24,7 @@ void Scene::Update(const float& deltaTime)
 	}
 }
 
-void Scene::Draw(const sf::RenderWindow& aWindow)
+void Scene::Draw(sf::RenderWindow& aWindow)
 {
 	for (auto it : myEntities)
 	{

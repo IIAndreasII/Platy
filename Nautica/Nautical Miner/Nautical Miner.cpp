@@ -42,7 +42,7 @@ int main()
 	// Configure window
 	sf::RenderWindow window(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), tempGameName);
 	window.setVerticalSyncEnabled(VSYNC);
-	window.setFramerateLimit(144);
+	window.setFramerateLimit(DEFAULT_FRAMERATE);
 
 	// Init managers
 	ParticleManager::Init();
@@ -68,8 +68,8 @@ int main()
 
 	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
 	ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f, true);
-	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(150, 500), sf::Color(255, 100, 100), 315, 25, 200, 50, 8, 9.82f);
-	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(650, 500), sf::Color(0, 255, 100), 225, 25, 200, 50, 8, 9.82f);
+	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(150, 500), sf::Color(255, 100, 100), 315, 25, 200, 50, 8, 9.82f, true);
+	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(650, 500), sf::Color(0, 255, 100), 225, 25, 200, 50, 8, 9.82f, true);
 	//ParticleEmitterFactory::CreateExplosion(sf::Vector2f(250, 250), sf::Color(255, 0, 100), 200, 4, 250, 0, 2.5f);
 	//ParticleEmitterFactory::CreateShower(EOrientation::HORIZONTAL_INVERTED, sf::Vector2f(100, 800), C_RÅSA, 600, 300, 350, 2, 5, 0);
 	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL_INVERTED, sf::Vector2f(800, 300), sf::Color(255, 255, 255), 200, 500, 500, 5, 5, G);
@@ -120,7 +120,7 @@ int main()
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, 600), Util::RandFloat(200, 800)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 350, 6, 250, 1.5f, 5, true);
+			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 350, 6, 250, 1.5f, 5, true);
 			explosionTimer = .5;
 		}
 #endif

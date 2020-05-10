@@ -17,7 +17,7 @@ public:
 	~Scene();
 
 	void Update(const float& deltaTime);
-	void Draw(const sf::RenderWindow& aWindow);
+	void Draw(sf::RenderWindow& aWindow);
 
 	void AddEntity(const EntityPtr anEntity);
 

@@ -6,8 +6,9 @@
 // Window constants
 constexpr unsigned RNG_SEED = 123456;
 
-constexpr unsigned DEFAULT_WINDOW_WIDTH  = 800;
-constexpr unsigned DEFAULT_WINDOW_HEIGHT = 1000;
+constexpr unsigned DEFAULT_WINDOW_WIDTH  = 1600;
+constexpr unsigned DEFAULT_WINDOW_HEIGHT = 900;
+constexpr unsigned DEFAULT_FRAMERATE = 144;
 constexpr bool VSYNC = false;
 
 #include <random>

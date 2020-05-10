@@ -14,7 +14,7 @@ public:
 	~Entity();
 
 	virtual void Update(const float& deltaTime) = 0;
-	virtual void Draw(const sf::RenderWindow& aWindow) = 0;
+	virtual void Draw(sf::RenderWindow& aWindow) = 0;
 	
 	void SetPosition(float& x, float& y);
 
