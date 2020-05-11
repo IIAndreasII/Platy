@@ -18,7 +18,7 @@ public:
 	Message(const EMessageType type);
 	
 	
-	const EMessageType& GetType();
+	const EMessageType& GetType() const;
 
 private:
 

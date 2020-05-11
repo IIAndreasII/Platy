@@ -48,6 +48,12 @@ sf::Vector2f Util::DegToVec2(float& anAngle)
 	return sf::Vector2f(cos(anAngle * DEGTORAD), sin(anAngle * DEGTORAD));
 }
 
+sf::Vector2f Util::DegToVec2(float anAngle)
+{
+	ClampDeg(anAngle);
+	return sf::Vector2f(cos(anAngle * DEGTORAD), sin(anAngle * DEGTORAD));
+}
+
 sf::Vector2f Util::Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, float amount)
 {
 	if (amount > 1)

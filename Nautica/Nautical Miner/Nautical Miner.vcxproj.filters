@@ -121,10 +121,10 @@
       <Filter>Game\Logic</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSheet.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="DiceManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,10 +204,10 @@
       <Filter>Game\Logic</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSheet.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="DiceManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

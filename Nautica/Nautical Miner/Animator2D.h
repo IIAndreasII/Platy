@@ -4,9 +4,9 @@
 #include "Spritesheet.h"
 #include "SFML/System/Vector2.hpp"
 #include <SFML/Graphics/Sprite.hpp>
+#include "SFML/Graphics/Drawable.hpp"
 
-
-class Animator2D
+class Animator2D : public sf::Drawable
 {
 public:
 
@@ -21,6 +21,8 @@ public:
 	void ToggleLooping();
 
 	const sf::Sprite& GetCurrentFrame() const;
+
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
 

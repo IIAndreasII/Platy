@@ -23,8 +23,6 @@ AssetContainer::~AssetContainer()
 	{
 		SafeDelete(it);
 	}
-	myTexturePtrs.clear();
-	mySpriteSheetPtrs.clear();
 }
 
 void AssetContainer::Init()
@@ -61,7 +59,7 @@ void AssetContainer::LoadTextures()
 #if DEBUG
 	else
 	{
-		std::cout << "TextureContainer:: Unable to open file" << std::endl;
+		std::cout << "AssetContainer:: Unable to open file" << std::endl;
 	}
 #endif
 

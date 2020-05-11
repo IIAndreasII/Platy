@@ -2,13 +2,50 @@
 #include "Enum.h"
 
 
+CharacterSheet::CharacterSheet(
+	const ECharacterClass& aClass, 
+	const std::string& aName,
+	const bool& canLevelUp, 
+	const bool& hasInspiration, 
+	const unsigned& aLevel, 
+	const unsigned& someExperience, 
+	const unsigned& someRequiredExperience, 
+	const unsigned& someHitPoints, 
+	const unsigned& someHitPointMaximum, 
+	const mod_t& someAC, 
+	const mod_t& someSpeed, 
+	const mod_t& someStrength, 
+	const mod_t& someDexterity,
+	const mod_t& someConstitution,
+	const mod_t& someIntelligence,
+	const mod_t& someWisdom)
+	:
+	myClass(aClass),
+	myName(aName),
+	myCanLevelUp(canLevelUp),
+	myHasInspiration(hasInspiration),
+	myLevel(aLevel),
+	myExperience(someExperience),
+	myRequiredExperience(someRequiredExperience),
+	myHitPoints(someHitPoints),
+	myHitPointMaximum(someHitPointMaximum),
+	myAC(someAC),
+	mySpeed(someSpeed),
+	myStrength(someStrength),
+	myDexterity(someDexterity),
+	myConstitution(someConstitution),
+	myIntelligence(someIntelligence),
+	myWisdom(someWisdom)
+{
+}
+
 CharacterSheet::~CharacterSheet()
 {
 }
 
-void CharacterSheet::IncreaseTraitValue(const ECharacterTrait aTrait, const unsigned short aValue)
+void CharacterSheet::IncreaseTraitValue(const ECharacterTrait aTrait, const mod_t aValue)
 {
-	unsigned short* tempTrait;
+	mod_t* tempTrait = NULL;
 	switch (aTrait)
 	{
 	case ECharacterTrait::CONSTITUION:
@@ -132,13 +169,12 @@ const unsigned short CharacterSheet::GetProficiencyBonus() const
 	return myLevel % 4 + 2;
 }
 
-inline void CharacterSheet::AddExperience(const unsigned someExperience)
+void CharacterSheet::AddExperience(const unsigned someExperience)
 {
 	myExperience += someExperience;
 	if (myExperience >= myRequiredExperience)
 	{
-		myExperience = 0;
-		myRequiredExperience *= 2;
+		myRequiredExperience *= 3;
 		myCanLevelUp = true;
 	}
 }

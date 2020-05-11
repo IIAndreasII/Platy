@@ -16,7 +16,7 @@ Message::~Message()
 {
 }
 
-const EMessageType& Message::GetType()
+const EMessageType& Message::GetType() const
 {
 	return myType;
 }

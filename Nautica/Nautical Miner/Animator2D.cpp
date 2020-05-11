@@ -1,5 +1,5 @@
 #include "Animator2D.h"
-
+#include "SFML/Graphics/RenderTarget.hpp"
 
 Animator2D::Animator2D(const SpriteSheet& aSpritesheet, const bool shouldLoop) :
 	mySpriteSheet(aSpritesheet),
@@ -17,11 +17,10 @@ Animator2D::~Animator2D()
 
 void Animator2D::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 {
-	if (myIsPlaying) 
+	mySprite.setPosition(aPosition);
+	if (mySpriteSheet.GetFrameCount() > 1 && myIsPlaying)
 	{
-		mySprite.setPosition(aPosition);
 		myCurrentFrame += mySpriteSheet.GetFrameRate() * deltaTime;
-		
 		if (myCurrentFrame >= mySpriteSheet.GetFrameCount())
 		{
 			myCurrentFrame = 0;
@@ -31,10 +30,11 @@ void Animator2D::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 			}
 		}
 
-		sf::IntRect tempIntRect(mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
-								0,
-								mySpriteSheet.GetFrameWidth() / mySpriteSheet.GetFrameCount(),
-								mySpriteSheet.GetFrameHeight());
+		sf::IntRect tempIntRect(
+			mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
+			0,
+			mySpriteSheet.GetFrameWidth() / mySpriteSheet.GetFrameCount(),
+			mySpriteSheet.GetFrameHeight());
 
 		mySprite.setTextureRect(tempIntRect);
 	}
@@ -60,4 +60,9 @@ void Animator2D::ToggleLooping()
 const sf::Sprite& Animator2D::GetCurrentFrame() const
 {
 	return mySprite;
+}
+
+void Animator2D::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(mySprite);
 }

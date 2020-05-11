@@ -6,16 +6,34 @@ enum class ECharacterTrait;
 
 #include <string>
 
+typedef unsigned short mod_t;
+
 // TODO: Make constructor!
 class CharacterSheet
 {
 public:
-	CharacterSheet(const );
+	CharacterSheet(
+		const ECharacterClass& aClass, 
+		const std::string& aName,
+		const bool& canLevelUp,
+		const bool& hasInspiration,
+		const unsigned& aLevel,
+		const unsigned& someExperience,
+		const unsigned& someRequiredExperience,
+		const unsigned& someHitPoints,
+		const unsigned& someHitPointMaximum,
+		const mod_t& someAC,
+		const mod_t& someSpeed,
+		const mod_t& someStrength,
+		const mod_t& someDexterity,
+		const mod_t& someConstitution,
+		const mod_t& someIntelligence,
+		const mod_t& someWisdom);
 	~CharacterSheet();
 
 
-    inline void AddExperience(const unsigned someExperience);
-	void IncreaseTraitValue(const ECharacterTrait aTrait, const unsigned short aValue = 1);
+    void AddExperience(const unsigned someExperience);
+	void IncreaseTraitValue(const ECharacterTrait aTrait, const mod_t aValue = 1);
 
 	///////////////////////////////////////////////////////
     // Get
@@ -32,14 +50,14 @@ public:
 	const unsigned& GetHitPoints() const;
 	const unsigned& GetHitPointMaximum() const;
 
-	const unsigned short& GetAC() const;
-	const unsigned short& GetSpeed() const;
-	const unsigned short& GetStrength() const;
-	const unsigned short& GetDexterity() const;
-	const unsigned short& GetConstituiton() const;
-	const unsigned short& GetIntelligence() const;
-	const unsigned short& GetWisdom() const;
-	const unsigned short GetProficiencyBonus() const;
+	const mod_t& GetAC() const;
+	const mod_t& GetSpeed() const;
+	const mod_t& GetStrength() const;
+	const mod_t& GetDexterity() const;
+	const mod_t& GetConstituiton() const;
+	const mod_t& GetIntelligence() const;
+	const mod_t& GetWisdom() const;
+	const mod_t GetProficiencyBonus() const;
 
 
 private:
@@ -56,13 +74,13 @@ private:
 	unsigned myHitPoints;
 	unsigned myHitPointMaximum;
 
-	unsigned short myAC;
-	unsigned short mySpeed;
-	unsigned short myStrength;
-	unsigned short myDexterity;
-	unsigned short myConstitution;
-	unsigned short myIntelligence;
-	unsigned short myWisdom;
+	mod_t myAC;
+	mod_t mySpeed;
+	mod_t myStrength;
+	mod_t myDexterity;
+	mod_t myConstitution;
+	mod_t myIntelligence;
+	mod_t myWisdom;
 
 };
 

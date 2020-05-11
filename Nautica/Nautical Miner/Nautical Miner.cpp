@@ -10,18 +10,18 @@
 
 #include "ParticleManager.h"
 #include "ParticleEmitterFactory.h"
+#include "ParticleEmitter.h"
 
-
-
-#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include "Util.h"
 
 // TODO:
 // -Implement Scene model for different game states
 // -Implement Timeline interface for i.e tutorials
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
+#define _CRTDBG_MAP_ALLOC
 
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
 
@@ -56,8 +56,10 @@ int main()
 
 
 	// BEGIN Debug variables
+#if DEBUG
 	float fpsTimer = 0;
 
+#endif
 	// END Debug variables
 
 #define TESTING 1
@@ -66,13 +68,11 @@ int main()
 #if TESTING
 	float explosionTimer = 0;
 
-	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f, true);
-	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(150, 500), sf::Color(255, 100, 100), 315, 25, 200, 50, 8, 9.82f, true);
-	//ParticleEmitterFactory::CreateFountain(&sf::Vector2f(650, 500), sf::Color(0, 255, 100), 225, 25, 200, 50, 8, 9.82f, true);
-	//ParticleEmitterFactory::CreateExplosion(sf::Vector2f(250, 250), sf::Color(255, 0, 100), 200, 4, 250, 0, 2.5f);
-	//ParticleEmitterFactory::CreateShower(EOrientation::HORIZONTAL_INVERTED, sf::Vector2f(100, 800), C_RÅSA, 600, 300, 350, 2, 5, 0);
-	//ParticleEmitterFactory::CreateShower(EOrientation::VERTICAL_INVERTED, sf::Vector2f(800, 300), sf::Color(255, 255, 255), 200, 500, 500, 5, 5, G);
+	//sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+	//ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f, true);
+	//ParticleEmitterFactory::CreateFountain(sf::Vector2f(150, 500), C_RÅSA, 1000, 150, 3, 270, 20, 9.82f);
+	//ParticleEmitterFactory::CreateShower(EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 90, 0);
+	//ParticleEmitterFactory::CreateShower(EOrientation::LEFT, sf::Vector2f(800, 300), C_RÅSA, 1000, 200, 3, 500, 90, 5);
 #endif
 	// END Tests
 
@@ -114,15 +114,20 @@ int main()
 
 		// BEGIN Tests
 #if TESTING
-		mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-		ParticleManager::Update(tempDeltaTime);
-
+		//mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(&sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)), 350, 6, 250, 1.5f, 5, true);
-			explosionTimer = .5;
+			ParticleEmitterFactory::CreateExplosion(
+				sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), 
+				sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)),
+				1000, 
+				250, 
+				1.5f);
+			explosionTimer = .2;
 		}
+
+		ParticleManager::Update(tempDeltaTime);
 #endif
 		// END Tests
 

@@ -1,5 +1,5 @@
-#ifndef PM_H
-#define PM_H
+#ifndef POSTMASTER_H
+#define POSTMASTER_H
 
 #include <vector>
 
@@ -21,9 +21,9 @@ public:
 
 	static void Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType);
 
-	static void ReceiveMessage(Message& aMessage, EMessageType aEMessageType);
+	static void SendMessage(const Message& aMessage, const EMessageType& aEMessageType);
 
-	static void ReceiveMessage(EMessageType aEMessageType);
+	static void SendMessage(EMessageType aEMessageType);
 
 	static std::vector<SubPtr>& GetSubscribers(const EMessageType aMessage);
 
@@ -33,7 +33,6 @@ private:
 
 	static std::vector<std::vector<SubPtr>> mySubscribers;
 
-
 };
 
-#endif // !1
+#endif

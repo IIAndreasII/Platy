@@ -3,15 +3,14 @@
 
 #define DEBUG 1
 
-// Window constants
+// Constants
+constexpr bool VSYNC = false;
+
 constexpr unsigned RNG_SEED = 123456;
 
 constexpr unsigned DEFAULT_WINDOW_WIDTH  = 1600;
 constexpr unsigned DEFAULT_WINDOW_HEIGHT = 900;
-constexpr unsigned DEFAULT_FRAMERATE = 144;
-constexpr bool VSYNC = false;
-
-#include <random>
+constexpr unsigned DEFAULT_FRAMERATE     = 144;
 
 #if DEBUG
 #include <iostream>

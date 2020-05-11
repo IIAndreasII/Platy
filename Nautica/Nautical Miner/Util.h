@@ -5,7 +5,7 @@
 #include "Enum.h"
 
 constexpr float DEGTORAD = 0.0174533f;
-constexpr float G = 2 * 9.82f;
+constexpr float G = 9.82f;
 
 
 
@@ -25,6 +25,7 @@ public:
 
 	// Vector related
 	static sf::Vector2f DegToVec2(float& anAngle);
+	static sf::Vector2f DegToVec2(float anAngle);
 	static sf::Vector2f Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, const float amount);
 
 private:

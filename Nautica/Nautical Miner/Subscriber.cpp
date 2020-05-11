@@ -2,7 +2,6 @@
 #include "Subscriber.h"
 #include "PostMaster.h"
 #include "Message.h"
-#include "Enums.h"
 
 Subscriber::Subscriber()
 {
@@ -12,36 +11,36 @@ Subscriber::~Subscriber()
 {
 }
 
-void Subscriber::SendMessage(Message& aMessage, const EMessageType aMessageType)
+void Subscriber::SendMessage(const Message& aMessage, const EMessageType aMessageType)
 {
-	PostMaster::ReceiveMessage(aMessage, aMessageType);
+	PostMaster::SendMessage(aMessage, aMessageType);
 }
 
 void Subscriber::SendMessage(const EMessageType aMessageType)
 {
-	PostMaster::ReceiveMessage(aMessageType);
+	PostMaster::SendMessage(aMessageType);
 }
 
 void Subscriber::ReceiveMessage(const EMessageType& aMessageType)
 {
 }
 
-void Subscriber::ReceiveMessage(Message& aMessage, const EMessageType& aMessageType)
+void Subscriber::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
 {
 }
 
 void Subscriber::Subscribe(const EMessageType aMessageType)
 {
-	if (!(std::find(mySubbedMessages.begin(), mySubbedMessages.end(), aMessageType) != mySubbedMessages.end()))
+	if (!(std::find(mySubscriptions.begin(), mySubscriptions.end(), aMessageType) != mySubscriptions.end()))
 	{
-		mySubbedMessages.push_back(aMessageType);
+		mySubscriptions.push_back(aMessageType);
 		PostMaster::Subscribe(this, aMessageType);
 	}
 }
 
 void Subscriber::RemoveAllSubscriptions()
 {
-	for (EMessageType tempMsgType : mySubbedMessages)
+	for (EMessageType tempMsgType : mySubscriptions)
 	{
 		PostMaster::Unsubscribe(this, tempMsgType);
 	}
@@ -49,5 +48,5 @@ void Subscriber::RemoveAllSubscriptions()
 
 std::vector<EMessageType>& Subscriber::GetSubscriptions()
 {
-	return mySubbedMessages;
+	return mySubscriptions;
 }

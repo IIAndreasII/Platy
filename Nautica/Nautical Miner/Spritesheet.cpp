@@ -1,6 +1,6 @@
 #include "Spritesheet.h"
 
-SpriteSheet::SpriteSheet(sf::Texture* aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)
+SpriteSheet::SpriteSheet(TexturePtr aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)
 	: myTexturePtr(aTexturePtr),
 	myFrameCount(aFrameCount),
 	myFrameRate(aFrameRate),
@@ -14,7 +14,7 @@ SpriteSheet::~SpriteSheet()
 	myTexturePtr = nullptr;
 }
 
-const sf::Texture* SpriteSheet::GetTexturePtr() const
+const TexturePtr SpriteSheet::GetTexturePtr() const
 {
 	return myTexturePtr;
 }

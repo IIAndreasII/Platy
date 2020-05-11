@@ -25,7 +25,6 @@ private:
 	static std::vector<TexturePtr> myTexturePtrs;
 	static std::vector<SpriteSheetPtr> mySpriteSheetPtrs;
 
-
 };
 
 #endif

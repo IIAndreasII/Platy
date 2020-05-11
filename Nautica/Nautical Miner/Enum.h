@@ -1,12 +1,12 @@
 #ifndef ENUM_H
 #define ENUM_H
 
-enum class EOrientation
+enum class EOrientation : int
 {
-	HORIZONTAL,
-	HORIZONTAL_INVERTED,
-	VERTICAL,
-	VERTICAL_INVERTED
+	DOWN = 180,
+	UP = 360,
+	RIGHT = 90,
+	LEFT = 270
 };
 
 enum class EParticleShape

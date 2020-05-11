@@ -1,34 +1,29 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Graphics/Drawable.hpp"
+#include "SFML/Graphics/Transformable.hpp"
 #include "SFML/System/Vector2.hpp"
 
 class Animator2D;
 
 typedef Animator2D* AnimatorPtr;
 
-class Entity
+class Entity : public sf::Drawable, public sf::Transformable
 {
 public:
-	~Entity();
+	virtual ~Entity();
 
 	virtual void Update(const float& deltaTime) = 0;
-	virtual void Draw(sf::RenderWindow& aWindow) = 0;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	
-	void SetPosition(float& x, float& y);
+	void SetPosition(const float& x, const float& y);
 
-	const sf::Vector2f& GetPosition();
+	const sf::Vector2f& GetPosition() const;
 
 protected:
-	Entity();
 
-
-	sf::Vector2f myPosition;
-
-	AnimatorPtr myAnim;
-
-
+	Animator2D* myAnim;
 
 };
 

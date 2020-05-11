@@ -16,7 +16,7 @@ public:
 
 	static void Init();
 
-	static void Update(float& deltaTime);
+	static void Update(float deltaTime);
 	static void Draw(sf::RenderWindow& aWindow);
 	static void AddEmitter(const ParticleEmitterPtr anEmitter);
 

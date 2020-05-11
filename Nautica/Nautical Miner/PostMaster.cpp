@@ -2,7 +2,6 @@
 #include "PostMaster.h"
 #include "Subscriber.h"
 #include "Message.h"
-#include "Enums.h"
 
 std::vector<std::vector<SubPtr>> PostMaster::mySubscribers;
 
@@ -12,6 +11,13 @@ PostMaster::PostMaster()
 
 PostMaster::~PostMaster()
 {
+	for (auto it : mySubscribers)
+	{
+		for (SubPtr sub : it)
+		{
+			sub = NULL;
+		}
+	}
 }
 
 void PostMaster::Init()
@@ -32,7 +38,7 @@ void PostMaster::Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType)
 	mySubscribers.at(aEMessageType).erase(std::find(mySubscribers.at(aEMessageType).begin(), mySubscribers.at(aEMessageType).end(), aSubptr));
 }
 
-void PostMaster::ReceiveMessage(Message& aMessage, EMessageType aEMessageType)
+void PostMaster::SendMessage(const Message& aMessage, const EMessageType& aEMessageType)
 {
 	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
 	{
@@ -43,7 +49,7 @@ void PostMaster::ReceiveMessage(Message& aMessage, EMessageType aEMessageType)
 	}
 }
 
-void PostMaster::ReceiveMessage(EMessageType aEMessageType)
+void PostMaster::SendMessage(EMessageType aEMessageType)
 {
 	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
 	{

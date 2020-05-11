@@ -28,7 +28,7 @@ void Scene::Draw(sf::RenderWindow& aWindow)
 {
 	for (auto it : myEntities)
 	{
-		it->Draw(aWindow);
+		aWindow.draw(*it);
 	}
 }
 

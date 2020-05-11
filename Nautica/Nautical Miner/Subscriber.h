@@ -12,12 +12,12 @@ public:
 	Subscriber();
 	virtual ~Subscriber();
 
-	void SendMessage(Message& aMessage, const EMessageType aMessageType);
+	void SendMessage(const Message& aMessage, const EMessageType aMessageType);
 
 	void SendMessage(const EMessageType aMessageType);
 
 	virtual void ReceiveMessage(const EMessageType& aMessageType);
-	virtual void ReceiveMessage(Message& aMessage, const EMessageType& aMessageType);
+	virtual void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType);
 
 	void Subscribe(const EMessageType aMessageType);
 	void RemoveAllSubscriptions();
@@ -26,8 +26,7 @@ public:
 
 protected:
 
-	std::vector<EMessageType> mySubbedMessages;
-
+	std::vector<EMessageType> mySubscriptions;
 
 };
 

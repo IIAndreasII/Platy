@@ -1,7 +1,7 @@
 #ifndef PARTICLEEMITTERFACTORY_H
 #define PARTICLEEMITTERFACTORY_H
 
-#include "Util.h"
+//#include "Util.h"
 #include "Colors.h"
 #include "SFML/System/Vector2.hpp"
 
@@ -16,38 +16,33 @@ public:
 	~ParticleEmitterFactory();
 
 	static void CreateFountain(
-		sf::Vector2f* aPosition, 
-		const sf::Color aColor, 
+		const sf::Vector2f aPosition, 
+		const sf::Color aColor,
+		const unsigned aNbrOfParticles,
+		const float anIntensity,  
+		const float aLifeTime,
 		const float anEmissionAngle, 
 		const float aSpreadAngle, 
-		const float anIntensity, 
-		const float aFrequency, 
-		const int aMaxParticleSize, 
-		const float gravity = G,
-		const bool shouldParticlesFade = false);
+		const float gravity = 0);
 	
 	static void CreateExplosion(
-		sf::Vector2f* aPosition,
+		const sf::Vector2f aPosition,
 		const sf::Color aColor,
 		const unsigned nbrOfParticles,
-		const float aParticleMaxSize,
 		const float anInensity,
 		const float aLifeSpan,
-		const float gravity = G,
-		const bool shouldParticlesFade = false);
+		const float gravity = 0);
 
 	static void CreateShower(
 		const EOrientation anOrientation,
-		sf::Vector2f aPosition,
+		const sf::Vector2f aPosition,
 		const sf::Color aColor,
-		const float aLength,
+		const unsigned nbrOfParticles,
 		const float anIntensity,
-		const float aFrequency,
 		const float aLifeSpan,
-		const int aMaxParticleSize,
-		const float gravity = G,
+		const float aLength,
 		const float anEmissionAngle = 90,
-		const bool shouldParticlesFade = false);
+		const float gravity = 0);
 
 private:
 	ParticleEmitterFactory();

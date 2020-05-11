@@ -27,8 +27,17 @@ static void UpdateEmitter(ParticleEmitterPtr anEmitter, float deltaTime)
 
 
 #define ASYNC 1
-void ParticleManager::Update(float& deltaTime)
+void ParticleManager::Update(float deltaTime)
 {
+	for (size_t i = myParticleEmitters.size(); i > 0; i--)
+	{
+		if (!myParticleEmitters.at(i - 1)->GetActive())
+		{
+			SafeDelete(myParticleEmitters.at(i - 1));
+			myParticleEmitters.erase(myParticleEmitters.begin() + i - 1);
+		}
+	}
+
 	for (ParticleEmitterPtr it : myParticleEmitters)
 	{
 #if ASYNC
@@ -38,31 +47,26 @@ void ParticleManager::Update(float& deltaTime)
 #endif
 	}
 
-	if (myFutures.size() != 0)
+
+	//std::cout << myParticleEmitters.size() << std::endl;
+}
+
+void ParticleManager::Draw(sf::RenderWindow& aWindow)
+{
+#if ASYNC
+	for (size_t i = 0; i < myFutures.size(); i++)
 	{
-		myFutures.at(myFutures.size() - 1).wait();
+		myFutures.at(i).wait();
 	}
 
 	if (myFutures.size() > myParticleEmitters.size() * 5) // Make sure the futures are destroyed
 	{
 		myFutures.clear();
 	}
-
-	for (size_t i = myParticleEmitters.size(); i > 0; i--)
-	{
-		if (!myParticleEmitters.at(i - 1)->GetActive())
-		{
-			SafeDelete(myParticleEmitters.at(i - 1));
-			myParticleEmitters.erase(myParticleEmitters.begin() + i - 1);
-		}
-	}
-}
-
-void ParticleManager::Draw(sf::RenderWindow& aWindow)
-{
+#endif
 	for (ParticleEmitterPtr it : myParticleEmitters)
 	{
-		it->Draw(aWindow);
+		aWindow.draw(*it);
 	}
 }
 

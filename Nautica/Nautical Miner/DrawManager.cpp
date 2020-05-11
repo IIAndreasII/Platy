@@ -35,7 +35,7 @@ void DrawManager::Draw(sf::RenderWindow& aWindow)
 	{
 		for (auto it : myEntityLayers.at(i))
 		{
-			it->Draw(aWindow);
+			aWindow.draw(*it);
 		}
 	}
 }

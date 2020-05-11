@@ -8,17 +8,17 @@ typedef sf::Texture* TexturePtr;
 struct SpriteSheet
 {
 public:
-	SpriteSheet(sf::Texture* aTexturePtr, const unsigned myFrameCount, const unsigned myFrameRate);
+	SpriteSheet(TexturePtr aTexturePtr, const unsigned myFrameCount, const unsigned myFrameRate = 1);
 	~SpriteSheet();
 
-	const sf::Texture* GetTexturePtr() const;
+	const TexturePtr GetTexturePtr() const;
 	const unsigned& GetFrameCount() const;
 	const unsigned& GetFrameRate() const;
 	const unsigned& GetFrameHeight() const;
 	const unsigned& GetFrameWidth() const;
 
 private:
-	sf::Texture* myTexturePtr;
+	TexturePtr myTexturePtr;
 	unsigned myFrameCount;
 	unsigned myFrameRate;
 	unsigned myFrameHeight;

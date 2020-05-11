@@ -2,14 +2,12 @@
 #include "Player.h"
 
 
-Player::Player() :
-	myMotor()
+Player::Player()
 {
 }
 
 Player::~Player()
 {
-	SafeDelete(myMotor);
 }
 
 void Player::ReceiveMessage(const EMessageType& aMessageType)
@@ -21,7 +19,7 @@ void Player::ReceiveMessage(const EMessageType& aMessageType)
 	}
 }
 
-void Player::ReceiveMessage(Message& aMessage, const EMessageType& aMessageType)
+void Player::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
 {
 	switch (aMessageType)
 	{

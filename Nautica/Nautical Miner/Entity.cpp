@@ -1,19 +1,23 @@
 #include "Entity.h"
+#include "SFML/Graphics/RenderTarget.hpp"
+#include "Animator2D.h"
 
-Entity::Entity()
-{
-}
 
 Entity::~Entity()
 {
 }
 
-void Entity::SetPosition(float& x, float& y)
+void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	myPosition = sf::Vector2f(x, y);
+	myAnim->draw(target, states);
 }
 
-const sf::Vector2f& Entity::GetPosition()
+void Entity::SetPosition(const float& x, const float& y)
 {
-	return myPosition;
+	sf::Transformable::setPosition(x, y);
+}
+
+const sf::Vector2f& Entity::GetPosition() const
+{
+	return sf::Transformable::getPosition();
 }
