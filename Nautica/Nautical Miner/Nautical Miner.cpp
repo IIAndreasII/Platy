@@ -21,7 +21,9 @@
 // -Implement Timeline interface for i.e tutorials
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
+#if DEBUG
 #define _CRTDBG_MAP_ALLOC
+#endif
 
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
 
@@ -68,11 +70,12 @@ int main()
 #if TESTING
 	float explosionTimer = 0;
 
-	//sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	//ParticleEmitterFactory::CreateFountain(&mousePos, sf::Color(0, 100, 100), 270, 20, 200, 50, 8, 9.82f, true);
+	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+	ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, 2 * 9.82f);
 	//ParticleEmitterFactory::CreateFountain(sf::Vector2f(150, 500), C_RÅSA, 1000, 150, 3, 270, 20, 9.82f);
-	//ParticleEmitterFactory::CreateShower(EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 90, 0);
-	//ParticleEmitterFactory::CreateShower(EOrientation::LEFT, sf::Vector2f(800, 300), C_RÅSA, 1000, 200, 3, 500, 90, 5);
+	//ParticleEmitter& pe = *ParticleEmitterFactory::CreateShower(20, EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 70, 0);
+	//ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(220, 120), C_BLUE_DARK, 650, 200, 3, 960, 90, 2* 9.82f, false);
+	//ParticleEmitterFactory::CreateCloud(20, sf::Vector2f(200, 100), C_WHITE, 5000, 25, 2, 1000);
 #endif
 	// END Tests
 
@@ -105,7 +108,7 @@ int main()
 		if (fpsTimer <= 0)
 		{
 			fpsTimer = FPS_WRITEOUT_INTERVAL;
-			std::cout << "FPS: " + std::to_string(1 / tempDeltaTime) << std::endl;
+			std::cout << "FPS: " << (int)(1 / tempDeltaTime + 1) << std::endl;
 		}
 #endif
 		// Update the game
@@ -114,17 +117,34 @@ int main()
 
 		// BEGIN Tests
 #if TESTING
-		//mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+		mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+		pe->SetPosition(mousePos);
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(
+			/*ParticleEmitterFactory::CreateExplosion(
+				12,
 				sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), 
 				sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)),
 				1000, 
 				250, 
-				1.5f);
-			explosionTimer = .2;
+				1.5f,
+				9.82f);*/
+			/*for (size_t i = 0; i < 3; i++)
+			{
+				ParticleEmitterFactory::CreateFountain(
+					6,
+					sf::Vector2f(Util::RandFloat(220, 1180), DEFAULT_WINDOW_HEIGHT),
+					C_BLUE_DARK,
+					10,
+					150,
+					1.5f,
+					270,
+					20,
+					9.82f * 2,
+					EParticleEmitterType::FOUNTAIN_BURST);
+			}*/
+			explosionTimer = .1;
 		}
 
 		ParticleManager::Update(tempDeltaTime);
@@ -147,6 +167,8 @@ int main()
 		window.display();
 
 	}
+#if DEBUG
 	// Notify if there are any memory leaks
 	_CrtDumpMemoryLeaks();
+#endif
 }

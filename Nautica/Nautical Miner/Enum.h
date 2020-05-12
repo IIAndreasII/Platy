@@ -9,6 +9,15 @@ enum class EOrientation : int
 	LEFT = 270
 };
 
+enum class EParticleEmitterType
+{
+	FOUNTAIN,
+	EXPLOSION,
+	FOUNTAIN_BURST,
+	SHOWER,
+	CLOUD
+};
+
 enum class EParticleShape
 {
 	RECTANGLE,

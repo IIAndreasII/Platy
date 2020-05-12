@@ -1,5 +1,5 @@
-#ifndef TC_H
-#define TC_H
+#ifndef ASSETCONTAINER_H
+#define ASSETCONTAINER_H
 
 #include <vector>
 #include "Spritesheet.h"

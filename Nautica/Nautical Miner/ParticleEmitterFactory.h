@@ -3,9 +3,10 @@
 
 //#include "Util.h"
 #include "Colors.h"
+#include "Enum.h"
 #include "SFML/System/Vector2.hpp"
 
-
+class ParticleEmitter;
 enum class EOrientation;
 class ParticleFountain;
 class ParticleExplosion;
@@ -15,34 +16,52 @@ class ParticleEmitterFactory
 public:
 	~ParticleEmitterFactory();
 
-	static void CreateFountain(
+	static ParticleEmitter* CreateFountain(
+		const float aParticleMaxSize,
 		const sf::Vector2f aPosition, 
 		const sf::Color aColor,
 		const unsigned aNbrOfParticles,
 		const float anIntensity,  
 		const float aLifeTime,
 		const float anEmissionAngle, 
-		const float aSpreadAngle, 
-		const float gravity = 0);
+		const float aSpreadAngle,
+		const float someGravity = 0,
+		const EParticleEmitterType aType = EParticleEmitterType::FOUNTAIN,
+		const bool shouldFade = true);
 	
-	static void CreateExplosion(
+	static ParticleEmitter* CreateExplosion(
+		const float aParticleMaxSize,
 		const sf::Vector2f aPosition,
 		const sf::Color aColor,
 		const unsigned nbrOfParticles,
 		const float anInensity,
-		const float aLifeSpan,
-		const float gravity = 0);
+		const float aLifeTime,
+		const float someGravity = 0,
+		const bool shouldFade = true);
 
-	static void CreateShower(
+	static ParticleEmitter* CreateCloud(
+		const float aParticleMaxSize,
+		const sf::Vector2f aPosition,
+		const sf::Color aColor,
+		const unsigned nbrOfParticles,
+		const float anInensity,
+		const float aLifeTime,
+		const float aLength,
+		const float someGravity = 0,
+		const bool shouldFade = true);
+
+	static ParticleEmitter* CreateShower(
+		const float aParticleMaxSize,
 		const EOrientation anOrientation,
 		const sf::Vector2f aPosition,
 		const sf::Color aColor,
 		const unsigned nbrOfParticles,
 		const float anIntensity,
-		const float aLifeSpan,
+		const float aLifeTime,
 		const float aLength,
 		const float anEmissionAngle = 90,
-		const float gravity = 0);
+		const float someGravity = 0,
+		const bool shouldFade = true);
 
 private:
 	ParticleEmitterFactory();

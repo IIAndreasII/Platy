@@ -9,7 +9,7 @@ std::vector<std::future<void>> ParticleManager::myFutures;
 
 ParticleManager::~ParticleManager()
 {
-	for (ParticleEmitterPtr it : myParticleEmitters)
+	for (auto it : myParticleEmitters)
 	{
 		SafeDelete(it);
 	}
@@ -20,11 +20,10 @@ void ParticleManager::Init()
 	myParticleEmitters = std::vector<ParticleEmitterPtr>();
 }
 
-static void UpdateEmitter(ParticleEmitterPtr anEmitter, float deltaTime)
+static void UpdateEmitter(ParticleEmitter* anEmitter, float deltaTime)
 {
 	anEmitter->Update(deltaTime);
 }
-
 
 #define ASYNC 1
 void ParticleManager::Update(float deltaTime)
@@ -46,8 +45,6 @@ void ParticleManager::Update(float deltaTime)
 		it->Update(deltaTime);
 #endif
 	}
-
-
 	//std::cout << myParticleEmitters.size() << std::endl;
 }
 
@@ -59,7 +56,7 @@ void ParticleManager::Draw(sf::RenderWindow& aWindow)
 		myFutures.at(i).wait();
 	}
 
-	if (myFutures.size() > myParticleEmitters.size() * 5) // Make sure the futures are destroyed
+	if (myFutures.size() > myParticleEmitters.size() * 10) // Destroy futures every n-th frame
 	{
 		myFutures.clear();
 	}
@@ -70,7 +67,17 @@ void ParticleManager::Draw(sf::RenderWindow& aWindow)
 	}
 }
 
-void ParticleManager::AddEmitter(const ParticleEmitterPtr anEmitter)
+void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter)
 {
 	myParticleEmitters.push_back(anEmitter);
+}
+
+const size_t ParticleManager::GetParticleCount()
+{
+	size_t sum = 0;
+	for (ParticleEmitterPtr it : myParticleEmitters)
+	{
+		sum += it->GetParticleCount();
+	}
+	return sum;
 }

@@ -4,10 +4,12 @@
 #include <vector>
 #include <future>
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "ParticleEmitter.h"
 
-class ParticleEmitter;
+
+constexpr unsigned PARTICLE_COUNT_MAX = 10000;
+
 typedef ParticleEmitter* ParticleEmitterPtr;
-
 
 class ParticleManager
 {
@@ -18,7 +20,9 @@ public:
 
 	static void Update(float deltaTime);
 	static void Draw(sf::RenderWindow& aWindow);
-	static void AddEmitter(const ParticleEmitterPtr anEmitter);
+	static void AddEmitter(ParticleEmitterPtr anEmitter);
+	
+	static const size_t GetParticleCount();
 
 private:
 	ParticleManager();
