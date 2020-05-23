@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Spritesheet.h"
 
 SpriteSheet::SpriteSheet(TexturePtr aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)
@@ -11,7 +12,7 @@ SpriteSheet::SpriteSheet(TexturePtr aTexturePtr, const unsigned aFrameCount, con
 
 SpriteSheet::~SpriteSheet()
 {
-	myTexturePtr = nullptr;
+	SafeDelete(myTexturePtr);
 }
 
 const TexturePtr SpriteSheet::GetTexturePtr() const

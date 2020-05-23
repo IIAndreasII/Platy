@@ -1,0 +1,10 @@
+Potions/Potion Blue Large.png
+Potions/Potion Red Large.png
+Potions/Potion Yellow Large.png
+Potions/Potion Green Large.png
+Potions/Potion Blue Small.png
+Potions/Potion Red Small.png
+Potions/Potion Yellow Small.png
+Potions/Potion Green Small.png
+Weapons/Staff Green.png
+Weapons/Staff Red.png

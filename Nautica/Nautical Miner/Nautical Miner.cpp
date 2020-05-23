@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+#include "AssetContainer.h"
 
 #include "ParticleManager.h"
 #include "ParticleEmitterFactory.h"
@@ -22,6 +23,7 @@
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 #if DEBUG
+#include "Debug.h"
 #define _CRTDBG_MAP_ALLOC
 #endif
 
@@ -45,6 +47,12 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), tempGameName);
 	window.setVerticalSyncEnabled(VSYNC);
 	window.setFramerateLimit(DEFAULT_FRAMERATE);
+
+	// Init debug
+	Debug::Init();
+
+	// Init containers
+	AssetContainer::Init();
 
 	// Init managers
 	ParticleManager::Init();
@@ -87,6 +95,8 @@ int main()
 		{
 			if (tempEvent.type == sf::Event::Closed)
 			{
+				Debug::FinishSession();
+				_CrtDumpMemoryLeaks();
 				window.close();
 			}
 			else if (tempEvent.type == sf::Event::GainedFocus)
@@ -122,14 +132,14 @@ int main()
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			/*ParticleEmitterFactory::CreateExplosion(
+			ParticleEmitterFactory::CreateExplosion(
 				12,
 				sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), 
 				sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)),
 				1000, 
 				250, 
 				1.5f,
-				9.82f);*/
+				9.82f);
 			/*for (size_t i = 0; i < 3; i++)
 			{
 				ParticleEmitterFactory::CreateFountain(
@@ -165,10 +175,6 @@ int main()
 #endif
 
 		window.display();
-
 	}
-#if DEBUG
-	// Notify if there are any memory leaks
-	_CrtDumpMemoryLeaks();
-#endif
+	//Debug::FinishSession();
 }

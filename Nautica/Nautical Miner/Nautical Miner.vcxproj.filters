@@ -126,6 +126,9 @@
     <ClCompile Include="DiceManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PostMaster.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="DiceManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

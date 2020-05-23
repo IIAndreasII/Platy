@@ -1,5 +1,7 @@
 SpriteSheet formatting:
-filepath;frameCount;frameRate
+filepath
+frameCount
+frameRate
 
 Texture formatting:
 filepath
