@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Subscriber.h"
+#include "..\Postmaster\Subscriber.h"
 
 class Scene;
 

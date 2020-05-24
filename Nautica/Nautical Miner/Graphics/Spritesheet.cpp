@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "../pch.h"
 #include "Spritesheet.h"
 
 SpriteSheet::SpriteSheet(sf::Texture* aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)

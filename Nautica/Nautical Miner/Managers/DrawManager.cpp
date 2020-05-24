@@ -1,5 +1,5 @@
 #include "DrawManager.h"
-#include "Entity.h"
+#include "..\Super\Entity.h"
 
 std::vector<std::vector<sf::VertexBuffer>> DrawManager::myVertexBuffers;
 std::vector<std::vector<Entity*>> DrawManager::myEntityLayers;

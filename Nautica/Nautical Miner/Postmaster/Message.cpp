@@ -1,5 +1,5 @@
 #include "Message.h"
-#include "Enums.h"
+#include "..\Util\Enums.h"
 
 
 

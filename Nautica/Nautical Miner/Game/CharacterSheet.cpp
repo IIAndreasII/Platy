@@ -1,5 +1,5 @@
 #include "CharacterSheet.h"
-#include "Enum.h"
+#include "..\Util\Enum.h"
 
 
 CharacterSheet::CharacterSheet(

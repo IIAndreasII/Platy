@@ -4,7 +4,7 @@
 #include <vector>
 #include <future>
 #include "SFML/Graphics/RenderWindow.hpp"
-#include "ParticleEmitter.h"
+#include "..\Graphics\ParticleEmitter.h"
 
 
 constexpr unsigned PARTICLE_COUNT_MAX = 10000;

@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "..\pch.h"
 #include "GrowingArray.h"
 
 template<typename T>

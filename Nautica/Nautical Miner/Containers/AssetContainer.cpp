@@ -1,8 +1,8 @@
-#include "pch.h"
+#include "..\pch.h"
 #include "AssetContainer.h"
 #include <fstream>
 
-#include "Debug.h"
+#include "..\Util\Debug.h"
 
 
 constexpr const char* FILEPATHS_FILE_FONTS = "Assets/Filepaths_Fonts.txt";

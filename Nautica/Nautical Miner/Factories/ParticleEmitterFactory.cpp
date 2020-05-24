@@ -1,6 +1,6 @@
 #include "ParticleEmitterFactory.h"
-#include "ParticleManager.h"
-#include "ParticleEmitter.h"
+#include "..\Managers\ParticleManager.h"
+#include "..\Graphics\ParticleEmitter.h"
 
 ParticleEmitterFactory::~ParticleEmitterFactory()
 {

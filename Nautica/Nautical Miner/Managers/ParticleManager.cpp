@@ -1,6 +1,6 @@
-#include "pch.h"
+#include "..\pch.h"
 #include "ParticleManager.h"
-#include "ParticleEmitter.h"
+#include "..\Graphics\ParticleEmitter.h"
 
 
 std::vector<ParticleEmitterPtr> ParticleManager::myParticleEmitters;

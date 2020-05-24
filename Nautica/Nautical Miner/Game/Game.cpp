@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Scene.h"
-#include "Message.h"
-#include "Enums.h"
+#include "..\Postmaster\Message.h"
+#include "..\Util\Enums.h"
 
 Game::Game(sf::RenderWindow& aRenderWindow) :
 	myWindow(aRenderWindow),

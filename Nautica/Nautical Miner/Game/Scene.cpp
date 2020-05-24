@@ -1,6 +1,6 @@
-#include "pch.h"
+#include "..\pch.h"
 #include "Scene.h"
-#include "Entity.h"
+#include "..\Super\Entity.h"
 
 Scene::Scene() :
 	myEntities()

@@ -1,6 +1,6 @@
-#include "Util.h"
 #include "DiceManager.h"
-#include "Enum.h"
+#include "..\Util\Util.h"
+#include "..\Util\Enum.h"
 
 DiceManager::~DiceManager()
 {

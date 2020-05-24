@@ -1,5 +1,5 @@
-#include "pch.h"
-#include "Enum.h"
+#include "..\pch.h"
+#include "..\Util\Enum.h"
 
 #include "Game.h"
 
@@ -7,15 +7,15 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
-#include "AssetContainer.h"
+#include "..\Containers\AssetContainer.h"
 
-#include "ParticleManager.h"
-#include "ParticleEmitterFactory.h"
-#include "ParticleEmitter.h"
+#include "..\Managers\ParticleManager.h"
+#include "..\Factories\ParticleEmitterFactory.h"
+#include "..\Graphics\ParticleEmitter.h"
 
 #include <stdlib.h>
 #include <crtdbg.h>
-#include "Util.h"
+#include "..\Util\Util.h"
 
 // TODO:
 // -Implement Scene model for different game states
@@ -23,13 +23,13 @@
 // -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 #if DEBUG
-#include "Debug.h"
+#include "..\Util\Debug.h"
 #define _CRTDBG_MAP_ALLOC
 #endif
 
 
 
-#include "Animator.h"
+#include "..\Graphics\Animator.h"
 
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
 

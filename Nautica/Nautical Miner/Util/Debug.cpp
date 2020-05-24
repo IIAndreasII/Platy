@@ -1,5 +1,5 @@
-#include "pch.h"
-#include "Debug.h"
+#include "..\pch.h"
+#include "..\Util\Debug.h"
 #include <fstream>
 #include <ctime>
 

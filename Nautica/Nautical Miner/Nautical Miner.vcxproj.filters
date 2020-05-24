@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -31,192 +23,146 @@
     <Filter Include="Player">
       <UniqueIdentifier>{3376e73d-1b13-455d-98b6-1dd6ae66a329}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphical">
-      <UniqueIdentifier>{c9fcdd7b-790c-4a48-90cb-95fe697f3662}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{8356386a-cc54-408b-b53a-8c99124be1f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphical\Particles">
-      <UniqueIdentifier>{82c3150a-a3ba-46fb-bde1-8f3583180a9b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Containers">
       <UniqueIdentifier>{da9dcfa5-f52d-4a42-b837-7420ccfd7d9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Factories\Effects">
-      <UniqueIdentifier>{f104d315-3843-4387-b479-9b5560c4b011}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Main">
-      <UniqueIdentifier>{bec4d093-d78c-4be0-82d4-b783e44561e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Logic">
-      <UniqueIdentifier>{aad5a4e0-2f54-4cb4-8a35-0ae561324d38}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{8e9ab80d-83de-4bf3-ac9f-94ca8603af5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{c9fcdd7b-790c-4a48-90cb-95fe697f3662}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PostMaster.cpp">
-      <Filter>Postmaster</Filter>
-    </ClCompile>
-    <ClCompile Include="Subscriber.cpp">
-      <Filter>Postmaster</Filter>
-    </ClCompile>
-    <ClCompile Include="Message.cpp">
-      <Filter>Postmaster</Filter>
-    </ClCompile>
-    <ClCompile Include="GrowingArray.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Super</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Graphical\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleExplosion.cpp">
-      <Filter>Graphical\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleFountain.cpp">
-      <Filter>Graphical\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleEmitter.cpp">
-      <Filter>Graphical\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="Util.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleEmitterFactory.cpp">
-      <Filter>Factories\Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleFactory.cpp">
-      <Filter>Factories\Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="Nautical Miner.cpp">
-      <Filter>Game\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleShower.cpp">
-      <Filter>Graphical\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="Spritesheet.cpp">
-      <Filter>Graphical</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetContainer.cpp">
+    <ClCompile Include="Containers\AssetContainer.cpp">
       <Filter>Containers</Filter>
     </ClCompile>
-    <ClCompile Include="DrawManager.cpp">
-      <Filter>Managers</Filter>
+    <ClCompile Include="Factories\ParticleEmitterFactory.cpp">
+      <Filter>Factories</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game\Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Game\Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterSheet.cpp">
+    <ClCompile Include="Game\CharacterSheet.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="DiceManager.cpp">
-      <Filter>Managers</Filter>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Debug.cpp">
+    <ClCompile Include="Game\Nautical Miner.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Animator.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Spritesheet.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Debug.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>Graphical</Filter>
+    <ClCompile Include="Util\GrowingArray.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Super\Entity.cpp">
+      <Filter>Super</Filter>
+    </ClCompile>
+    <ClCompile Include="Postmaster\Subscriber.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Postmaster\PostMaster.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Postmaster\Message.cpp">
+      <Filter>Postmaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ParticleManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\DrawManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\DiceManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\ParticleEmitter.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PostMaster.h">
-      <Filter>Postmaster</Filter>
-    </ClInclude>
-    <ClInclude Include="Message.h">
-      <Filter>Postmaster</Filter>
-    </ClInclude>
-    <ClInclude Include="Subscriber.h">
-      <Filter>Postmaster</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Super</Filter>
-    </ClInclude>
-    <ClInclude Include="GrowingArray.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Super</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Graphical\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleExplosion.h">
-      <Filter>Graphical\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleFountain.h">
-      <Filter>Graphical\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitter.h">
-      <Filter>Graphical\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="Util.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitterFactory.h">
-      <Filter>Factories\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleFactory.h">
-      <Filter>Factories\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Graphical</Filter>
-    </ClInclude>
-    <ClInclude Include="Enum.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleShower.h">
-      <Filter>Graphical\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="Spritesheet.h">
-      <Filter>Graphical</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetContainer.h">
+    <ClInclude Include="Containers\AssetContainer.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="DrawManager.h">
-      <Filter>Managers</Filter>
+    <ClInclude Include="Factories\ParticleEmitterFactory.h">
+      <Filter>Factories</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Game\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Game\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterSheet.h">
+    <ClInclude Include="Game\CharacterSheet.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="DiceManager.h">
-      <Filter>Managers</Filter>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Debug.h">
+    <ClInclude Include="Game\Scene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Spritesheet.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Util\Debug.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Graphical</Filter>
+    <ClInclude Include="Util\Enum.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\GrowingArray.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Super\Entity.h">
+      <Filter>Super</Filter>
+    </ClInclude>
+    <ClInclude Include="Postmaster\Subscriber.h">
+      <Filter>Postmaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Postmaster\PostMaster.h">
+      <Filter>Postmaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Postmaster\Message.h">
+      <Filter>Postmaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\ParticleManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\DrawManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\DiceManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Animator.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ParticleEmitter.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Colors.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

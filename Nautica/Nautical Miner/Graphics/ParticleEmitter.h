@@ -1,7 +1,7 @@
 #ifndef PARTICLEEMITTER_H
 #define PARTICLEEMITTER_H
 
-#include "Enum.h"
+#include "..\Util\Enum.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/System/Vector2.hpp"
 

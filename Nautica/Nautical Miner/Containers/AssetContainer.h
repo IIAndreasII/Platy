@@ -2,7 +2,7 @@
 #define ASSETCONTAINER_H
 
 #include <vector>
-#include "Spritesheet.h"
+#include "..\Graphics\Spritesheet.h"
 #include "SFML/Graphics/Font.hpp"
 
 typedef SpriteSheet* SpriteSheetPtr;

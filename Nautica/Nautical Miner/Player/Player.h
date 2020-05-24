@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Entity.h"
-#include "Subscriber.h"
+#include "..\Super\Entity.h"
+#include "..\Postmaster\Subscriber.h"
 
 enum EMessageType;
 

@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "SFML/Graphics/RenderTarget.hpp"
-#include "Animator.h"
+#include "..\Graphics\Animator.h"
 
 
 Entity::~Entity()

@@ -1,9 +1,8 @@
 #ifndef PARTICLEEMITTERFACTORY_H
 #define PARTICLEEMITTERFACTORY_H
 
-//#include "Util.h"
-#include "Colors.h"
-#include "Enum.h"
+#include "..\Util\Colors.h"
+#include "..\Util\Enum.h"
 #include "SFML/System/Vector2.hpp"
 
 class ParticleEmitter;
