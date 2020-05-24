@@ -19,14 +19,16 @@ public:
 	static void Init();
 
 	static void Update(float deltaTime);
+	static void EarlyDraw(sf::RenderWindow& aWindow);
 	static void Draw(sf::RenderWindow& aWindow);
-	static void AddEmitter(ParticleEmitterPtr anEmitter);
+	static void AddEmitter(ParticleEmitterPtr anEmitter, const bool early = false);
 	
 	static const size_t GetParticleCount();
 
 private:
 	ParticleManager();
 
+	static std::vector<ParticleEmitterPtr> myEarlyParticleEmitters;
 	static std::vector<ParticleEmitterPtr> myParticleEmitters;
 	static std::vector<std::future<void>> myFutures;
 };

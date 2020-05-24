@@ -25,6 +25,7 @@ public:
 		const float aLifeTime,
 		const float anEmissionAngle, 
 		const float aSpreadAngle,
+		const bool early = false,
 		const float someGravity = 0,
 		const EParticleEmitterType aType = EParticleEmitterType::FOUNTAIN,
 		const bool shouldFade = true);
@@ -36,6 +37,7 @@ public:
 		const unsigned nbrOfParticles,
 		const float anInensity,
 		const float aLifeTime,
+		const bool early = false,
 		const float someGravity = 0,
 		const bool shouldFade = true);
 
@@ -47,6 +49,7 @@ public:
 		const float anInensity,
 		const float aLifeTime,
 		const float aLength,
+		const bool early = false,
 		const float someGravity = 0,
 		const bool shouldFade = true);
 
@@ -59,6 +62,7 @@ public:
 		const float anIntensity,
 		const float aLifeTime,
 		const float aLength,
+		const bool early = false,
 		const float anEmissionAngle = 90,
 		const float someGravity = 0,
 		const bool shouldFade = true);

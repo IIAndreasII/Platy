@@ -6,17 +6,20 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "SFML/Graphics/Drawable.hpp"
 
-class Animator2D : public sf::Drawable
+constexpr float DEFAULT_ANIM_SCALE = 4;
+
+class Animator : public sf::Drawable
 {
 public:
 
-	Animator2D(const SpriteSheet& aSpritesheet, const bool shouldLoop = true);
-	~Animator2D();
+	Animator(const SpriteSheet& aSpritesheet, const float aScale = DEFAULT_ANIM_SCALE, const bool shouldLoop = true);
+	~Animator();
 	
 	void Update(const float& deltaTime, const sf::Vector2f& aPosition);
 
 	void SetAnim(const SpriteSheet& aSpritesheet);
 
+	void Flip();
 	void TogglePlaying();
 	void ToggleLooping();
 
@@ -33,6 +36,7 @@ private:
 	bool myIsLooping;
 	
 	float myCurrentFrame;
+	float myScale;
 };
 
 #endif

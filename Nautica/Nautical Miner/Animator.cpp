@@ -1,21 +1,24 @@
-#include "Animator2D.h"
+#include "Animator.h"
 #include "SFML/Graphics/RenderTarget.hpp"
 
-Animator2D::Animator2D(const SpriteSheet& aSpritesheet, const bool shouldLoop) :
+Animator::Animator(const SpriteSheet& aSpritesheet, const float aScale, const bool shouldLoop) :
 	mySpriteSheet(aSpritesheet),
 	mySprite(*mySpriteSheet.GetTexturePtr()),
 	myIsPlaying(true),
 	myIsLooping(shouldLoop),
-	myCurrentFrame(0)
+	myCurrentFrame(0),
+	myScale(aScale)
+{
+	mySprite.setScale(myScale, myScale);
+	mySprite.setOrigin(mySpriteSheet.GetFrameWidth() / 2, mySpriteSheet.GetFrameHeight() / 2);
+}
+
+Animator::~Animator()
 {
 }
 
-Animator2D::~Animator2D()
-{
-}
 
-
-void Animator2D::Update(const float& deltaTime, const sf::Vector2f& aPosition)
+void Animator::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 {
 	mySprite.setPosition(aPosition);
 	if (mySpriteSheet.GetFrameCount() > 1 && myIsPlaying)
@@ -23,46 +26,55 @@ void Animator2D::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 		myCurrentFrame += mySpriteSheet.GetFrameRate() * deltaTime;
 		if (myCurrentFrame >= mySpriteSheet.GetFrameCount())
 		{
-			myCurrentFrame = 0;
 			if (!myIsLooping)
 			{
 				myIsPlaying = false;
+				myCurrentFrame = mySpriteSheet.GetFrameCount() - 1;
+			}
+			else
+			{
+				myCurrentFrame = 0;
 			}
 		}
 
 		sf::IntRect tempIntRect(
 			mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
 			0,
-			mySpriteSheet.GetFrameWidth() / mySpriteSheet.GetFrameCount(),
+			mySpriteSheet.GetFrameWidth(),
 			mySpriteSheet.GetFrameHeight());
 
 		mySprite.setTextureRect(tempIntRect);
 	}
 }
 
-void Animator2D::SetAnim(const SpriteSheet& aSpritesheet)
+void Animator::SetAnim(const SpriteSheet& aSpritesheet)
 {
 	mySpriteSheet = aSpritesheet;
 	mySprite.setTexture(*mySpriteSheet.GetTexturePtr());
 	myCurrentFrame = 0;
 }
 
-void Animator2D::TogglePlaying()
+void Animator::Flip()
+{
+	mySprite.setScale(myScale * -1, myScale);
+}
+
+void Animator::TogglePlaying()
 {
 	myIsPlaying = !myIsPlaying;
 }
 
-void Animator2D::ToggleLooping()
+void Animator::ToggleLooping()
 {
 	myIsLooping = !myIsLooping;
 }
 
-const sf::Sprite& Animator2D::GetCurrentFrame() const
+const sf::Sprite& Animator::GetCurrentFrame() const
 {
 	return mySprite;
 }
 
-void Animator2D::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Animator::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(mySprite);
 }

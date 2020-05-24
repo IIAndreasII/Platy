@@ -12,9 +12,13 @@ constexpr const char* FILEPATH_TEXTURES = "Assets/Textures/Sprites/";
 constexpr const char* FILEPATHS_FILES_SPRITESHEETS = "Assets/Filepaths_SpriteSheets.txt";
 constexpr const char* FILEPATH_SPRITESHEETS = "Assets/Textures/SpriteSheets/";
 
-std::vector<TexturePtr> AssetContainer::myTexturePtrs;
+std::vector<sf::Texture*> AssetContainer::myTexturePtrs;
 std::vector<SpriteSheetPtr> AssetContainer::mySpriteSheetPtrs;
-std::vector<FontPtr> AssetContainer::myFontPtrs;
+std::vector<sf::Font*> AssetContainer::myFontPtrs;
+
+std::vector<std::string> AssetContainer::myTextureNames;
+std::vector<std::string> AssetContainer::mySpriteSheetNames;
+std::vector<std::string> AssetContainer::myFontNames;
 
 
 AssetContainer::~AssetContainer()
@@ -40,19 +44,37 @@ void AssetContainer::Init()
 	LoadFonts();
 }
 
-const FontPtr AssetContainer::GetFontPtr(const unsigned index)
+sf::Font* AssetContainer::GetFontPtr(const std::string name)
 {
-	return myFontPtrs.at(index);
+	std::vector<std::string>::iterator it = std::find(myFontNames.begin(), myFontNames.end(), name);
+	if (it != myFontNames.end())
+	{
+		return myFontPtrs.at(std::distance(myFontNames.begin(), it));
+	}
+	Debug::Log("AssetContainer::GetFontPtr(): Font with name \"" + name + "\" not found!", false);
+	return new sf::Font();
 }
 
-const TexturePtr AssetContainer::GetTexturePtr(const unsigned index)
+sf::Texture* AssetContainer::GetTexturePtr(const std::string name)
 {
-	return myTexturePtrs.at(index);
+	std::vector<std::string>::iterator it = std::find(myTextureNames.begin(), myTextureNames.end(), name);
+	if (it != myTextureNames.end())
+	{
+		return myTexturePtrs.at(std::distance(myTextureNames.begin(), it));
+	}
+	Debug::Log("AssetContainer::GetTexturePtr(): Texture with name \"" + name + "\" not found!", false);
+	return new sf::Texture();
 }
 
-const SpriteSheetPtr AssetContainer::GetSpritesheetPtr(const unsigned index)
+SpriteSheetPtr AssetContainer::GetSpritesheetPtr(const std::string name)
 {
-	return mySpriteSheetPtrs.at(index);
+	std::vector<std::string>::iterator it = std::find(mySpriteSheetNames.begin(), mySpriteSheetNames.end(), name);
+	if (it != mySpriteSheetNames.end())
+	{
+		return mySpriteSheetPtrs.at(std::distance(mySpriteSheetNames.begin(), it));
+	}
+	Debug::Log("AssetContainer::GetSpriteSheetPtr(): Sprite sheet with name \"" + name + "\" not found!", false);
+	return SpriteSheetPtr();
 }
 
 void AssetContainer::LoadTextures()
@@ -78,12 +100,12 @@ void AssetContainer::LoadTextures()
 			}
 			else
 			{
+				myTextureNames.push_back(TrimFileName(tempPath));
 				myTexturePtrs.push_back(tempTexture);
 			}
 		}
 		tempTxtFile.close();
-		std::string msg = "AssetContainer::LoadTextures(): " + std::to_string(myTexturePtrs.size()) + "/" + std::to_string(tempTotalTextures) + " textures loaded!";
-		Debug::Log(msg.c_str(), tempAllSuccessful);
+		Debug::Log("AssetContainer::LoadTextures(): " + std::to_string(myTexturePtrs.size()) + "/" + std::to_string(tempTotalTextures) + " textures loaded!", tempAllSuccessful);
 	}
 	else
 	{
@@ -118,6 +140,8 @@ void AssetContainer::LoadAndParseSpriteSheets()
 			}
 			else
 			{	
+				mySpriteSheetNames.push_back(TrimFileName(tempPath));
+				
 				// Get frame count
 				std::getline(tempTxtFile, tempPath);
 				unsigned tempFrameCount = std::stoi(tempPath);
@@ -133,8 +157,7 @@ void AssetContainer::LoadAndParseSpriteSheets()
 			}
 		}
 		tempTxtFile.close();
-		std::string msg = "AssetContainer::LoadAndParseSpriteSheets(): " + std::to_string(mySpriteSheetPtrs.size()) + "/" + std::to_string(tempTotalSheets) + " spritesheets loaded!";
-		Debug::Log(msg.c_str(), tempAllSuccessful);
+		Debug::Log("AssetContainer::LoadAndParseSpriteSheets(): " + std::to_string(mySpriteSheetPtrs.size()) + "/" + std::to_string(tempTotalSheets) + " spritesheets loaded!", tempAllSuccessful);
 	}
 	else
 	{
@@ -154,7 +177,7 @@ void AssetContainer::LoadFonts()
 		while (std::getline(tempTxtFile, tempPath))
 		{
 			tempTotalFonts++;
-			FontPtr tempFont = new sf::Font();
+			sf::Font* tempFont = new sf::Font();
 			if (!tempFont->loadFromFile(FILEPATH_FONTS + tempPath))
 			{
 				SafeDelete(tempFont);
@@ -164,15 +187,22 @@ void AssetContainer::LoadFonts()
 			}
 			else
 			{
+				myFontNames.push_back(TrimFileName(tempPath));
 				myFontPtrs.push_back(tempFont);
 			}
 		}
 		tempTxtFile.close();
-		std::string msg = "AssetContainer::LoadFonts(): " + std::to_string(myFontPtrs.size()) + "/" + std::to_string(tempTotalFonts) + " fonts loaded!";
-		Debug::Log(msg.c_str(), tempAllSuccessful);
+		Debug::Log("AssetContainer::LoadFonts(): " + std::to_string(myFontPtrs.size()) + "/" + std::to_string(tempTotalFonts) + " fonts loaded!", tempAllSuccessful);
 	}
 	else
 	{
 		Debug::Log("AssetContainer::LoadFonts(): Unable load Fonts!", false);
 	}
+}
+
+const std::string& AssetContainer::TrimFileName(std::string& tempPath)
+{
+	tempPath.erase(0, tempPath.find_last_of('/') + 1);
+	tempPath.erase(tempPath.find_last_of('.'));
+	return tempPath;
 }

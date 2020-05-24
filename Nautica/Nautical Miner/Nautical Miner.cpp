@@ -27,6 +27,10 @@
 #define _CRTDBG_MAP_ALLOC
 #endif
 
+
+
+#include "Animator.h"
+
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
 
 int main()
@@ -76,14 +80,30 @@ int main()
 
 	// BEGIN Tests
 #if TESTING
+	
+	sf::Font testFont = *AssetContainer::GetFontPtr("firstorder");
+	sf::Texture testTexture = *AssetContainer::GetTexturePtr("Zweihander");
+	SpriteSheetPtr testSS = AssetContainer::GetSpritesheetPtr("Chest Full");
+
+	sf::Text testText("Testing", testFont);
+
+	testText.setPosition(300, 300);
+
+	Animator testAnim = Animator(*testSS, 4, false);
+	//testAnim.Flip();
+	sf::Sprite testSprite(testTexture);
+	testSprite.setPosition(500, 300);
+	testSprite.setScale(4, 4);
+
 	float explosionTimer = 0;
 
 	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, 2 * 9.82f);
+	ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, true, 2 * 9.82f);
 	//ParticleEmitterFactory::CreateFountain(sf::Vector2f(150, 500), C_RÅSA, 1000, 150, 3, 270, 20, 9.82f);
 	//ParticleEmitter& pe = *ParticleEmitterFactory::CreateShower(20, EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 70, 0);
 	//ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(220, 120), C_BLUE_DARK, 650, 200, 3, 960, 90, 2* 9.82f, false);
 	//ParticleEmitterFactory::CreateCloud(20, sf::Vector2f(200, 100), C_WHITE, 5000, 25, 2, 1000);
+
 #endif
 	// END Tests
 
@@ -127,19 +147,21 @@ int main()
 
 		// BEGIN Tests
 #if TESTING
+
 		mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-		pe->SetPosition(mousePos);
+		testAnim.Update(tempDeltaTime, mousePos);
+		//pe->SetPosition(mousePos);
 		explosionTimer -= tempDeltaTime;
 		if (explosionTimer <= 0)
 		{
-			ParticleEmitterFactory::CreateExplosion(
+			/*ParticleEmitterFactory::CreateExplosion(
 				12,
 				sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), 
 				sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)),
 				1000, 
 				250, 
 				1.5f,
-				9.82f);
+				9.82f);*/
 			/*for (size_t i = 0; i < 3; i++)
 			{
 				ParticleEmitterFactory::CreateFountain(
@@ -166,13 +188,17 @@ int main()
 		window.clear();
 		tempGame.Draw(window);
 
-#if TESTING
 		// BEGIN Tests
+#if TESTING
 
+		ParticleManager::EarlyDraw(window);
+		window.draw(testText);
+		window.draw(testSprite);
+		window.draw(testAnim);
 		ParticleManager::Draw(window);
 
-		// END Tests
 #endif
+		// END Tests
 
 		window.display();
 	}

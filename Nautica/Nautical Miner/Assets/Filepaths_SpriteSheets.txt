@@ -1,108 +1,108 @@
 Characters/Wizard/Male/Wizard Walk.png
 4
-4
+8
 Characters/Wizard/Male/Wizard Idle.png
 4
-4
+8
 Characters/Wizard/Female/Wizard Walk.png
 4
-4
+8
 Characters/Wizard/Female/Wizard Idle.png
 4
-4
+8
 Characters/Cleric/Cleric Walk.png
 4
-4
+8
 Characters/Cleric/Cleric Idle.png
 4
-4
+8
 Characters/Knight/Male/Knight Walk.png
 4
-4
+8
 Characters/Knight/Male/Knight Idle.png
 4
-4
+8
 Characters/Knight/Female/Knight Walk.png
 4
-4
+8
 Characters/Knight/Female/Knight Idle.png
 4
-4
+8
 Characters/Ranger/Ranger Walk.png
 4
-4
+8
 Characters/Ranger/Ranger Idle.png
 4
-4
+8
 Characters/Pirate/Pirate Idle.png
 4
-4
+8
 Enemies/Demons/Demon/Demon Walk.png
 4
-4
+8
 Enemies/Demons/Demon/Demon Idle.png
 4
-4
+8
 Enemies/Demons/Demon Mini/Demon Walk.png
 4
-4
+8
 Enemies/Demons/Demon Mini/Demon Idle.png
 4
-4
+8
 Enemies/Demons/Hellspawn/Hellspawn Walk.png
 4
-4
+8
 Enemies/Demons/Hellspawn/Hellspawn Idle.png
 4
-4
+8
 Enemies/Mimic/Chest Mimic.png
 3
-4
+8
 Enemies/Ooze/Ooze.png
 4
-4
+8
 Enemies/Orcs/Axeman/Orc Axeman Walk.png
 4
-4
+8
 Enemies/Orcs/Axeman/Orc Axeman Idle.png
 4
-4
+8
 Enemies/Orcs/Brute/Orc Brute Walk.png
 4
-4
+8
 Enemies/Orcs/Brute/Orc Brute Idle.png
 4
-4
+8
 Enemies/Orcs/Clubman/Orc Clubman Walk.png
 4
-4
+8
 Enemies/Orcs/Clubman/Orc Clubman Idle.png
 4
-4
+8
 Enemies/Orcs/Minion/Orc Minion Walk.png
 4
-4
+8
 Enemies/Orcs/Minion/Orc Minion Idle.png
 4
-4
+8
 Enemies/Orcs/Shaman/Orc Shaman Walk.png
 4
-4
+8
 Enemies/Orcs/Shaman/Orc Shaman Idle.png
 4
-4
+8
 Enemies/Skeletons/Minion/Skeleton Walk.png
 4
-4
+8
 Enemies/Skeletons/Minion/Skeleton Idle.png
 4
-4
+8
 Misc/Chest Empty.png
 3
-4
+3
 Misc/Chest Full.png
 3
-4
+3
 Misc/Coin.png
 4
-4
+8

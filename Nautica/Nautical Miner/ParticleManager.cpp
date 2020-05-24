@@ -4,12 +4,17 @@
 
 
 std::vector<ParticleEmitterPtr> ParticleManager::myParticleEmitters;
+std::vector<ParticleEmitterPtr> ParticleManager::myEarlyParticleEmitters;
 std::vector<std::future<void>> ParticleManager::myFutures;
 
 
 ParticleManager::~ParticleManager()
 {
 	for (auto it : myParticleEmitters)
+	{
+		SafeDelete(it);
+	}
+	for (auto it : myEarlyParticleEmitters)
 	{
 		SafeDelete(it);
 	}
@@ -37,6 +42,24 @@ void ParticleManager::Update(float deltaTime)
 		}
 	}
 
+	for (size_t i = myEarlyParticleEmitters.size(); i > 0; i--)
+	{
+		if (!myEarlyParticleEmitters.at(i - 1)->GetActive())
+		{
+			SafeDelete(myEarlyParticleEmitters.at(i - 1));
+			myEarlyParticleEmitters.erase(myEarlyParticleEmitters.begin() + i - 1);
+		}
+	}
+	
+	for (ParticleEmitterPtr it : myEarlyParticleEmitters)
+	{
+#if ASYNC
+		myFutures.push_back(std::async(std::launch::async, UpdateEmitter, it, deltaTime));
+#else
+		it->Update(deltaTime);
+#endif
+	}
+
 	for (ParticleEmitterPtr it : myParticleEmitters)
 	{
 #if ASYNC
@@ -45,10 +68,9 @@ void ParticleManager::Update(float deltaTime)
 		it->Update(deltaTime);
 #endif
 	}
-	//std::cout << myParticleEmitters.size() << std::endl;
 }
 
-void ParticleManager::Draw(sf::RenderWindow& aWindow)
+void ParticleManager::EarlyDraw(sf::RenderWindow& aWindow)
 {
 #if ASYNC
 	for (size_t i = 0; i < myFutures.size(); i++)
@@ -61,15 +83,30 @@ void ParticleManager::Draw(sf::RenderWindow& aWindow)
 		myFutures.clear();
 	}
 #endif
+	for (ParticleEmitterPtr it : myEarlyParticleEmitters)
+	{
+		aWindow.draw(*it);
+	}
+}
+
+void ParticleManager::Draw(sf::RenderWindow& aWindow)
+{
 	for (ParticleEmitterPtr it : myParticleEmitters)
 	{
 		aWindow.draw(*it);
 	}
 }
 
-void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter)
+void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter, const bool early)
 {
-	myParticleEmitters.push_back(anEmitter);
+	if (!early)
+	{
+		myParticleEmitters.push_back(anEmitter);
+	}
+	else
+	{
+		myEarlyParticleEmitters.push_back(anEmitter);
+	}
 }
 
 const size_t ParticleManager::GetParticleCount()

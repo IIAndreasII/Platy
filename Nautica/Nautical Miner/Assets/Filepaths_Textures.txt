@@ -1,3 +1,5 @@
+Misc/Coin.png
+Misc/Skull.png
 Potions/Potion Blue Large.png
 Potions/Potion Red Large.png
 Potions/Potion Yellow Large.png
@@ -8,3 +10,16 @@ Potions/Potion Yellow Small.png
 Potions/Potion Green Small.png
 Weapons/Staff Green.png
 Weapons/Staff Red.png
+Weapons/Axe.png
+Weapons/Broadsword.png
+Weapons/Cleaver.png
+Weapons/Dagger.png
+Weapons/Enchanted Sword.png
+Weapons/Morningstar.png
+Weapons/Rapier.png
+Weapons/Rusty Sword.png
+Weapons/Short Sword Enhanced.png
+Weapons/Short Sword.png
+Weapons/Spiked Club.png
+Weapons/Zweihander.png
+World Objects/Crate.png

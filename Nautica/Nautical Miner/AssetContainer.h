@@ -6,7 +6,6 @@
 #include "SFML/Graphics/Font.hpp"
 
 typedef SpriteSheet* SpriteSheetPtr;
-typedef sf::Font* FontPtr;
 
 class AssetContainer
 {
@@ -15,9 +14,9 @@ public:
 
 	static void Init();
 
-	static const TexturePtr GetTexturePtr(const unsigned index);
-	static const SpriteSheetPtr GetSpritesheetPtr(const unsigned index);
-	static const FontPtr GetFontPtr(const unsigned index);
+	static sf::Texture* GetTexturePtr(const std::string name);
+	static SpriteSheetPtr GetSpritesheetPtr(const std::string name);
+	static sf::Font* GetFontPtr(const std::string name);
 
 private:
 	AssetContainer();
@@ -26,9 +25,15 @@ private:
 	static void LoadAndParseSpriteSheets();
 	static void LoadFonts();
 
-	static std::vector<TexturePtr> myTexturePtrs;
+	static std::vector<sf::Texture*> myTexturePtrs;
 	static std::vector<SpriteSheetPtr> mySpriteSheetPtrs;
-	static std::vector<FontPtr> myFontPtrs;
+	static std::vector<sf::Font*> myFontPtrs;
+
+	static std::vector<std::string> myTextureNames;
+	static std::vector<std::string> mySpriteSheetNames;
+	static std::vector<std::string> myFontNames;
+
+	static const std::string& TrimFileName(std::string& tempPath);
 
 };
 

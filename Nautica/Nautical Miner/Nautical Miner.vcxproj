@@ -163,7 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animator2D.cpp" />
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CharacterSheet.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DiceManager.cpp" />
@@ -190,7 +190,7 @@
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animator2D.h" />
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="CharacterSheet.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Debug.h" />

@@ -16,6 +16,7 @@ void Debug::Init()
 
 void Debug::FinishSession()
 {
+#ifdef DEBUG
 	std::string tempPath = "Logs/" + GetTime() + ".txt";
 	std::ofstream tempLogFile(tempPath); 
 
@@ -28,10 +29,12 @@ void Debug::FinishSession()
 		tempLogFile.close();
 	}
 	std::cout << "Debug session finished. Log written to \"" << tempPath << "\"" << std::endl;
+#endif
 }
 
-void Debug::Log(const char* entry, const bool success)
+void Debug::Log(const std::string entry, const bool success)
 {
+#ifdef DEBUG
 	std::string msg;
 	if (success)
 	{
@@ -45,6 +48,7 @@ void Debug::Log(const char* entry, const bool success)
 	}
 	msg += entry;
 	myLogEntries.push_back(msg);
+#endif
 }
 
 std::string Debug::GetTime()

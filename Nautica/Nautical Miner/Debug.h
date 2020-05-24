@@ -11,7 +11,7 @@ public:
 
 	static void Init();
 	static void FinishSession();
-	static void Log(const char* entry, const bool success = true);
+	static void Log(const std::string entry, const bool success = true);
 
 private:
 	Debug();

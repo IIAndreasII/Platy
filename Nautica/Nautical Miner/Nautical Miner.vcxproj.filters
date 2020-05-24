@@ -52,6 +52,9 @@
     <Filter Include="Game\Logic">
       <UniqueIdentifier>{aad5a4e0-2f54-4cb4-8a35-0ae561324d38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{8e9ab80d-83de-4bf3-ac9f-94ca8603af5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PostMaster.cpp">
@@ -65,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="GrowingArray.cpp">
       <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Animator2D.cpp">
-      <Filter>Graphical</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Super</Filter>
@@ -129,6 +129,9 @@
     <ClCompile Include="Debug.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Graphical</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PostMaster.h">
@@ -148,9 +151,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animator2D.h">
-      <Filter>Graphical</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Super</Filter>
@@ -214,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Graphical</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

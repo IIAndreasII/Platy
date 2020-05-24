@@ -5,9 +5,9 @@
 #include "SFML/Graphics/Transformable.hpp"
 #include "SFML/System/Vector2.hpp"
 
-class Animator2D;
+class Animator;
 
-typedef Animator2D* AnimatorPtr;
+typedef Animator* AnimatorPtr;
 
 class Entity : public sf::Drawable, public sf::Transformable
 {
@@ -23,7 +23,7 @@ public:
 
 protected:
 
-	Animator2D* myAnim;
+	Animator* myAnim;
 
 };
 
