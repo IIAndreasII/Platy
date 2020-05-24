@@ -35,6 +35,9 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{c9fcdd7b-790c-4a48-90cb-95fe697f3662}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Main">
+      <UniqueIdentifier>{a6a780d0-ef9c-4960-850c-6822bdd45f20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Containers\AssetContainer.cpp">
@@ -47,9 +50,6 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Nautical Miner.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scene.cpp">
@@ -96,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\ParticleEmitter.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Nautical Miner.cpp">
+      <Filter>Game\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

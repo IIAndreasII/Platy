@@ -30,7 +30,6 @@ static void UpdateEmitter(ParticleEmitter* anEmitter, float deltaTime)
 	anEmitter->Update(deltaTime);
 }
 
-#define ASYNC 1
 void ParticleManager::Update(float deltaTime)
 {
 	for (size_t i = myParticleEmitters.size(); i > 0; i--)

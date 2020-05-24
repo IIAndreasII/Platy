@@ -2,7 +2,7 @@
 #define PCH_H
 
 #define DEBUG 1
-
+#define ASYNC 1
 // Constants
 constexpr bool VSYNC = false;
 
