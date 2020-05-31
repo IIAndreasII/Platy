@@ -14,9 +14,9 @@ public:
 
 	static void Init();
 
-	static sf::Texture* GetTexturePtr(const std::string name);
-	static SpriteSheetPtr GetSpritesheetPtr(const std::string name);
-	static sf::Font* GetFontPtr(const std::string name);
+	static sf::Texture* GetTexturePtr(std::string name);
+	static SpriteSheetPtr GetSpritesheetPtr(std::string name);
+	static sf::Font* GetFontPtr(std::string name);
 
 private:
 	AssetContainer();

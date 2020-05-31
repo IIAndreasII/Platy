@@ -66,3 +66,8 @@ sf::Vector2f Util::Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, float am
 	}
 	return sf::Vector2f(v1.x + (v2.x + v1.x) * amount, v1.y + (v2.y + v1.y) * amount);
 }
+
+void Util::ToLowerCase(std::string& aString)
+{
+	std::transform(aString.begin(), aString.end(), aString.begin(), [](unsigned char c) {return std::tolower(c); });
+}

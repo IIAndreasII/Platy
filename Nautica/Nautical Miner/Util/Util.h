@@ -3,6 +3,7 @@
 
 #include "SFML/System/Vector2.hpp"
 #include "Enum.h"
+#include <string>
 
 constexpr float DEGTORAD = 0.0174533f;
 constexpr float G = 9.82f;
@@ -27,6 +28,9 @@ public:
 	static sf::Vector2f DegToVec2(float& anAngle);
 	static sf::Vector2f DegToVec2(float anAngle);
 	static sf::Vector2f Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, const float amount);
+
+	// String util
+	static void ToLowerCase(std::string& aString);
 
 private:
 	Util();

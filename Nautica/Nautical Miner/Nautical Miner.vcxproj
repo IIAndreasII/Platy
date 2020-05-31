@@ -163,8 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="Graphics\Animator.cpp" />
     <ClCompile Include="Game\CharacterSheet.cpp" />
+    <ClCompile Include="Events\KeyboardEventHandler.cpp" />
+    <ClCompile Include="Events\MouseEventHandler.cpp" />
     <ClCompile Include="Util\Debug.cpp" />
     <ClCompile Include="Managers\DiceManager.cpp" />
     <ClCompile Include="Managers\DrawManager.cpp" />
@@ -185,8 +188,11 @@
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UI\Button.h" />
     <ClInclude Include="Graphics\Animator.h" />
     <ClInclude Include="Game\CharacterSheet.h" />
+    <ClInclude Include="Events\KeyboardEventHandler.h" />
+    <ClInclude Include="Events\MouseEventHandler.h" />
     <ClInclude Include="Util\Colors.h" />
     <ClInclude Include="Util\Debug.h" />
     <ClInclude Include="Managers\DiceManager.h" />

@@ -1,5 +1,8 @@
 Misc/Coin.png
 Misc/Skull.png
+Misc/Heart Empty.png
+Misc/Heart Half.png
+Misc/Heart Full.png
 Potions/Potion Blue Large.png
 Potions/Potion Red Large.png
 Potions/Potion Yellow Large.png

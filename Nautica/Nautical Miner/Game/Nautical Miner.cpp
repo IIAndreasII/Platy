@@ -13,6 +13,9 @@
 #include "..\Factories\ParticleEmitterFactory.h"
 #include "..\Graphics\ParticleEmitter.h"
 
+#include "..\Events\KeyboardEventHandler.h"
+#include "..\Events\MouseEventHandler.h"
+
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "..\Util\Util.h"
@@ -85,11 +88,11 @@ int main()
 	sf::Texture testTexture = *AssetContainer::GetTexturePtr("Zweihander");
 	SpriteSheetPtr testSS = AssetContainer::GetSpritesheetPtr("Chest Full");
 
-	sf::Text testText("Testing", testFont);
+	sf::Text testText("", testFont);
 
 	testText.setPosition(300, 300);
 
-	Animator testAnim = Animator(*testSS, 4, false);
+	Animator testAnim = Animator(*testSS);
 	//testAnim.Flip();
 	sf::Sprite testSprite(testTexture);
 	testSprite.setPosition(500, 300);
@@ -98,7 +101,7 @@ int main()
 	float explosionTimer = 0;
 
 	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, true, 2 * 9.82f);
+	//ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, true, 2 * 9.82f);
 	//ParticleEmitterFactory::CreateFountain(sf::Vector2f(150, 500), C_RÅSA, 1000, 150, 3, 270, 20, 9.82f);
 	//ParticleEmitter& pe = *ParticleEmitterFactory::CreateShower(20, EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 70, 0);
 	//ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(220, 120), C_BLUE_DARK, 650, 200, 3, 960, 90, 2* 9.82f, false);
@@ -113,20 +116,29 @@ int main()
 		sf::Event tempEvent;
 		while (window.pollEvent(tempEvent))
 		{
-			if (tempEvent.type == sf::Event::Closed)
+			switch (tempEvent.type)
 			{
+			case sf::Event::Closed:
 				Debug::FinishSession();
 				_CrtDumpMemoryLeaks();
 				window.close();
-			}
-			else if (tempEvent.type == sf::Event::GainedFocus)
-			{
+				break;
+			case sf::Event::GainedFocus:
 				isWindowInFocus = true;
-			}
-			else if (tempEvent.type == sf::Event::LostFocus)
-			{
+				break;
+			case sf::Event::LostFocus:
 				isWindowInFocus = false;
 				tempGame.Pause();
+				break;
+			case sf::Event::KeyPressed:
+			case sf::Event::KeyReleased:
+				KeyboardEventHandler::HandleEvent(tempEvent);
+				break;
+			case sf::Event::MouseButtonPressed:
+			case sf::Event::MouseButtonReleased:
+			// TODO: Add more mouse events if necessary
+				MouseEventHandler::HandleEvent(tempEvent);
+				break;
 			}
 		}	
 

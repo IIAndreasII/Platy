@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "..\Util\Debug.h"
-
+#include "..\Util\Util.h"
 
 constexpr const char* FILEPATHS_FILE_FONTS = "Assets/Filepaths_Fonts.txt";
 constexpr const char* FILEPATH_FONTS = "Assets/Fonts/";
@@ -44,8 +44,9 @@ void AssetContainer::Init()
 	LoadFonts();
 }
 
-sf::Font* AssetContainer::GetFontPtr(const std::string name)
+sf::Font* AssetContainer::GetFontPtr(std::string name)
 {
+	Util::ToLowerCase(name);
 	std::vector<std::string>::iterator it = std::find(myFontNames.begin(), myFontNames.end(), name);
 	if (it != myFontNames.end())
 	{
@@ -55,8 +56,9 @@ sf::Font* AssetContainer::GetFontPtr(const std::string name)
 	return new sf::Font();
 }
 
-sf::Texture* AssetContainer::GetTexturePtr(const std::string name)
+sf::Texture* AssetContainer::GetTexturePtr(std::string name)
 {
+	Util::ToLowerCase(name);
 	std::vector<std::string>::iterator it = std::find(myTextureNames.begin(), myTextureNames.end(), name);
 	if (it != myTextureNames.end())
 	{
@@ -66,8 +68,9 @@ sf::Texture* AssetContainer::GetTexturePtr(const std::string name)
 	return new sf::Texture();
 }
 
-SpriteSheetPtr AssetContainer::GetSpritesheetPtr(const std::string name)
+SpriteSheetPtr AssetContainer::GetSpritesheetPtr(std::string name)
 {
+	Util::ToLowerCase(name);
 	std::vector<std::string>::iterator it = std::find(mySpriteSheetNames.begin(), mySpriteSheetNames.end(), name);
 	if (it != mySpriteSheetNames.end())
 	{
@@ -204,5 +207,6 @@ const std::string& AssetContainer::TrimFileName(std::string& tempPath)
 {
 	tempPath.erase(0, tempPath.find_last_of('/') + 1);
 	tempPath.erase(tempPath.find_last_of('.'));
+	Util::ToLowerCase(tempPath);
 	return tempPath;
 }

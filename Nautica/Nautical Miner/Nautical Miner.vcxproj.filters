@@ -38,6 +38,9 @@
     <Filter Include="Game\Main">
       <UniqueIdentifier>{a6a780d0-ef9c-4960-850c-6822bdd45f20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{0b46e92a-470a-4e98-9b61-8fa4fe79a255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Containers\AssetContainer.cpp">
@@ -99,6 +102,15 @@
     </ClCompile>
     <ClCompile Include="Game\Nautical Miner.cpp">
       <Filter>Game\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\KeyboardEventHandler.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\MouseEventHandler.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Button.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +178,15 @@
     </ClInclude>
     <ClInclude Include="Util\Colors.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\KeyboardEventHandler.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\MouseEventHandler.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Button.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
