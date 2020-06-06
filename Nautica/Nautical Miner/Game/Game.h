@@ -25,6 +25,8 @@ public:
 	void TogglePause();
 	void Pause();
 
+	void TestFunc();
+
 private:
 
 	bool myPauseFlag;

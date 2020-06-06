@@ -22,5 +22,6 @@ constexpr short DARK_CONSTANT = 139;
 #define C_BLACK			sf::Color(0, 0, 0)
 #define C_PURPLE		sf::Color(128, 0, 128)
 #define C_RÅSA			sf::Color(242, 128, 161)
+#define C_AMETIST       sf::Color(153, 102, 204)
 
 #endif

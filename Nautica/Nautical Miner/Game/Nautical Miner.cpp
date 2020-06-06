@@ -9,6 +9,8 @@
 
 #include "..\Containers\AssetContainer.h"
 
+#include "..\Postmaster\PostMaster.h"
+
 #include "..\Managers\ParticleManager.h"
 #include "..\Factories\ParticleEmitterFactory.h"
 #include "..\Graphics\ParticleEmitter.h"
@@ -19,6 +21,10 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "..\Util\Util.h"
+
+//#include "..\UI\UIButton.h"
+#include "..\Graphics\Animator.h"
+
 
 // TODO:
 // -Implement Scene model for different game states
@@ -31,8 +37,8 @@
 #endif
 
 
+#include "..\UI\UIButton.cpp"
 
-#include "..\Graphics\Animator.h"
 
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
 
@@ -62,10 +68,11 @@ int main()
 	AssetContainer::Init();
 
 	// Init managers
+	PostMaster::Init();
 	ParticleManager::Init();
 
 	// Init game (there should only be one game!)
-	Game tempGame(window);
+	Game* tempGame = new Game(window);
 
 	// Init clock and delta time
 	sf::Clock tempClock;
@@ -84,11 +91,14 @@ int main()
 	// BEGIN Tests
 #if TESTING
 	
+	UIButton<Game> testBtn("Test", &Game::TestFunc, tempGame, sf::Vector2f(200, 200));
+
 	sf::Font testFont = *AssetContainer::GetFontPtr("firstorder");
 	sf::Texture testTexture = *AssetContainer::GetTexturePtr("Zweihander");
 	SpriteSheetPtr testSS = AssetContainer::GetSpritesheetPtr("Chest Full");
 
 	sf::Text testText("", testFont);
+
 
 	testText.setPosition(300, 300);
 
@@ -119,8 +129,10 @@ int main()
 			switch (tempEvent.type)
 			{
 			case sf::Event::Closed:
+#if DEBUG
 				Debug::FinishSession();
 				_CrtDumpMemoryLeaks();
+#endif
 				window.close();
 				break;
 			case sf::Event::GainedFocus:
@@ -128,7 +140,7 @@ int main()
 				break;
 			case sf::Event::LostFocus:
 				isWindowInFocus = false;
-				tempGame.Pause();
+				tempGame->Pause();
 				break;
 			case sf::Event::KeyPressed:
 			case sf::Event::KeyReleased:
@@ -136,8 +148,9 @@ int main()
 				break;
 			case sf::Event::MouseButtonPressed:
 			case sf::Event::MouseButtonReleased:
+			case sf::Event::MouseMoved:
 			// TODO: Add more mouse events if necessary
-				MouseEventHandler::HandleEvent(tempEvent);
+				MouseEventHandler::HandleEvent(tempEvent, window);
 				break;
 			}
 		}	
@@ -154,7 +167,7 @@ int main()
 		}
 #endif
 		// Update the game
-		tempGame.Update(tempDeltaTime);
+		tempGame->Update(tempDeltaTime);
 
 
 		// BEGIN Tests
@@ -188,7 +201,7 @@ int main()
 					9.82f * 2,
 					EParticleEmitterType::FOUNTAIN_BURST);
 			}*/
-			explosionTimer = .1;
+			explosionTimer = .1f;
 		}
 
 		ParticleManager::Update(tempDeltaTime);
@@ -198,7 +211,7 @@ int main()
 
 		// Draw the game
 		window.clear();
-		tempGame.Draw(window);
+		tempGame->Draw(window);
 
 		// BEGIN Tests
 #if TESTING
@@ -208,6 +221,8 @@ int main()
 		window.draw(testSprite);
 		window.draw(testAnim);
 		ParticleManager::Draw(window);
+
+		window.draw(testBtn);
 
 #endif
 		// END Tests

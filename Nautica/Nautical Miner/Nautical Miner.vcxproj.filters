@@ -109,7 +109,7 @@
     <ClCompile Include="Events\MouseEventHandler.cpp">
       <Filter>Events</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Button.cpp">
+    <ClCompile Include="UI\UIButton.cpp">
       <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,7 +185,7 @@
     <ClInclude Include="Events\MouseEventHandler.h">
       <Filter>Events</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Button.h">
+    <ClInclude Include="UI\UIButton.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,3 +1,4 @@
+#include "..\pch.h"
 #include "Game.h"
 #include "Scene.h"
 #include "..\Postmaster\Message.h"
@@ -51,4 +52,9 @@ void Game::TogglePause()
 void Game::Pause()
 {
 	myPauseFlag = true;
+}
+
+void Game::TestFunc()
+{
+	std::cout << "Test function executed" << std::endl;
 }

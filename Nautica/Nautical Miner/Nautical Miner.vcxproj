@@ -163,7 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="UI\Button.cpp" />
+    <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="Graphics\Animator.cpp" />
     <ClCompile Include="Game\CharacterSheet.cpp" />
     <ClCompile Include="Events\KeyboardEventHandler.cpp" />
@@ -188,7 +188,7 @@
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UI\Button.h" />
+    <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="Graphics\Animator.h" />
     <ClInclude Include="Game\CharacterSheet.h" />
     <ClInclude Include="Events\KeyboardEventHandler.h" />

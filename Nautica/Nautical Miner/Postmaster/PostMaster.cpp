@@ -42,7 +42,7 @@ void PostMaster::SendMessage(const Message& aMessage, const EMessageType& aEMess
 {
 	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
 	{
-		if (tempSub != nullptr)
+		if (tempSub != NULL)
 		{
 			tempSub->ReceiveMessage(aMessage, aEMessageType);
 		}
@@ -51,16 +51,16 @@ void PostMaster::SendMessage(const Message& aMessage, const EMessageType& aEMess
 
 void PostMaster::SendMessage(EMessageType aEMessageType)
 {
-	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
+	for (SubPtr it : mySubscribers.at(aEMessageType))
 	{
-		if (tempSub != nullptr)
+		if (it != NULL)
 		{
-			tempSub->ReceiveMessage(aEMessageType);
+			it->ReceiveMessage(aEMessageType);
 		}
 	}
 }
 
-std::vector<Subscriber*>& PostMaster::GetSubscribers(const EMessageType aMessage)
+std::vector<SubPtr>& PostMaster::GetSubscribers(const EMessageType aMessage)
 {
 	return mySubscribers.at(aMessage);
 }
