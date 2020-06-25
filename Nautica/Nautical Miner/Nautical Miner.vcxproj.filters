@@ -112,6 +112,10 @@
     <ClCompile Include="UI\UIButton.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\Menu.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Containers\AssetContainer.h">
@@ -188,6 +192,10 @@
     <ClInclude Include="UI\UIButton.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Menu.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Nautical Miner.rc">

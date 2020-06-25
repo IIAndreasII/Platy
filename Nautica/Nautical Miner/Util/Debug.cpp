@@ -2,6 +2,7 @@
 #include "..\Util\Debug.h"
 #include <fstream>
 #include <ctime>
+#include <Windows.h>
 
 std::vector<std::string> Debug::myLogEntries;
 
@@ -12,6 +13,7 @@ Debug::~Debug()
 void Debug::Init()
 {
 	myLogEntries = std::vector<std::string>();
+	std::cout << "Debug session started.\n--------------------------------------------------------------------------------------------" << std::endl;
 }
 
 void Debug::FinishSession()
@@ -28,22 +30,32 @@ void Debug::FinishSession()
 		}
 		tempLogFile.close();
 	}
-	std::cout << "Debug session finished. Log written to \"" << tempPath << "\"" << std::endl;
+	std::cout << "--------------------------------------------------------------------------------------------\nDebug session finished. Log written to \"" << tempPath << "\"" << std::endl;
 #endif
 }
 
 void Debug::Log(const std::string entry, const bool success)
 {
 #ifdef DEBUG
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	std::string msg;
 	if (success)
 	{
-		std::cout << GetTime() << ": -OK- " << entry << std::endl;
+		std::cout << GetTime() << ": ";
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+		std::cout << "-OK- ";
+		SetConsoleTextAttribute(hConsole, 15);
+		std::cout << entry << std::endl;
 		msg = "-OK- ";
 	}
 	else
 	{
-		std::cout << GetTime() << ": -ERROR- " << entry << std::endl;
+		std::cout << GetTime() << ": ";
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+		std::cout << "-ERROR- ";
+		SetConsoleTextAttribute(hConsole, 15);
+		std::cout << entry << std::endl;
 		msg = "-ERROR- ";
 	}
 	msg += entry;

@@ -27,7 +27,7 @@ UIButton<C>::UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const
 	myText.setFillColor(C_BLACK);
 
 	myRect.setPosition(aPosition);
-	myRect.setOutlineColor(C_AMETIST);
+	myRect.setOutlineColor(C_RÅSA);
 	myRect.setFillColor(C_RÅSA);
 	myRect.setOutlineThickness(OUTLINE_THICKNESS);
 }
@@ -53,6 +53,7 @@ void UIButton<C>::ReceiveMessage(const Message& aMessage, const EMessageType& aM
 				(myClassPtr->*myFunction)();
 			}
 			break;
+
 		case EMessageType::MOUSE_MOVED:
 			if ((sf::IntRect(myRect.getPosition().x, myRect.getPosition().y, myRect.getSize().x, myRect.getSize().y)).intersects(sf::IntRect(aMessage.GetPosition(), sf::Vector2i(1, 1))))
 			{
@@ -62,6 +63,9 @@ void UIButton<C>::ReceiveMessage(const Message& aMessage, const EMessageType& aM
 			{
 				myRect.setOutlineColor(C_RÅSA);
 			}
+
+		default:
+			break;
 		}
 	}
 }

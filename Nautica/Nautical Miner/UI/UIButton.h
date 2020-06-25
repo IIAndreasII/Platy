@@ -6,6 +6,8 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/System/Vector2.hpp"
 
+#include <functional>
+
 constexpr float OUTLINE_THICKNESS = 3.f;
 constexpr float TEXT_OFFSET_X = 20;
 constexpr float TEXT_OFFSET_Y = 0;
@@ -34,7 +36,6 @@ private:
 
 	void(C::* myFunction)();
 	C* myClassPtr;
-
 	sf::Text myText;
 	sf::RectangleShape myRect;
 };

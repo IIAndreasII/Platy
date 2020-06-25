@@ -22,25 +22,23 @@
 #include <crtdbg.h>
 #include "..\Util\Util.h"
 
-//#include "..\UI\UIButton.h"
 #include "..\Graphics\Animator.h"
 
-
-// TODO:
-// -Implement Scene model for different game states
-// -Implement Timeline interface for i.e tutorials
-// -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 #if DEBUG
 #include "..\Util\Debug.h"
 #define _CRTDBG_MAP_ALLOC
 #endif
 
-
 #include "..\UI\UIButton.cpp"
 
-
 constexpr float FPS_WRITEOUT_INTERVAL = 1;
+
+
+// TODO:
+// -Implement Scene model for different game states
+// -Implement Timeline interface for i.e tutorials
+// -Implement save file system (saving and loading gamestates). Do after gameplay and stuff is done
 
 int main()
 {
@@ -83,6 +81,8 @@ int main()
 #if DEBUG
 	float fpsTimer = 0;
 
+	sf::Text fpsText("", *AssetContainer::GetFontPtr("firstorder"));
+	fpsText.setPosition(5, 0);
 #endif
 	// END Debug variables
 
@@ -93,14 +93,14 @@ int main()
 	
 	UIButton<Game> testBtn("Test", &Game::TestFunc, tempGame, sf::Vector2f(200, 200));
 
+
+
 	sf::Font testFont = *AssetContainer::GetFontPtr("firstorder");
 	sf::Texture testTexture = *AssetContainer::GetTexturePtr("Zweihander");
 	SpriteSheetPtr testSS = AssetContainer::GetSpritesheetPtr("Chest Full");
 
-	sf::Text testText("", testFont);
 
 
-	testText.setPosition(300, 300);
 
 	Animator testAnim = Animator(*testSS);
 	//testAnim.Flip();
@@ -135,21 +135,24 @@ int main()
 #endif
 				window.close();
 				break;
+
 			case sf::Event::GainedFocus:
 				isWindowInFocus = true;
 				break;
+			
 			case sf::Event::LostFocus:
 				isWindowInFocus = false;
 				tempGame->Pause();
 				break;
+			
 			case sf::Event::KeyPressed:
 			case sf::Event::KeyReleased:
 				KeyboardEventHandler::HandleEvent(tempEvent);
 				break;
+			
 			case sf::Event::MouseButtonPressed:
 			case sf::Event::MouseButtonReleased:
 			case sf::Event::MouseMoved:
-			// TODO: Add more mouse events if necessary
 				MouseEventHandler::HandleEvent(tempEvent, window);
 				break;
 			}
@@ -163,8 +166,9 @@ int main()
 		if (fpsTimer <= 0)
 		{
 			fpsTimer = FPS_WRITEOUT_INTERVAL;
-			std::cout << "FPS: " << (int)(1 / tempDeltaTime + 1) << std::endl;
+			fpsText.setString("FPS: " + std::to_string((int)(1 / tempDeltaTime + 1)));
 		}
+
 #endif
 		// Update the game
 		tempGame->Update(tempDeltaTime);
@@ -217,17 +221,16 @@ int main()
 #if TESTING
 
 		ParticleManager::EarlyDraw(window);
-		window.draw(testText);
 		window.draw(testSprite);
 		window.draw(testAnim);
 		ParticleManager::Draw(window);
 
 		window.draw(testBtn);
 
+		window.draw(fpsText);
 #endif
 		// END Tests
 
 		window.display();
 	}
-	//Debug::FinishSession();
 }
