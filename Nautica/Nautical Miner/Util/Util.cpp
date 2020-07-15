@@ -7,11 +7,6 @@ Util::~Util()
 {
 }
 
-std::string PlatyLog::Util::GetTime()
-{
-	return std::string();
-}
-
 int Util::RandInt(const int min, const int max)
 {
 	return std::rand() % min + max;

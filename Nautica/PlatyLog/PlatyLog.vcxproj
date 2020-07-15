@@ -24,6 +24,7 @@
     <ProjectGuid>{f999c522-3444-4adf-a0be-296e7deff320}</ProjectGuid>
     <RootNamespace>PlatyLog</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Platy</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,15 +144,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IO\IO.cpp" />
-    <ClCompile Include="IO\IOManager.cpp" />
-    <ClCompile Include="Logger\Log.cpp" />
+    <ClCompile Include="PlatyLog\IO\IOManager.cpp" />
+    <ClCompile Include="PlatyLog\Log.cpp" />
+    <ClCompile Include="Platy.cpp" />
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enum\Enum.h" />
-    <ClInclude Include="IO\IOManager.h" />
-    <ClInclude Include="Logger\Log.h" />
+    <ClInclude Include="PlatyLog\IO\IOManager.h" />
+    <ClInclude Include="PlatyLog\Log.h" />
     <ClInclude Include="Util\Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
