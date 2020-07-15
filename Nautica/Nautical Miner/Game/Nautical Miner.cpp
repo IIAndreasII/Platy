@@ -80,45 +80,10 @@ int main()
 	// BEGIN Debug variables
 #if DEBUG
 	float fpsTimer = 0;
-
 	sf::Text fpsText("", *AssetContainer::GetFontPtr("firstorder"));
 	fpsText.setPosition(5, 0);
 #endif
 	// END Debug variables
-
-#define TESTING 1
-
-	// BEGIN Tests
-#if TESTING
-	
-	UIButton<Game> testBtn("Test", &Game::TestFunc, tempGame, sf::Vector2f(200, 200));
-
-
-
-	sf::Font testFont = *AssetContainer::GetFontPtr("firstorder");
-	sf::Texture testTexture = *AssetContainer::GetTexturePtr("Zweihander");
-	SpriteSheetPtr testSS = AssetContainer::GetSpritesheetPtr("Chest Full");
-
-
-
-
-	Animator testAnim = Animator(*testSS);
-	//testAnim.Flip();
-	sf::Sprite testSprite(testTexture);
-	testSprite.setPosition(500, 300);
-	testSprite.setScale(4, 4);
-
-	float explosionTimer = 0;
-
-	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-	//ParticleEmitter* pe = ParticleEmitterFactory::CreateFountain(12, mousePos, C_CYAN_DARK, 200, 250, 2, 270, 20, true, 2 * 9.82f);
-	//ParticleEmitterFactory::CreateFountain(sf::Vector2f(150, 500), C_RÅSA, 1000, 150, 3, 270, 20, 9.82f);
-	//ParticleEmitter& pe = *ParticleEmitterFactory::CreateShower(20, EOrientation::UP, sf::Vector2f(0, DEFAULT_WINDOW_HEIGHT), C_RÅSA, 1000, 200, 4.5f, DEFAULT_WINDOW_WIDTH, 70, 0);
-	//ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(220, 120), C_BLUE_DARK, 650, 200, 3, 960, 90, 2* 9.82f, false);
-	//ParticleEmitterFactory::CreateCloud(20, sf::Vector2f(200, 100), C_WHITE, 5000, 25, 2, 1000);
-
-#endif
-	// END Tests
 
 	// Main loop
 	while (window.isOpen())
@@ -168,69 +133,17 @@ int main()
 			fpsTimer = FPS_WRITEOUT_INTERVAL;
 			fpsText.setString("FPS: " + std::to_string((int)(1 / tempDeltaTime + 1)));
 		}
-
 #endif
+		ParticleManager::Update(tempDeltaTime);
 		// Update the game
 		tempGame->Update(tempDeltaTime);
-
-
-		// BEGIN Tests
-#if TESTING
-
-		mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
-		testAnim.Update(tempDeltaTime, mousePos);
-		//pe->SetPosition(mousePos);
-		explosionTimer -= tempDeltaTime;
-		if (explosionTimer <= 0)
-		{
-			/*ParticleEmitterFactory::CreateExplosion(
-				12,
-				sf::Vector2f(Util::RandFloat(200, DEFAULT_WINDOW_WIDTH - 200), Util::RandFloat(200, DEFAULT_WINDOW_HEIGHT - 200)), 
-				sf::Color(Util::RandFloat(1, 255), Util::RandFloat(1, 255), Util::RandFloat(1, 255)),
-				1000, 
-				250, 
-				1.5f,
-				9.82f);*/
-			/*for (size_t i = 0; i < 3; i++)
-			{
-				ParticleEmitterFactory::CreateFountain(
-					6,
-					sf::Vector2f(Util::RandFloat(220, 1180), DEFAULT_WINDOW_HEIGHT),
-					C_BLUE_DARK,
-					10,
-					150,
-					1.5f,
-					270,
-					20,
-					9.82f * 2,
-					EParticleEmitterType::FOUNTAIN_BURST);
-			}*/
-			explosionTimer = .1f;
-		}
-
-		ParticleManager::Update(tempDeltaTime);
-#endif
-		// END Tests
-
 
 		// Draw the game
 		window.clear();
 		tempGame->Draw(window);
 
-		// BEGIN Tests
-#if TESTING
-
-		ParticleManager::EarlyDraw(window);
-		window.draw(testSprite);
-		window.draw(testAnim);
-		ParticleManager::Draw(window);
-
-		window.draw(testBtn);
 
 		window.draw(fpsText);
-#endif
-		// END Tests
-
 		window.display();
 	}
 }

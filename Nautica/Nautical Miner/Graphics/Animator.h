@@ -20,6 +20,7 @@ public:
 	void SetAnim(const SpriteSheet& aSpritesheet);
 
 	void Flip();
+	void SetFacingDirection(const int aDir);
 	void TogglePlaying();
 	void ToggleLooping();
 

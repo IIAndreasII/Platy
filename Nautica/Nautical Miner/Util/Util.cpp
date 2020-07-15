@@ -1,9 +1,15 @@
+#include "..\..\PlatyLog\Util\Util.h"
 #include "Util.h"
 #include <random>
 #include <cmath>
 
 Util::~Util()
 {
+}
+
+std::string PlatyLog::Util::GetTime()
+{
+	return std::string();
 }
 
 int Util::RandInt(const int min, const int max)

@@ -1,5 +1,5 @@
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef UTILa_H
+#define UTILa_H
 
 #include "SFML/System/Vector2.hpp"
 #include "Enum.h"

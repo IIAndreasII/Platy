@@ -34,6 +34,10 @@ void Debug::FinishSession()
 #endif
 }
 
+void Debug::UpdateDebugElements(const float& deltaTime)
+{
+}
+
 void Debug::Log(const std::string entry, const bool success)
 {
 #ifdef DEBUG

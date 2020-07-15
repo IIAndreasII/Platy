@@ -51,4 +51,10 @@ enum class EDice
 	d20 = 20
 };
 
+enum class EGameState
+{
+	PLAYING,
+	MAIN_MENU
+};
+
 #endif

@@ -10,6 +10,10 @@ enum EMessageType
 	MOUSE_ON_CLICK_RIGHT,
 	MOUSE_MOVED,
 	TOGGLE_PAUSE,
+	KEY_A_PRESSED,
+	KEY_A_RELEASED,
+	KEY_D_PRESSED,
+	KEY_D_RELEASED,
 	COUNT // Not to be used as a type
 };
 

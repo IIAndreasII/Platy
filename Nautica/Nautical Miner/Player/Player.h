@@ -13,11 +13,20 @@ public:
 	Player();
 	~Player();
 
+	void Update(const float& deltaTime) override;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+
 	void ReceiveMessage(const EMessageType& aMessageType) override;
 	void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType) override;
 
 private:
 
+	void HandleInput(const EMessageType& aMessageType);
+
+
+	float myWalkSpeed;
+	int myDirection;
 
 };
 

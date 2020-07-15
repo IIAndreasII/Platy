@@ -11,6 +11,7 @@ public:
 
 	static void Init();
 	static void FinishSession();
+	static void UpdateDebugElements(const float& deltaTime);
 	static void Log(const std::string entry, const bool success = true);
 
 private:

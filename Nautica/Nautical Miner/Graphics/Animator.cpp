@@ -59,6 +59,11 @@ void Animator::Flip()
 	mySprite.setScale(myScale * -1, myScale);
 }
 
+void Animator::SetFacingDirection(const int aDir)
+{
+	mySprite.setScale(aDir * myScale, myScale);
+}
+
 void Animator::TogglePlaying()
 {
 	myIsPlaying = !myIsPlaying;

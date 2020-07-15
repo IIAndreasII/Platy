@@ -23,7 +23,6 @@ void Game::Update(const float& deltaTime)
 	{
 		// Update stuff here
 
-		//myCurrentScene->Update(deltaTime);
 
 	}
 }

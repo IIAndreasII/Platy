@@ -8,9 +8,6 @@
     <Filter Include="Postmaster">
       <UniqueIdentifier>{5143f5bb-3231-4124-9d4b-e35659fdbb21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Super">
-      <UniqueIdentifier>{e333482c-bf01-42a6-aea8-d2f5da58fd0a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{c1a0eca2-58d2-4ff4-9837-1cb3bcfdd81f}</UniqueIdentifier>
     </Filter>
@@ -19,9 +16,6 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{93ef906e-be1b-45e6-af28-692d4ddaeea3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{3376e73d-1b13-455d-98b6-1dd6ae66a329}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{8356386a-cc54-408b-b53a-8c99124be1f9}</UniqueIdentifier>
@@ -40,6 +34,12 @@
     </Filter>
     <Filter Include="Events">
       <UniqueIdentifier>{0b46e92a-470a-4e98-9b61-8fa4fe79a255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player">
+      <UniqueIdentifier>{3376e73d-1b13-455d-98b6-1dd6ae66a329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Super">
+      <UniqueIdentifier>{e333482c-bf01-42a6-aea8-d2f5da58fd0a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +74,7 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Super\Entity.cpp">
-      <Filter>Super</Filter>
+      <Filter>Game\Super</Filter>
     </ClCompile>
     <ClCompile Include="Postmaster\Subscriber.cpp">
       <Filter>Postmaster</Filter>
@@ -86,7 +86,7 @@
       <Filter>Postmaster</Filter>
     </ClCompile>
     <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
+      <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Managers\ParticleManager.cpp">
       <Filter>Managers</Filter>
@@ -151,7 +151,7 @@
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Super\Entity.h">
-      <Filter>Super</Filter>
+      <Filter>Game\Super</Filter>
     </ClInclude>
     <ClInclude Include="Postmaster\Subscriber.h">
       <Filter>Postmaster</Filter>
@@ -163,7 +163,7 @@
       <Filter>Postmaster</Filter>
     </ClInclude>
     <ClInclude Include="Player\Player.h">
-      <Filter>Player</Filter>
+      <Filter>Game\Player</Filter>
     </ClInclude>
     <ClInclude Include="Managers\ParticleManager.h">
       <Filter>Managers</Filter>
