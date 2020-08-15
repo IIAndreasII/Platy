@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Postmaster\Message.cpp" />
+    <ClCompile Include="Postmaster\PostMaster.cpp" />
+    <ClCompile Include="Postmaster\Subscriber.cpp" />
+    <ClCompile Include="Graphics\Animator.cpp" />
+    <ClCompile Include="Graphics\ParticleEmitter.cpp" />
+    <ClCompile Include="Graphics\Spritesheet.cpp" />
+    <ClCompile Include="Factories\ParticleEmitterFactory.cpp" />
+    <ClCompile Include="Managers\ParticleManager.cpp" />
+    <ClCompile Include="Containers\AssetContainer.cpp" />
+    <ClCompile Include="UI\Menu.cpp" />
+    <ClCompile Include="UI\UIButton.cpp" />
+    <ClCompile Include="Events\KeyboardEventHandler.cpp" />
+    <ClCompile Include="Events\MouseEventHandler.cpp" />
+    <ClCompile Include="Util\Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Postmaster\Message.h" />
+    <ClInclude Include="Postmaster\PostMaster.h" />
+    <ClInclude Include="Postmaster\Subscriber.h" />
+    <ClInclude Include="Graphics\Animator.h" />
+    <ClInclude Include="Graphics\ParticleEmitter.h" />
+    <ClInclude Include="Graphics\Spritesheet.h" />
+    <ClInclude Include="Factories\ParticleEmitterFactory.h" />
+    <ClInclude Include="Managers\ParticleManager.h" />
+    <ClInclude Include="Containers\AssetContainer.h" />
+    <ClInclude Include="UI\Menu.h" />
+    <ClInclude Include="UI\UIButton.h" />
+    <ClInclude Include="Events\KeyboardEventHandler.h" />
+    <ClInclude Include="Events\MouseEventHandler.h" />
+    <ClInclude Include="Graphics\Colors.h" />
+    <ClInclude Include="Graphics\Enum.h" />
+    <ClInclude Include="Util\Util.h" />
+  </ItemGroup>
+</Project>
