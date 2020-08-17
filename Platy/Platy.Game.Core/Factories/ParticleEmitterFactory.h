@@ -1,8 +1,8 @@
 #ifndef PARTICLEEMITTERFACTORY_H
 #define PARTICLEEMITTERFACTORY_H
 
-#include "Graphics\Colors.h"
-#include "Graphics\Enum.h"
+#include "Platy.Game.Core\Graphics\Colors.h"
+#include "Platy.Game.Core\Graphics\Enum.h"
 #include "SFML/System/Vector2.hpp"
 
 class ParticleEmitter;
