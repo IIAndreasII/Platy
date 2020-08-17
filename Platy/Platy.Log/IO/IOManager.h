@@ -1,7 +1,12 @@
 #ifndef IOMANAGER_H
 #define IOMANAGER_H
 
+#include "Util/Util.h"
+#include <iostream>
 #include <string>
+#include <fstream>
+#include <Windows.h>
+#include <io.h>
 
 
 namespace Platy

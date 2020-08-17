@@ -9,9 +9,8 @@
 std::string Platy::PlatyLog::IO::IOManager::myFileName;
 std::ofstream Platy::PlatyLog::IO::IOManager::myFileStream;
 
-using namespace Platy;
 
-PlatyLog::IO::IOManager::~IOManager()
+Platy::PlatyLog::IO::IOManager::~IOManager()
 {
 	if (myFileStream && myFileStream.is_open())
 	{
@@ -19,7 +18,7 @@ PlatyLog::IO::IOManager::~IOManager()
 	}
 }
 
-void PlatyLog::IO::IOManager::Init()
+void Platy::PlatyLog::IO::IOManager::Init()
 {	
 	if (CreateDirectoryA("Logs", NULL) != ERROR_PATH_NOT_FOUND)
 	{
@@ -32,13 +31,13 @@ void PlatyLog::IO::IOManager::Init()
 	}
 }
 
-void PlatyLog::IO::IOManager::Dispose()
+void Platy::PlatyLog::IO::IOManager::Dispose()
 {
 	myFileStream.close();
 	std::cout << "\nLog file saved to: " << myFileName << std::endl;
 }
 
-void PlatyLog::IO::IOManager::WriteToFile(const std::string line)
+void Platy::PlatyLog::IO::IOManager::WriteToFile(const std::string line)
 {
 	if (myFileStream.is_open())
 	{

@@ -1,0 +1,2 @@
+C:\Users\andeb\source\repos\Platy\Platy\x64\Debug\Platy.Log.pdb
+C:\Users\andeb\source\repos\Platy\Platy\Platy.Log\x64\Debug\Platy.Log.pdb
