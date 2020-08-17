@@ -19,7 +19,7 @@ UIButton<C>::UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const
 	myRect(sf::Vector2f(DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT)),
 	myIsActive(isActive)
 {
-	Subscribe(EMessageType::MOUSE_ON_CLICK_LEFT);''
+	Subscribe(EMessageType::MOUSE_ON_CLICK_LEFT);
 	Subscribe(EMessageType::MOUSE_MOVED);
 
 	myText.setPosition(aPosition.x + TEXT_OFFSET_X, aPosition.y + TEXT_OFFSET_Y);
