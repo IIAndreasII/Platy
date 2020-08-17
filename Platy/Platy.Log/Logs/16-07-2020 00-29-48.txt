@@ -1,0 +1,5 @@
+[16-07-2020 00-29-48] [DBG ] Test msg
+[16-07-2020 00-29-48] [WARN] Test msg
+[16-07-2020 00-29-48] [CRIT] Test msg
+[16-07-2020 00-29-48] [CRIT] Test exception was thrown!: Test exception
+[16-07-2020 00-29-48] [INFO] Test msg
