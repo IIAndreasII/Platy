@@ -10,25 +10,25 @@ Subscriber::~Subscriber()
 {
 }
 
-void Subscriber::SendMessage(const Message& aMessage, const EMessageType aMessageType)
+void Subscriber::SendMessage(const Message& aMessage, const Message::Type aMessageType)
 {
 	PostMaster::SendMessage(aMessage, aMessageType);
 }
 
-void Subscriber::SendMessage(const EMessageType aMessageType)
+void Subscriber::SendMessage(const Message::Type aMessageType)
 {
 	PostMaster::SendMessage(aMessageType);
 }
 
-void Subscriber::ReceiveMessage(const EMessageType& aMessageType)
+void Subscriber::ReceiveMessage(const Message::Type& aMessageType)
 {
 }
 
-void Subscriber::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
+void Subscriber::ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType)
 {
 }
 
-void Subscriber::Subscribe(const EMessageType aMessageType)
+void Subscriber::Subscribe(const Message::Type aMessageType)
 {
 	if (!(std::find(mySubscriptions.begin(), mySubscriptions.end(), aMessageType) != mySubscriptions.end()))
 	{
@@ -39,13 +39,13 @@ void Subscriber::Subscribe(const EMessageType aMessageType)
 
 void Subscriber::RemoveAllSubscriptions()
 {
-	for (EMessageType tempMsgType : mySubscriptions)
+	for (Message::Type tempMsgType : mySubscriptions)
 	{
 		PostMaster::Unsubscribe(this, tempMsgType);
 	}
 }
 
-std::vector<EMessageType>& Subscriber::GetSubscriptions()
+const std::vector<Message::Type>& Subscriber::GetSubscriptions()
 {
 	return mySubscriptions;
 }

@@ -2,6 +2,7 @@
 #define POSTMASTER_H
 
 #include <vector>
+#include "Message.h"
 
 enum EMessageType;
 
@@ -17,15 +18,15 @@ public:
 
 	static void Init();
 
-	static void Subscribe(SubPtr aSubPtr, const EMessageType aEMessageType);
+	static void Subscribe(SubPtr aSubPtr, const Message::Type aEMessageType);
 
-	static void Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType);
+	static void Unsubscribe(SubPtr aSubptr, const Message::Type aEMessageType);
 
-	static void SendMessage(const Message& aMessage, const EMessageType& aEMessageType);
+	static void SendMessage(const Message& aMessage, const Message::Type& aEMessageType);
 
-	static void SendMessage(EMessageType aEMessageType);
+	static void SendMessage(Message::Type aEMessageType);
 
-	static std::vector<SubPtr>& GetSubscribers(const EMessageType aMessage);
+	static std::vector<SubPtr>& GetSubscribers(const Message::Type aMessage);
 
 
 private:

@@ -18,10 +18,10 @@ void KeyboardEventHandler::HandleEvent(const sf::Event& anEvent)
 			break;
 
 		case sf::Keyboard::Key::A:
-			PostMaster::SendMessage(KEY_A_PRESSED);
+			PostMaster::SendMessage(Message::Type::KEY_A_PRESSED);
 			break;
 		case sf::Keyboard::Key::D:
-			PostMaster::SendMessage(KEY_D_PRESSED);
+			PostMaster::SendMessage(Message::Type::KEY_D_PRESSED);
 			break;
 
 		default:
@@ -33,12 +33,14 @@ void KeyboardEventHandler::HandleEvent(const sf::Event& anEvent)
 		switch (anEvent.key.code)
 		{
 		case sf::Keyboard::Key::A:
-			PostMaster::SendMessage(KEY_A_RELEASED);
+			PostMaster::SendMessage(Message::Type::KEY_A_RELEASED);
 			break;
 		case sf::Keyboard::Key::D:
-			PostMaster::SendMessage(KEY_D_RELEASED);
+			PostMaster::SendMessage(Message::Type::KEY_D_RELEASED);
 			break;
-
+		case sf::Keyboard::Key::Escape:
+			PostMaster::SendMessage(Message::Type::KEY_ESCAPE_RELEASED);
+			break;
 		default:
 			break;
 		}

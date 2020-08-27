@@ -1,12 +1,13 @@
 #ifndef UIBUTTON_H
 #define UIBUTTON_H
 
-#include "SFML/Graphics/Text.hpp"
-#include "..\Postmaster\Subscriber.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/System/Vector2.hpp"
-
 #include <functional>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
+
+#include "Postmaster/Subscriber.h"
+
 
 constexpr float OUTLINE_THICKNESS = 3.f;
 constexpr float TEXT_OFFSET_X = 20;
@@ -24,7 +25,7 @@ public:
 	UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const sf::Vector2f aPosition, const bool isActive = true);
 	~UIButton();
 
-	void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType) override;
 
 	void SetActive(const bool aValue);
 

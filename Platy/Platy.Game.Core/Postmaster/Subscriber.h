@@ -2,8 +2,8 @@
 #define SUB_H
 
 #include <vector>
+#include "Message.h"
 
-enum EMessageType;
 class Message;
 
 class Subscriber
@@ -12,21 +12,21 @@ public:
 	Subscriber();
 	virtual ~Subscriber();
 
-	void SendMessage(const Message& aMessage, const EMessageType aMessageType);
+	void SendMessage(const Message& aMessage, const Message::Type aMessageType);
 
-	void SendMessage(const EMessageType aMessageType);
+	void SendMessage(const Message::Type aMessageType);
 
-	virtual void ReceiveMessage(const EMessageType& aMessageType);
-	virtual void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType);
+	virtual void ReceiveMessage(const Message::Type& aMessageType);
+	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType);
 
-	void Subscribe(const EMessageType aMessageType);
+	void Subscribe(const Message::Type aMessageType);
 	void RemoveAllSubscriptions();
 
-	std::vector<EMessageType>& GetSubscriptions();
+	const std::vector<Message::Type>& GetSubscriptions();
 
 protected:
 
-	std::vector<EMessageType> mySubscriptions;
+	std::vector<Message::Type> mySubscriptions;
 
 };
 

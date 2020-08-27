@@ -10,6 +10,7 @@ MouseEventHandler::~MouseEventHandler()
 
 void MouseEventHandler::HandleEvent(const sf::Event& anEvent, const sf::RenderWindow& aWindow)
 {
+	Message msg(sf::Mouse::getPosition(aWindow));
 	// TODO: Add suitable events
 	switch (anEvent.type)
 	{
@@ -25,19 +26,21 @@ void MouseEventHandler::HandleEvent(const sf::Event& anEvent, const sf::RenderWi
 		break;
 
 	case sf::Event::MouseButtonReleased:
-		
+
 		switch (anEvent.key.code)
 		{
 		case sf::Mouse::Left:
-			PostMaster::SendMessage(Message(sf::Mouse::getPosition(aWindow)), EMessageType::MOUSE_ON_CLICK_LEFT);
+			msg.SetBool(anEvent.key.control);
+			PostMaster::SendMessage(msg, Message::Type::MOUSE_ON_CLICK_LEFT);
 			break;
 		case sf::Mouse::Right:
+			PostMaster::SendMessage(msg, Message::Type::MOUSE_ON_CLICK_RIGHT);
 			break;
 		}
 		break;
 
 	case sf::Event::MouseMoved:
-		PostMaster::SendMessage(Message(sf::Mouse::getPosition(aWindow)), EMessageType::MOUSE_MOVED);
+		PostMaster::SendMessage(Message(sf::Mouse::getPosition(aWindow)), Message::Type::MOUSE_MOVED);
 		break;
 	}
 }

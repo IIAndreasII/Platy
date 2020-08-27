@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Util\Util.h"
 #include "Platy.Log/Log.h"
+#include "Platy.Core/Util/Util.h"
 
 using namespace Platy::Core;
 using namespace Platy::PlatyLog;
@@ -25,15 +26,15 @@ AssetContainer::~AssetContainer()
 {
 	for (auto it : myTexturePtrs) 
 	{
-		Util::SafeDelete(it);
+		Platy::Core::Util::SafeDelete(it);
 	}
 	for (auto it : mySpriteSheetPtrs)
 	{
-		Util::SafeDelete(it);
+		Platy::Core::Util::SafeDelete(it);
 	}
 	for (auto it : myFontPtrs)
 	{
-		Util::SafeDelete(it);
+		Platy::Core::Util::SafeDelete(it);
 	}
 }
 
@@ -112,7 +113,7 @@ void AssetContainer::LoadTextures()
 	}
 	else
 	{
-		Log::Critical("AssetContainer::LoadTextures(): Unable to load textures!");
+	Log::Critical("AssetContainer::LoadTextures(): Unable to load textures!");
 	}
 }
 

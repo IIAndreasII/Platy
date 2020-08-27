@@ -25,7 +25,7 @@ void Platy::Core::Util::ToLowerCase(std::string& aString)
 
 int Platy::Core::Util::RandInt(const int min, const int max)
 {
-	return std::rand() % min + max;
+	return std::rand() % max + min;
 }
 
 float Platy::Core::Util::RandFloat(const float min, const float max)
@@ -45,12 +45,12 @@ void Platy::Core::Util::ClampDeg(float& anAngle)
 	}
 }
 
-template<typename C>
-inline void Platy::Core::Util::SafeDelete(C*& aPtrToDelete)
-{
-	delete aPtrToDelete;
-	aPtrToDelete = nullptr;
-}
+//template<typename C>
+//void Platy::Core::Util::SafeDelete(C*& aPtrToDelete)
+//{
+//	delete aPtrToDelete;
+//	aPtrToDelete = nullptr;
+//}
 
 template<typename T>
 inline T Platy::Core::Util::Clamp(const T min, const T max, T& value)

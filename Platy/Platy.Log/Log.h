@@ -76,7 +76,7 @@ namespace Platy
 		private:
 			Log();
 
-			static HANDLE myConsoleHandle;
+			//static HANDLE myConsoleHandle;
 
 			enum class LogHeader
 			{

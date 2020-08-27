@@ -23,7 +23,11 @@ namespace Platy
 			/// Safely deletes a pointer
 			/// </summary>
 			template<typename C>
-			static inline void SafeDelete(C*& aPtrToDelete);
+			static inline void SafeDelete(C*& aPtrToDelete)
+			{
+				delete aPtrToDelete;
+				aPtrToDelete = nullptr;
+			}
 
 			static void ToLowerCase(std::string& aString);
 

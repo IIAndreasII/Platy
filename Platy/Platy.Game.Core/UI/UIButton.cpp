@@ -7,20 +7,20 @@
 template<class C>
 UIButton<C>::UIButton()
 {
-	Subscribe(EMessageType::MOUSE_ON_CLICK_LEFT);
-	Subscribe(EMessageType::MOUSE_MOVED);
+	Subscribe(Message::Type::MOUSE_ON_CLICK_LEFT);
+	Subscribe(Message::Type::MOUSE_MOVED);
 }
 
 template<class C>
-UIButton<C>::UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const sf::Vector2f aPosition, const bool isActive)
-	: myText(aText, *AssetContainer::GetFontPtr("firstorder")),
+UIButton<C>::UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const sf::Vector2f aPosition, const bool isActive) : 
+	myText(aText, *AssetContainer::GetFontPtr("firstorder")),
 	myFunction(aFunc),
 	myClassPtr(aClassPtr),
 	myRect(sf::Vector2f(DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT)),
 	myIsActive(isActive)
 {
-	Subscribe(EMessageType::MOUSE_ON_CLICK_LEFT);
-	Subscribe(EMessageType::MOUSE_MOVED);
+	Subscribe(Message::Type::MOUSE_ON_CLICK_LEFT);
+	Subscribe(Message::Type::MOUSE_MOVED);
 
 	myText.setPosition(aPosition.x + TEXT_OFFSET_X, aPosition.y + TEXT_OFFSET_Y);
 	myText.setFillColor(C_BLACK);
@@ -40,20 +40,20 @@ UIButton<C>::~UIButton()
 }
 
 template<class C>
-void UIButton<C>::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
+void UIButton<C>::ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType)
 {
 	if (myIsActive)
 	{
 		switch (aMessageType)
 		{
-		case EMessageType::MOUSE_ON_CLICK_LEFT:
+		case Message::Type::MOUSE_ON_CLICK_LEFT:
 			if ((sf::IntRect(myRect.getPosition().x, myRect.getPosition().y, myRect.getSize().x, myRect.getSize().y)).intersects(sf::IntRect(aMessage.GetPosition(), sf::Vector2i(1, 1))))
 			{
 				(myClassPtr->*myFunction)();
 			}
 			break;
 
-		case EMessageType::MOUSE_MOVED:
+		case Message::Type::MOUSE_MOVED:
 			if ((sf::IntRect(myRect.getPosition().x, myRect.getPosition().y, myRect.getSize().x, myRect.getSize().y)).intersects(sf::IntRect(aMessage.GetPosition(), sf::Vector2i(1, 1))))
 			{
 				myRect.setOutlineColor(C_AMETIST);

@@ -1,19 +1,33 @@
 #include "Message.h"
 
 
-Message::Message()
+Message::Message() :
+	myBool(),
+	myFloat(),
+	myInt(),
+	myWidth(),
+	myHeight(),
+	myPosition()
 {
 }
 
-Message::Message(const sf::Vector2i& aPosition)
-	: myPosition(aPosition)
+Message::Message(const sf::Vector2i& aPosition) : 
+	myBool(),
+	myFloat(),
+	myInt(),
+	myWidth(),
+	myHeight(),
+	myPosition(aPosition)
 {
 }
 
-Message::Message(const sf::Vector2i& aPosition, const int aWidth, const int aHeight)
-	: myPosition(aPosition),
+Message::Message(const sf::Vector2i& aPosition, const int aWidth, const int aHeight) :
+	myBool(),
+	myFloat(),
+	myInt(),
 	myWidth(aWidth),
-	myHeight(aHeight)
+	myHeight(aHeight),
+	myPosition(aPosition)
 {
 }
 

@@ -16,7 +16,7 @@ namespace Platy
 {
     namespace PlatyLog
     {
-        HANDLE Log::myConsoleHandle;
+        //HANDLE Log::myConsoleHandle;
         enum class Log::LogHeader;
 
         PlatyLog::Log::~Log()
@@ -25,7 +25,7 @@ namespace Platy
 
         void Log::Init()
         {
-            myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+            //myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
             PlatyLog::IO::IOManager::Init();
         }
 
@@ -96,22 +96,28 @@ namespace Platy
 
         void Log::WriteInColour(const LogHeader& head, const std::string& str)
         {
-            SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
+            /*SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
             std::cout << str;
-            SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
+            std::cout.flush();
+            SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);*/
         }
 
         void Log::WriteLogMsg(const LogHeader head, const std::string& msg)
         {
-            auto time = Core::Util::GetTime();
-            std::string headString = HeaderToString(head);
-            std::string line = "[" + time + "] [" + headString + "] " + msg;
+            //auto time = Core::Util::GetTime();
+            //std::string headString = HeaderToString(head);
+            std::string line = "[" + Core::Util::GetTime() + "] [" + HeaderToString(head) + "] " + msg;
 
             PlatyLog::IO::IOManager::WriteToFile(line);
 
-            std::cout << "[" << time << "] [";
+           // std::cout.flush();
+            //std::cout << line << std::endl;
+
+            /*std::cout << "[" << time << "] [";
+            std::cout.flush();
             WriteInColour(head, headString);
             std::cout << "] " << msg << std::endl;
+            std::cout.flush();*/
         }
     }
 }

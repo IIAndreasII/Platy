@@ -2,16 +2,24 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Game/Game.h"
+#include "Platy.Log/Log.h"
 #include "Platy.Game.Core/Postmaster/PostMaster.h"
+#include "Platy.Game.Core/Containers/AssetContainer.h"
+#include <Platy.Game.Core\Events\KeyboardEventHandler.h>
+#include <Platy.Game.Core\Events\MouseEventHandler.h>
 
 constexpr const char* GAME_NAME = "Minesweeper";
+
+constexpr uint16_t DEFAULT_WINDOW_WIDTH = 1280;
+constexpr uint16_t DEFAULT_WINDOW_HEIGHT = 720;
 
 int main()
 {
     srand(time(NULL));
 
     sf::RenderWindow window;
-    window.create(sf::VideoMode(200, 200), GAME_NAME);
+    window.create(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), GAME_NAME);
     window.setVerticalSyncEnabled(false);
 
     bool isWindowInFocus;
@@ -20,13 +28,14 @@ int main()
     sf::Clock tempClock;
     float deltaTime;
 
+    Platy::PlatyLog::Log::Init();
 
     PostMaster::Init();
 
+    AssetContainer::Init();
 
-
-
-
+    // Init game
+    Game tempGame;
 
 
 
@@ -37,17 +46,31 @@ int main()
         sf::Event tempEvent;
         while (window.pollEvent(tempEvent))
         {
-            if (tempEvent.type == sf::Event::Closed)
+            switch (tempEvent.type)
             {
+            case sf::Event::Closed:
+                Platy::PlatyLog::Log::Dispose();
                 window.close();
-            }
-            else if (tempEvent.type == sf::Event::GainedFocus)
-            {
+                break;
+
+            case sf::Event::GainedFocus:
                 isWindowInFocus = true;
-            }
-            else if (tempEvent.type == sf::Event::LostFocus)
-            {
+                break;
+
+            case sf::Event::LostFocus:
                 isWindowInFocus = false;
+                break;
+
+            case sf::Event::KeyPressed:
+            case sf::Event::KeyReleased:
+                KeyboardEventHandler::HandleEvent(tempEvent);
+                break;
+
+            case sf::Event::MouseButtonPressed:
+            case sf::Event::MouseButtonReleased:
+            case sf::Event::MouseMoved:
+                MouseEventHandler::HandleEvent(tempEvent, window);
+                break;
             }
         }
 
@@ -59,12 +82,11 @@ int main()
         // Draw logic
         //////////////////////////////////////////////////////////////////
 
-
+        window.draw(tempGame);
 
 
 
 
         window.display();
-
     }
 }

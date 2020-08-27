@@ -21,45 +21,45 @@ PostMaster::~PostMaster()
 
 void PostMaster::Init()
 {
-	for (size_t i = 0; i < EMessageType::COUNT; i++)
+	for (size_t i = 0; i < static_cast<int>(Message::Type::COUNT); i++)
 	{
 		mySubscribers.push_back(std::vector<SubPtr>());
 	}
 }
 
-void PostMaster::Subscribe(SubPtr aSubPtr, const EMessageType aMessage)
+void PostMaster::Subscribe(SubPtr aSubPtr, const Message::Type aMessage)
 {
-	mySubscribers.at(aMessage).push_back(aSubPtr);
+	mySubscribers.at(static_cast<int>(aMessage)).push_back(aSubPtr);
 }
 
-void PostMaster::Unsubscribe(SubPtr aSubptr, const EMessageType aEMessageType)
+void PostMaster::Unsubscribe(SubPtr aSubptr, const Message::Type type)
 {
-	mySubscribers.at(aEMessageType).erase(std::find(mySubscribers.at(aEMessageType).begin(), mySubscribers.at(aEMessageType).end(), aSubptr));
+	mySubscribers.at(static_cast<int>(type)).erase(std::find(mySubscribers.at(static_cast<int>(type)).begin(), mySubscribers.at(static_cast<int>(type)).end(), aSubptr));
 }
 
-void PostMaster::SendMessage(const Message& aMessage, const EMessageType& aEMessageType)
+void PostMaster::SendMessage(const Message& aMessage, const Message::Type& type)
 {
-	for (SubPtr tempSub : mySubscribers.at(aEMessageType))
+	for (SubPtr tempSub : mySubscribers.at(static_cast<int>(type)))
 	{
 		if (tempSub != NULL)
 		{
-			tempSub->ReceiveMessage(aMessage, aEMessageType);
+			tempSub->ReceiveMessage(aMessage, type);
 		}
 	}
 }
 
-void PostMaster::SendMessage(EMessageType aEMessageType)
+void PostMaster::SendMessage(Message::Type type)
 {
-	for (SubPtr it : mySubscribers.at(aEMessageType))
+	for (SubPtr it : mySubscribers.at(static_cast<int>(type)))
 	{
 		if (it != NULL)
 		{
-			it->ReceiveMessage(aEMessageType);
+			it->ReceiveMessage(type);
 		}
 	}
 }
 
-std::vector<SubPtr>& PostMaster::GetSubscribers(const EMessageType aMessage)
+std::vector<SubPtr>& PostMaster::GetSubscribers(const Message::Type type)
 {
-	return mySubscribers.at(aMessage);
+	return mySubscribers.at(static_cast<int>(type));
 }

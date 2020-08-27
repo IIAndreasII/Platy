@@ -3,8 +3,14 @@
 
 #include "SFML/System/Vector2.hpp"
 
-enum EMessageType
+
+class Message
 {
+public:
+
+enum class Type
+{
+	GAME_OVER,
 	MOUSE_ON_CLICK_LEFT,
 	MOUSE_ON_CLICK_RIGHT,
 	MOUSE_MOVED,
@@ -13,19 +19,19 @@ enum EMessageType
 	KEY_A_RELEASED,
 	KEY_D_PRESSED,
 	KEY_D_RELEASED,
-	COUNT // Not to be used as a type
+	KEY_ESCAPE_PRESSED,
+	KEY_ESCAPE_RELEASED,
+	/// <summary>
+	/// DO NOT USE!
+	/// </summary>
+	COUNT
 };
-
-class Message
-{
-public:
 
 	Message();
 	Message(const sf::Vector2i& aPosition);
 	Message(const sf::Vector2i& aPosition, const int aWidth, const int aHeight);
 	~Message();
 
-	
 	void SetFloat(const float aValue);
 	void SetInt(const int aValue);
 	void SetBool(const bool aValue);
