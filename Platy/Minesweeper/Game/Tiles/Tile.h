@@ -28,7 +28,7 @@ public:
 		Checked,
 		Unchecked,
 		Flagged,
-		Questioned
+		Questioned,
 	};
 
 
@@ -37,6 +37,8 @@ public:
 	void AddCloseMine();
 
 	void ToggleState();
+
+	void Explode();
 
 	/////////////////
 	// SET
@@ -54,6 +56,8 @@ public:
 	const State& GetState() const;
 
 	const uint8_t& GetCloseMineCount() const;
+
+	const sf::Vector2i& GetPosition() const;
 
 	const bool& HasMine() const;
 

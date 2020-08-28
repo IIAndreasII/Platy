@@ -1,8 +1,7 @@
 #include "Message.h"
 
-
 Message::Message() :
-	myBool(),
+	myBool(false),
 	myFloat(),
 	myInt(),
 	myWidth(),
@@ -12,7 +11,7 @@ Message::Message() :
 }
 
 Message::Message(const sf::Vector2i& aPosition) : 
-	myBool(),
+	myBool(false),
 	myFloat(),
 	myInt(),
 	myWidth(),
@@ -22,7 +21,7 @@ Message::Message(const sf::Vector2i& aPosition) :
 }
 
 Message::Message(const sf::Vector2i& aPosition, const int aWidth, const int aHeight) :
-	myBool(),
+	myBool(false),
 	myFloat(),
 	myInt(),
 	myWidth(aWidth),

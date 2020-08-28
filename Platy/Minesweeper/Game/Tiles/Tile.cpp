@@ -23,7 +23,7 @@ Tile::~Tile()
 
 const RevealInfo Tile::Reveal()
 {
-	SetState(Tile::State::Checked);
+	SetState(State::Checked);
 	return RevealInfo(myHasMine, myCloseMineCount);
 }
 
@@ -36,17 +36,25 @@ void Tile::ToggleState()
 {
 	switch (myState)
 	{
-	case Tile::State::Unchecked:
-		SetState(Tile::State::Flagged);
+	case State::Unchecked:
+		SetState(State::Flagged);
 		break;
-	case Tile::State::Flagged:
-		SetState(Tile::State::Questioned);
+	case State::Flagged:
+		SetState(State::Questioned);
 		break;
 	case Tile::State::Questioned:
-		SetState(Tile::State::Unchecked);
+		SetState(State::Unchecked);
 		break;
 	default:
 		break;
+	}
+}
+
+void Tile::Explode()
+{
+	if (myState != State::Flagged)
+	{
+		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_mine_exploded"));
 	}
 }
 
@@ -54,7 +62,7 @@ void Tile::SetState(const State aNewState)
 {
 	switch (aNewState)
 	{
-	case Tile::State::Checked:
+	case State::Checked:
 		if (!myHasMine)
 		{
 			mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_" + std::to_string(myCloseMineCount)));
@@ -63,10 +71,10 @@ void Tile::SetState(const State aNewState)
 		{
 			switch (myState)
 			{
-			case Tile::State::Flagged:
+			case State::Flagged:
 				mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_flagged_mine"));
-				break;
-			case Tile::State::Questioned:
+				return;
+			case State::Questioned:
 				mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_questioned_mine"));
 				break;
 			default:
@@ -75,13 +83,13 @@ void Tile::SetState(const State aNewState)
 			}
 		}
 		break;
-	case Tile::State::Unchecked:
+	case State::Unchecked:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_unchecked"));
 		break;
-	case Tile::State::Flagged:
+	case State::Flagged:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_flagged"));
 		break;
-	case Tile::State::Questioned:
+	case State::Questioned:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_questioned"));
 		break;
 	default:
@@ -103,6 +111,11 @@ const Tile::State& Tile::GetState() const
 const uint8_t& Tile::GetCloseMineCount() const
 {
 	return myCloseMineCount;
+}
+
+const sf::Vector2i& Tile::GetPosition() const
+{
+	return myPos;
 }
 
 const bool& Tile::HasMine() const

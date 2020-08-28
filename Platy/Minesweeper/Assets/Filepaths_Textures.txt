@@ -4,6 +4,7 @@ Tile/Tile_Questioned.png
 Tile/Tile_Questioned_Mine.png
 Tile/Tile_Unchecked.png
 Tile/Tile_Mine.png
+Tile/Tile_Mine_Exploded.png
 Tile/Tile_0.png
 Tile/Tile_1.png
 Tile/Tile_2.png
@@ -13,3 +14,6 @@ Tile/Tile_5.png
 Tile/Tile_6.png
 Tile/Tile_7.png
 Tile/Tile_8.png
+Frame/Frame_Easy.png
+Frame/Frame_Intermediate.png
+Frame/Frame_Hard.png

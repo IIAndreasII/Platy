@@ -25,6 +25,7 @@ Game::~Game()
 
 void Game::Update(const float& deltaTime)
 {
+	myActiveMineField->Update(deltaTime);
 }
 
 void Game::ReceiveMessage(const Message::Type& aMessageType)
@@ -47,7 +48,6 @@ void Game::ReceiveMessage(const Message& aMessage, const Message::Type& aMessage
 void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.texture = NULL;
-
 	switch (myState)
 	{
 	case Game::State::GameOver:
@@ -56,7 +56,6 @@ void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		break;
 	case Game::State::Playing:
 		target.draw(*myActiveMineField);
-		break;
 	case Game::State::Paused:
 		break;
 	}

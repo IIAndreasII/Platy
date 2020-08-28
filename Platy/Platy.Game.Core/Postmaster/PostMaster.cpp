@@ -10,7 +10,7 @@ PostMaster::PostMaster()
 
 PostMaster::~PostMaster()
 {
-	for (auto it : mySubscribers)
+	for (std::vector<SubPtr> it : mySubscribers)
 	{
 		for (SubPtr sub : it)
 		{
@@ -29,17 +29,17 @@ void PostMaster::Init()
 
 void PostMaster::Subscribe(SubPtr aSubPtr, const Message::Type aMessage)
 {
-	mySubscribers.at(static_cast<int>(aMessage)).push_back(aSubPtr);
+	mySubscribers.at((size_t)aMessage).push_back(aSubPtr);
 }
 
 void PostMaster::Unsubscribe(SubPtr aSubptr, const Message::Type type)
 {
-	mySubscribers.at(static_cast<int>(type)).erase(std::find(mySubscribers.at(static_cast<int>(type)).begin(), mySubscribers.at(static_cast<int>(type)).end(), aSubptr));
+	mySubscribers.at(static_cast<int>(type)).erase(std::find(mySubscribers.at((size_t)type).begin(), mySubscribers.at((size_t)type).end(), aSubptr));
 }
 
 void PostMaster::SendMessage(const Message& aMessage, const Message::Type& type)
 {
-	for (SubPtr tempSub : mySubscribers.at(static_cast<int>(type)))
+	for (SubPtr tempSub : mySubscribers.at((size_t)type))
 	{
 		if (tempSub != NULL)
 		{
@@ -50,7 +50,7 @@ void PostMaster::SendMessage(const Message& aMessage, const Message::Type& type)
 
 void PostMaster::SendMessage(Message::Type type)
 {
-	for (SubPtr it : mySubscribers.at(static_cast<int>(type)))
+	for (SubPtr it : mySubscribers.at((size_t)type))
 	{
 		if (it != NULL)
 		{
@@ -61,5 +61,5 @@ void PostMaster::SendMessage(Message::Type type)
 
 std::vector<SubPtr>& PostMaster::GetSubscribers(const Message::Type type)
 {
-	return mySubscribers.at(static_cast<int>(type));
+	return mySubscribers.at((size_t)type);
 }
