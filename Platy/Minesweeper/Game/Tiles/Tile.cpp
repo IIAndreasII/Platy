@@ -1,10 +1,11 @@
 #include "Tile.h"
 
-#include "Platy.Log/Log.h"
-#include "SFML/Graphics/RenderStates.hpp"
-#include "SFML/Graphics/RenderTarget.hpp"
-#include "Platy.Game.Core/Containers/AssetContainer.h"
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
+#include "Platy.Log/Log.h"
+#include "Platy.Game.Core/Postmaster/PostMaster.h"
+#include "Platy.Game.Core/Containers/AssetContainer.h"
 
 Tile::Tile(const sf::Vector2i aPos) :
 	myPos(aPos),

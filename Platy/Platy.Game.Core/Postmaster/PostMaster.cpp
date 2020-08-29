@@ -21,7 +21,7 @@ PostMaster::~PostMaster()
 
 void PostMaster::Init()
 {
-	for (size_t i = 0; i < static_cast<int>(Message::Type::COUNT); i++)
+	for (size_t i = 0; i < (size_t)Message::Type::COUNT; i++)
 	{
 		mySubscribers.push_back(std::vector<SubPtr>());
 	}
@@ -34,7 +34,7 @@ void PostMaster::Subscribe(SubPtr aSubPtr, const Message::Type aMessage)
 
 void PostMaster::Unsubscribe(SubPtr aSubptr, const Message::Type type)
 {
-	mySubscribers.at(static_cast<int>(type)).erase(std::find(mySubscribers.at((size_t)type).begin(), mySubscribers.at((size_t)type).end(), aSubptr));
+	mySubscribers.at((size_t)type).erase(std::find(mySubscribers.at((size_t)type).begin(), mySubscribers.at((size_t)type).end(), aSubptr));
 }
 
 void PostMaster::SendMessage(const Message& aMessage, const Message::Type& type)

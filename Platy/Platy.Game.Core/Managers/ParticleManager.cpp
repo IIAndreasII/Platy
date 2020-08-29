@@ -1,8 +1,8 @@
 #include "ParticleManager.h"
-#include "Graphics\ParticleEmitter.h"
+#include "Graphics/ParticleEmitter.h"
 #include "Util/Util.h"
 
-#define ASYNC 1
+#define ASYNC 0
 
 std::vector<ParticleEmitterPtr> ParticleManager::myParticleEmitters;
 std::vector<ParticleEmitterPtr> ParticleManager::myEarlyParticleEmitters;
@@ -108,6 +108,30 @@ void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter, const bool early)
 	{
 		myEarlyParticleEmitters.push_back(anEmitter);
 	}
+}
+
+void ParticleManager::RemoveAllEffects()
+{
+#ifdef ASYNC
+	if (myFutures.size() > 0)
+	{
+		for (size_t i = 0; i < myFutures.size(); i++)
+		{
+			myFutures.at(i).wait();
+		}
+	}
+	myFutures.clear();
+#endif
+	for (ParticleEmitterPtr it : myEarlyParticleEmitters)
+	{
+		Util::SafeDelete(it);
+	}
+	myEarlyParticleEmitters.clear();
+	for (ParticleEmitterPtr it : myParticleEmitters)
+	{
+		Util::SafeDelete(it);
+	}
+	myParticleEmitters.clear();
 }
 
 const size_t ParticleManager::GetParticleCount()

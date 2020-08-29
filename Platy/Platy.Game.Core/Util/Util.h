@@ -1,9 +1,10 @@
 #ifndef GAME_UTIL_H
 #define GAME_UTIL_H
 
-#include "Platy.Core/Util/Util.h"
-#include "SFML/System/Vector2.hpp"
 #include <cmath>
+#include <SFML/System/Vector2.hpp>
+
+#include "Platy.Core/Util/Util.h"
 
 constexpr float DEGTORAD = 0.0174533f;
 constexpr float G = 9.82f;

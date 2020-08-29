@@ -1,11 +1,13 @@
 #include "Game.h"
+#include "MineField.h"
 
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include "MineField.h"
 #include "Platy.Core/Util/Util.h"
 #include "Platy.Game.Core/Postmaster/Message.h"
+#include "Platy.Game.Core/Managers/ParticleManager.h"
+
 
 Game::Game() :
 	myState(State::Playing),
@@ -14,6 +16,7 @@ Game::Game() :
 	// Temp
 	myActiveMineField = new MineField(MineField::Size::Hard);
 	Subscribe(Message::Type::GAME_OVER);
+	Subscribe(Message::Type::VICTORY);
 	Subscribe(Message::Type::KEY_ESCAPE_RELEASED);
 }
 
@@ -36,6 +39,7 @@ void Game::ReceiveMessage(const Message::Type& aMessageType)
 		break;
 	case Message::Type::KEY_ESCAPE_RELEASED:
 		Platy::Core::Util::SafeDelete(myActiveMineField);
+		ParticleManager::RemoveAllEffects();
 		myActiveMineField = new MineField(MineField::Size::Hard); // TODO: Change difficulty to variable
 		break;
 	}

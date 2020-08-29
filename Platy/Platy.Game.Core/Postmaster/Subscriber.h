@@ -16,8 +16,8 @@ public:
 
 	void SendMessage(const Message::Type aMessageType);
 
-	virtual void ReceiveMessage(const Message::Type& aMessageType);
-	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType);
+	virtual void ReceiveMessage(const Message::Type& aMessageType) = 0;
+	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType) = 0;
 
 	void Subscribe(const Message::Type aMessageType);
 	void RemoveAllSubscriptions();

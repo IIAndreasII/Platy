@@ -10,18 +10,29 @@
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Events/KeyboardEventHandler.h"
 
+#define MAIN_PC 1
+
+
 constexpr const char* GAME_NAME = "Minesweeper";
 
 constexpr uint16_t DEFAULT_WINDOW_WIDTH = 992;
 constexpr uint16_t DEFAULT_WINDOW_HEIGHT = 544;
 
+#if MAIN_PC
+constexpr unsigned int TARGET_FRAME_RATE = 144;
+#else
+constexpr unsigned int TARGET_FRAME_RATE = 60;
+#endif
+
+
 int main()
 {
-    srand(time(NULL));
+    srand((unsigned)time(NULL));
 
     sf::RenderWindow window;
     window.create(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), GAME_NAME);
     window.setVerticalSyncEnabled(false);
+    window.setFramerateLimit(TARGET_FRAME_RATE);
 
     bool isWindowInFocus;
 

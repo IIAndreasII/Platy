@@ -11,7 +11,7 @@ ParticleEmitter::ParticleEmitter(
 	const float& aParticleMaxSize,
 	const sf::Vector2f& aPosition, 
 	const sf::Color& aColor, 
-	const unsigned& aParticleCount, 
+	const size_t& aParticleCount,
 	const float& anIntensity, 
 	const float& aLifeTime, 
 	const float& someGravity,
@@ -47,7 +47,7 @@ ParticleEmitter::ParticleEmitter(
 	const float& aParticleMaxSize,
 	const sf::Vector2f& aPosition,
 	const sf::Color& aColor,
-	const unsigned& aParticleCount,
+	const size_t& aParticleCount,
 	const float& anIntensity,
 	const float& aLifeTime,
 	const float& aLength,
@@ -84,7 +84,7 @@ ParticleEmitter::ParticleEmitter(
 	const float& aParticleMaxSize,
 	const sf::Vector2f& aPosition,
 	const sf::Color& aColor,
-	const unsigned& aParticleCount,
+	const size_t& aParticleCount,
 	const float& anIntensity,
 	const float& aLifeTime,
 	const float& anEmissionAngle, 
@@ -127,7 +127,7 @@ ParticleEmitter::ParticleEmitter(
 	const EOrientation anOrientation, 
 	const sf::Vector2f& aPosition, 
 	const sf::Color& aColor,
-	const unsigned& aParticleCount,
+	const size_t& aParticleCount,
 	const float& anIntensity,
 	const float& aLifeTime,
 	const float& aLength, 
@@ -170,7 +170,7 @@ void ParticleEmitter::Update(const float& deltaTime)
 	}
 	for (size_t i = 0; i < myParticles.size(); i++)
 	{
-		Particle& p = myParticles[i];
+		Particle& p = myParticles.at(i);
 		p.lifeTime -= deltaTime;
 		if (myType != EParticleEmitterType::EXPLOSION && myType != EParticleEmitterType::FOUNTAIN_BURST)
 		{
@@ -186,7 +186,7 @@ void ParticleEmitter::Update(const float& deltaTime)
 		for (size_t j = 0; j < 4; j++)
 		{
 			myParticleVertices[i * 4 + j].position += p.velocity * deltaTime;
-			myParticleVertices[i * 4 + j].color.a = myShouldFade ? ratio * p.alpha : p.alpha;
+			myParticleVertices[i * 4 + j].color.a = sf::Uint8(myShouldFade ? ratio * p.alpha : p.alpha);
 		}
 	}
 }
@@ -218,7 +218,7 @@ const bool ParticleEmitter::GetActive() const
 	return myLifeTime > 0;
 }
 
-const size_t& ParticleEmitter::GetParticleCount() const
+const size_t ParticleEmitter::GetParticleCount() const
 {
 	return myParticles.size();
 }
@@ -261,11 +261,11 @@ void ParticleEmitter::ResetParticle(const size_t& i)
 	myParticleVertices[i * 4 + 1].position = myParticleVertices[i * 4].position + sf::Vector2f(0, randWidth);			 //////////////////////////////////////////////////////////
 	myParticleVertices[i * 4 + 2].position = myParticleVertices[i * 4].position + sf::Vector2f(randWidth, randHeight);   // It's technically a bug, but I'm calling it a feature //
 	myParticleVertices[i * 4 + 3].position = myParticleVertices[i * 4].position + sf::Vector2f(randHeight, 0);			 //////////////////////////////////////////////////////////
-	myParticles[i].alpha = myColor.a - Core::Util::RandFloat(0, 100);
+	myParticles[i].alpha = myColor.a - Core::Util::RandInt(0, 100);
 	for (size_t j = 0; j < 4; j++)
 	{
 		myParticleVertices[i * 4 + j].color = myColor;
-		myParticleVertices[i * 4 + j].color.a = myParticles[i].alpha;
+		myParticleVertices[i * 4 + j].color.a = sf::Uint8(myParticles[i].alpha);
 	}
 }
 

@@ -23,7 +23,7 @@ public:
 		const float& aParticleMaxSize,
 		const sf::Vector2f& aPosition,
 		const sf::Color& aColor,
-		const unsigned& aParticleCount, 
+		const size_t& aParticleCount,
 		const float& anIntensity,
 		const float& aLifeTime,
 		const float& someGravity,
@@ -36,7 +36,7 @@ public:
 		const float& aParticleMaxSize,
 		const sf::Vector2f& aPosition,
 		const sf::Color& aColor,
-		const unsigned& aParticleCount,
+		const size_t& aParticleCount,
 		const float& anIntensity,
 		const float& aLifeTime,
 		const float& aLength,
@@ -50,7 +50,7 @@ public:
 		const float& aParticleMaxSize,
 		const sf::Vector2f& aPosition,
 		const sf::Color& aColor,
-		const unsigned& aParticleCount,
+		const size_t& aParticleCount,
 		const float& anIntensity,
 		const float& aLifeTime,
 		const float& anEmissionAngle,
@@ -67,7 +67,7 @@ public:
 		const EOrientation anOrientation,
 		const sf::Vector2f& aPosition,
 		const sf::Color& aColor,
-		const unsigned& aParticleCount,
+		const size_t& aParticleCount,
 		const float& anIntensity,
 		const float& aLifeTime,
 		const float& aLength,
@@ -85,12 +85,15 @@ public:
 	void Destroy();
 
 	const bool GetActive() const;
-	const size_t& GetParticleCount() const;
+	const size_t GetParticleCount() const;
 
 private:
 	
 	struct Particle
 	{
+	public:
+		Particle() : lifeTime(), alpha() {};
+		~Particle() {};
 		sf::Vector2f velocity;
 		float lifeTime;
 		short alpha;

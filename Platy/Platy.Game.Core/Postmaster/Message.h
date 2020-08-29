@@ -11,6 +11,9 @@ public:
 enum class Type
 {
 	GAME_OVER,
+	VICTORY,
+	TILE_FLAGGED,
+	TILE_UNFLAGGED,
 	MOUSE_ON_CLICK_LEFT,
 	MOUSE_ON_CLICK_RIGHT,
 	MOUSE_MOVED,
@@ -21,9 +24,6 @@ enum class Type
 	KEY_D_RELEASED,
 	KEY_ESCAPE_PRESSED,
 	KEY_ESCAPE_RELEASED,
-	/// <summary>
-	/// DO NOT USE!
-	/// </summary>
 	COUNT
 };
 

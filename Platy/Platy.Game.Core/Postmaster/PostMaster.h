@@ -4,9 +4,6 @@
 #include <vector>
 #include "Message.h"
 
-enum EMessageType;
-
-class Message;
 class Subscriber;
 
 typedef Subscriber* SubPtr;
@@ -27,7 +24,6 @@ public:
 	static void SendMessage(Message::Type aEMessageType);
 
 	static std::vector<SubPtr>& GetSubscribers(const Message::Type aMessage);
-
 
 private:
 	PostMaster();

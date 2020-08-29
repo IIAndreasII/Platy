@@ -1,23 +1,23 @@
 #include "MineField.h"
 #include "Tiles/Tile.h"
 
+#include "SFML/Graphics/RenderTarget.hpp"
+#include "SFML/Graphics/RenderStates.hpp"
+
 #include "Platy.Core/Util/Util.h"
 #include "Platy.Game.Core/Postmaster/Message.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Factories/ParticleEmitterFactory.h"
 
-#include "SFML/Graphics/RenderTarget.hpp"
-#include "SFML/Graphics/RenderStates.hpp"
-
 
 MineField::MineField(const Size aSize) :
 	mySize(aSize),
-	myGameOverFlag(false),
 	myMineField(),
 	myMinePtrs(),
 	myNbrCols(),
 	myNbrRows(),
 	myNbrMines(),
+	myNbrMinesLeft(),
 	myMineExplosionDelay(.02f),
 	myExplosionTimer(),
 	myState(State::Sweeping),
@@ -26,6 +26,8 @@ MineField::MineField(const Size aSize) :
 {
 	Subscribe(Message::Type::MOUSE_ON_CLICK_LEFT);
 	Subscribe(Message::Type::MOUSE_ON_CLICK_RIGHT);
+	Subscribe(Message::Type::TILE_FLAGGED);
+	Subscribe(Message::Type::TILE_UNFLAGGED);
 
 	switch (aSize)
 	{
@@ -47,16 +49,20 @@ MineField::MineField(const Size aSize) :
 MineField::~MineField()
 {
 	RemoveAllSubscriptions();
+	for (TilePtr it : myMinePtrs)
+	{
+		it = NULL;
+	}
 }
 
-const bool& MineField::IsGameOver() const
+const unsigned MineField::GetElapsedSeconds() const
 {
-	return myGameOverFlag;
+	return (unsigned)myElapsedTime;
 }
 
-const int MineField::ElapsedSeconds() const
+const uint8_t& MineField::GetNbrMinesLeft() const
 {
-	return (int)myElapsedTime;
+	return myNbrMinesLeft;
 }
 
 void MineField::ReceiveMessage(const Message::Type& aMessageType)
@@ -65,7 +71,7 @@ void MineField::ReceiveMessage(const Message::Type& aMessageType)
 
 void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType)
 {
-	if (myGameOverFlag)
+	if (myState != State::Sweeping)
 	{
 		return;
 	}
@@ -89,7 +95,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 				{
 					if ((pos.x + c != pos.x || pos.y + r != pos.y) && InRange(pos.x + c, pos.y + r))
 					{
-						if (myMineField.at(static_cast<size_t>(pos.x) + c).at(static_cast<size_t>(pos.y) + r).GetState() == Tile::State::Flagged)
+						if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::State::Flagged)
 						{
 							closeFlagCount++;
 						}
@@ -105,7 +111,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 					{
 						if ((pos.x + c != pos.x || pos.y + r != pos.y) && InRange(pos.x + c, pos.y + r))
 						{
-							if (myMineField.at(static_cast<size_t>(pos.x) + c).at(static_cast<size_t>(pos.y) + r).GetState() == Tile::State::Unchecked)
+							if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::State::Unchecked)
 							{
 								RevealTile(sf::Vector2i(pos.x + c, pos.y + r));
 							}
@@ -119,6 +125,28 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 
 	case Message::Type::MOUSE_ON_CLICK_RIGHT:
 		myMineField.at(pos.x).at(pos.y).ToggleState();
+
+		switch (myMineField.at(pos.x).at(pos.y).GetState())
+		{
+		case Tile::State::Flagged:
+			if (myNbrMinesLeft > 0)
+			{
+				myNbrMinesLeft--;
+			}
+
+			if (CheckVictory())
+			{
+				myState = State::Victory;
+				SendMessage(Message::Type::VICTORY);
+			}
+			break;
+		case Tile::State::Questioned:
+			if (myNbrMinesLeft < myNbrMines)
+			{
+				myNbrMinesLeft++;
+			}
+			break;
+		}
 		break;
 	default:
 		break;
@@ -149,7 +177,7 @@ void MineField::Update(const float& deltaTime)
 		break;
 	default:
 		myElapsedTime += deltaTime;
-		return;
+		break;
 	}
 }
 
@@ -185,7 +213,7 @@ void MineField::GenerateField(const uint8_t cols, const uint8_t rows, const uint
 
 void MineField::PlaceMines(const uint8_t nbrMines)
 {
-	myNbrMines = nbrMines;
+	myNbrMines = myNbrMinesLeft = nbrMines;
 
 	for (size_t i = 0; i < myNbrMines; i++)
 	{
@@ -216,7 +244,6 @@ void MineField::PlaceMines(const uint8_t nbrMines)
 			}
 		}
 	}
-	int a = 0;
 }
 
 void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
@@ -239,7 +266,15 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 				}
 			}
 
-			myGameOverFlag = true;
+			// Make sure flagged mines don't explode
+			for (size_t i = myMinePtrs.size(); i > 0; i--)
+			{
+				if (myMinePtrs.at(i - 1)->GetState() == Tile::State::Flagged)
+				{
+					myMinePtrs.at(i - 1) = NULL;
+					myMinePtrs.erase(myMinePtrs.begin() + i - 1);
+				}
+			}
 			myState = State::GameOver;
 			SendMessage(Message::Type::GAME_OVER);
 		}
@@ -264,6 +299,18 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 const bool MineField::InRange(const int col, const int row) const
 {
 	return col >= 0 && col < myNbrCols && row >= 0 && row < myNbrRows;
+}
+
+const bool MineField::CheckVictory() const
+{
+	for (TilePtr it : myMinePtrs)
+	{
+		if (it->GetState() != Tile::State::Flagged)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 const sf::Vector2i MineField::ToMapPos(const sf::Vector2i& aWindowPos) const

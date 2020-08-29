@@ -21,7 +21,8 @@ public:
 	static void EarlyDraw(sf::RenderWindow& aWindow);
 	static void Draw(sf::RenderWindow& aWindow);
 	static void AddEmitter(ParticleEmitterPtr anEmitter, const bool early = false);
-	
+	static void RemoveAllEffects();
+
 	static const size_t GetParticleCount();
 
 private:

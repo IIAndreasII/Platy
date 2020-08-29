@@ -4,6 +4,7 @@
 #include <vector>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+
 #include "Platy.Game.Core/Postmaster/Subscriber.h"
 
 constexpr uint8_t COLS_EASY = 9;
@@ -18,6 +19,7 @@ constexpr uint8_t MINES_INTERMEDIATE = 40;
 constexpr uint8_t MINES_HARD = 99;
 
 class Tile;
+typedef Tile* TilePtr;
 
 class MineField : public sf::Drawable, public Subscriber
 {
@@ -43,14 +45,14 @@ public:
 	// GET
 	///////////////////////////////
 
-	const bool& IsGameOver() const;
-
-	const int ElapsedSeconds() const;
+	const unsigned GetElapsedSeconds() const;
+	
+	const uint8_t& GetNbrMinesLeft() const;
 
 	///////////////////////////////
 
-	void ReceiveMessage(const Message::Type& aMessageType) override;
-	void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType) override;
+	virtual void ReceiveMessage(const Message::Type& aMessageType);
+	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType);
 
 	void Update(const float& deltaTime);
 
@@ -63,7 +65,7 @@ private:
 
 	std::vector<std::vector<Tile>> myMineField;
 
-	std::vector<Tile*> myMinePtrs;
+	std::vector<TilePtr> myMinePtrs;
 
 	Size mySize;
 	State myState;
@@ -71,12 +73,11 @@ private:
 	uint8_t myNbrCols;
 	uint8_t myNbrRows;
 	uint8_t myNbrMines;
+	uint8_t myNbrMinesLeft;
 
 	float myElapsedTime;
 	float myMineExplosionDelay;
 	float myExplosionTimer;
-
-	bool myGameOverFlag;
 
 	void GenerateField(const uint8_t cols, const uint8_t rows, const uint8_t nbrMines);
 
@@ -85,6 +86,8 @@ private:
 	void RevealTile(const sf::Vector2i aPos, const bool recursive = false);
 
 	const bool InRange(const int col, const int row) const;
+
+	const bool CheckVictory() const;
 
 	const sf::Vector2i ToMapPos(const sf::Vector2i& aWindowPos) const;
 
