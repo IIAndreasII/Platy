@@ -1,6 +1,5 @@
 #include "Subscriber.h"
 #include "PostMaster.h"
-#include "Message.h"
 
 Subscriber::Subscriber()
 {

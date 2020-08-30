@@ -100,7 +100,7 @@ void AssetContainer::LoadTextures()
 				Util::SafeDelete(tempTexture);
 				tempAllSuccessful = false;
 				std::string msg = "AssetContainer::LoadTextures(): Couldn't load file '" + tempPath + "'";
-				Log::Critical(msg.c_str());
+				Log::Critical(msg);
 			}
 			else
 			{
@@ -113,7 +113,7 @@ void AssetContainer::LoadTextures()
 	}
 	else
 	{
-	Log::Critical("AssetContainer::LoadTextures(): Unable to load textures!");
+		Log::Warning("AssetContainer::LoadTextures(): Unable to load textures!");
 	}
 }
 
@@ -138,7 +138,7 @@ void AssetContainer::LoadAndParseSpriteSheets()
 				Util::SafeDelete(tempTexture);
 				tempAllSuccessful = false;
 				std::string msg = "AssetContainer::LoadAndParseSpriteSheets(): Couldn't load file '" + tempPath + "'";
-				Log::Critical(msg.c_str());
+				Log::Critical(msg);
 				std::getline(tempTxtFile, tempPath);
 				std::getline(tempTxtFile, tempPath);
 			}
@@ -165,7 +165,7 @@ void AssetContainer::LoadAndParseSpriteSheets()
 	}
 	else
 	{
-		Log::Critical("AssetContainer::LoadAndParseSpriteSheets(): Unable load spritesheets!");
+		Log::Warning("AssetContainer::LoadAndParseSpriteSheets(): Unable load spritesheets!");
 	}
 }
 
@@ -173,6 +173,7 @@ void AssetContainer::LoadFonts()
 {
 	std::ifstream tempTxtFile(FILEPATHS_FILE_FONTS);
 
+	// Acquire filepaths
 	if (tempTxtFile.is_open())
 	{
 		unsigned tempTotalFonts = 0;
@@ -187,7 +188,7 @@ void AssetContainer::LoadFonts()
 				Util::SafeDelete(tempFont);
 				tempAllSuccessful = false;
 				std::string msg = "AssetContainer::LoadFonts(): Couldn't load file '" + tempPath + "'";
-				Log::Critical(msg.c_str());
+				Log::Critical(msg);
 			}
 			else
 			{
@@ -200,7 +201,7 @@ void AssetContainer::LoadFonts()
 	}
 	else
 	{
-		Log::Critical("AssetContainer::LoadFonts(): Unable load Fonts!");
+		Log::Warning("AssetContainer::LoadFonts(): Unable load Fonts!");
 	}
 }
 

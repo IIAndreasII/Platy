@@ -1,12 +1,8 @@
 #ifndef IOMANAGER_H
 #define IOMANAGER_H
 
-#include "Util/Util.h"
-#include <iostream>
 #include <string>
 #include <fstream>
-#include <Windows.h>
-#include <io.h>
 
 
 namespace Platy
@@ -23,7 +19,7 @@ namespace Platy
 				static void Init();
 
 				/// <summary>
-				/// DO NOT USE
+				/// 
 				/// </summary>
 				static void Dispose();
 

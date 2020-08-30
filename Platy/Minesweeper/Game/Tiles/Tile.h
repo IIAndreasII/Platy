@@ -4,24 +4,29 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-#include "Platy.Game.Core/Postmaster/Subscriber.h"
+constexpr int DEFAULT_TILE_SIZE = 32;
 
-struct RevealInfo
-{
-public:
-	RevealInfo(const bool& mine, const uint8_t& aCloseMineCount) : 
-		isMine(mine), 
-		closeMineCount(aCloseMineCount) {};
-	~RevealInfo() {};
-	bool isMine;
-	uint8_t closeMineCount;
-};
 
 class Tile : public sf::Drawable
 {
 public:
 	Tile(const sf::Vector2i aPos);
 	~Tile();
+
+	struct RevealInfo
+	{
+	public:
+		RevealInfo(const bool& mine, const uint8_t& aCloseMineCount) : 
+			isMine(mine), 
+			closeMineCount(aCloseMineCount)
+		{
+		};
+		~RevealInfo()
+		{
+		};
+		const bool isMine;
+		const uint8_t closeMineCount;
+	};
 
 	enum class State
 	{
@@ -30,7 +35,6 @@ public:
 		Flagged,
 		Questioned,
 	};
-
 
 	const RevealInfo Reveal();
 

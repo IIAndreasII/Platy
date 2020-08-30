@@ -9,6 +9,9 @@ namespace Platy
 {
 	namespace PlatyLog
 	{
+		/// <summary>
+		/// Singleton class for logging and debugging
+		/// </summary>
 		class Log
 		{
 		public:
@@ -76,7 +79,7 @@ namespace Platy
 		private:
 			Log();
 
-			//static HANDLE myConsoleHandle;
+			static HANDLE myConsoleHandle;
 
 			enum class LogHeader
 			{

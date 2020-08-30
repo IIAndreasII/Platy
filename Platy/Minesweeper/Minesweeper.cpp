@@ -1,8 +1,8 @@
-#include <iostream>
+#include "pch.h"
+#include "Game/Game.h"
 
 #include <SFML/Graphics.hpp>
 
-#include "Game/Game.h"
 #include "Platy.Log/Log.h"
 #include "Platy.Game.Core/Postmaster/PostMaster.h"
 #include "Platy.Game.Core/Events/MouseEventHandler.h"
@@ -10,19 +10,7 @@
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Events/KeyboardEventHandler.h"
 
-#define MAIN_PC 1
-
-
 constexpr const char* GAME_NAME = "Minesweeper";
-
-constexpr uint16_t DEFAULT_WINDOW_WIDTH = 992;
-constexpr uint16_t DEFAULT_WINDOW_HEIGHT = 544;
-
-#if MAIN_PC
-constexpr unsigned int TARGET_FRAME_RATE = 144;
-#else
-constexpr unsigned int TARGET_FRAME_RATE = 60;
-#endif
 
 
 int main()
@@ -51,7 +39,7 @@ int main()
 
     // Init game
     Game tempGame;
-
+    
 
     while (window.isOpen())
     {

@@ -1,6 +1,5 @@
 #include "PostMaster.h"
 #include "Subscriber.h"
-#include "Message.h"
 
 std::vector<std::vector<SubPtr>> PostMaster::mySubscribers;
 

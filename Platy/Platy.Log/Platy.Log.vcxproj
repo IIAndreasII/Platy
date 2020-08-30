@@ -146,7 +146,7 @@
   <ItemGroup>
     <ClCompile Include="IO\IOManager.cpp" />
     <ClCompile Include="Log.cpp" />
-    <ClCompile Include="Platy.cpp" />
+    <ClCompile Include="Test\Platy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IO\IOManager.h" />

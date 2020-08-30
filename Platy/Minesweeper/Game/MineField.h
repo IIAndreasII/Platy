@@ -7,6 +7,8 @@
 
 #include "Platy.Game.Core/Postmaster/Subscriber.h"
 
+constexpr unsigned int DEFAULT_FRAME_THICKNESS = 16;
+
 constexpr uint8_t COLS_EASY = 9;
 constexpr uint8_t ROWS_EASY = 9;
 constexpr uint8_t COLS_INTERMEDIATE = 16;
@@ -38,7 +40,7 @@ public:
 		Victory
 	};
 
-	MineField(const Size aSize);
+	MineField(const Size aSize, const sf::Vector2i offset = sf::Vector2i(16, 16));
 	~MineField();
 
 	///////////////////////////////
@@ -60,7 +62,7 @@ public:
 
 private:
 
-	sf::Vector2f myTopLeftPos;
+	sf::Vector2i myOffset;
 	sf::Sprite myFrame;
 
 	std::vector<std::vector<Tile>> myMineField;

@@ -1,11 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "MineField.h"
+
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 #include "Platy.Game.Core/Postmaster/Subscriber.h"
 
-class MineField;
 typedef MineField* MineFieldPtr;
 
 class Game : public sf::Drawable, public Subscriber
@@ -33,8 +35,16 @@ private:
 
 	State myState;
 
+	sf::Text myMineCounterText;
+	sf::Text myTimeCounterText;
+
+	MineField::Size myChosenDifficulty;
+
 	MineFieldPtr myActiveMineField;
 
+	void ResetMineField();
+	void UpdateMineCounterText();
+	void UpdateTimeCounterText();
 };
 
 #endif

@@ -5,12 +5,12 @@
 #include "SFML/Graphics/RenderStates.hpp"
 
 #include "Platy.Core/Util/Util.h"
-#include "Platy.Game.Core/Postmaster/Message.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Factories/ParticleEmitterFactory.h"
 
 
-MineField::MineField(const Size aSize) :
+MineField::MineField(const Size aSize, const sf::Vector2i offset) :
+	myOffset(offset),
 	mySize(aSize),
 	myMineField(),
 	myMinePtrs(),
@@ -26,9 +26,8 @@ MineField::MineField(const Size aSize) :
 {
 	Subscribe(Message::Type::MOUSE_ON_CLICK_LEFT);
 	Subscribe(Message::Type::MOUSE_ON_CLICK_RIGHT);
-	Subscribe(Message::Type::TILE_FLAGGED);
-	Subscribe(Message::Type::TILE_UNFLAGGED);
 
+	myFrame.setPosition(sf::Vector2f(offset - sf::Vector2i(DEFAULT_FRAME_THICKNESS, DEFAULT_FRAME_THICKNESS)));
 	switch (aSize)
 	{
 	case Size::Easy:
@@ -134,8 +133,20 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 				myNbrMinesLeft--;
 			}
 
+			SendMessage(Message::Type::TILE_FLAGGED);
+
 			if (CheckVictory())
 			{
+				for (size_t col = 0; col < myMineField.size(); col++)
+				{
+					for (size_t row = 0; row < myMineField.at(col).size(); row++)
+					{
+						if (myMineField.at(col).at(row).GetState() == Tile::State::Unchecked || myMineField.at(col).at(row).GetState() == Tile::State::Flagged)
+						{
+							myMineField.at(col).at(row).Reveal();
+						}
+					}
+				}
 				myState = State::Victory;
 				SendMessage(Message::Type::VICTORY);
 			}
@@ -145,6 +156,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 			{
 				myNbrMinesLeft++;
 			}
+			SendMessage(Message::Type::TILE_UNFLAGGED);
 			break;
 		}
 		break;
@@ -163,13 +175,15 @@ void MineField::Update(const float& deltaTime)
 		if (myExplosionTimer <= 0 && myMinePtrs.size() > 0)
 		{
 			myExplosionTimer = myMineExplosionDelay;
-			sf::Vector2i pos = myMinePtrs.at(myMinePtrs.size() - 1)->GetPosition() + sf::Vector2i(16, 16);
+			sf::Vector2i pos = myMinePtrs.at(myMinePtrs.size() - 1)->GetPosition() + sf::Vector2i(DEFAULT_TILE_SIZE / 2, DEFAULT_TILE_SIZE / 2);
+			
 			myMinePtrs.at(myMinePtrs.size() - 1)->Explode();
 			myMinePtrs.at(myMinePtrs.size() - 1) = NULL;
 			myMinePtrs.pop_back();
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_YELLOW, 200, 200, .5f, false, 9.82f * 2);
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_ORANGE, 200, 200, .5f, false, 9.82f * 2);
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED, 200, 200, .5f, false, 9.82f * 2);
+
+			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_YELLOW,   200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_ORANGE,   200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED,      200, 200, .5f, false, 9.82f * 2);
 			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED_DARK, 200, 200, .5f, false, 9.82f * 2);
 		}
 		break;
@@ -204,7 +218,7 @@ void MineField::GenerateField(const uint8_t cols, const uint8_t rows, const uint
 		myMineField.push_back(std::vector<Tile>());
 		for (size_t j = 0; j < myNbrRows; j++)
 		{
-			myMineField.at(i).push_back(Tile(sf::Vector2i((int)i, (int)j) * 32 + sf::Vector2i(16, 16)));
+			myMineField.at(i).push_back(Tile(sf::Vector2i((int)i, (int)j) * 32 + myOffset));
 		}
 	}
 
@@ -250,7 +264,7 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 {
 	if (myMineField.at(aPos.x).at(aPos.y).GetState() == Tile::State::Unchecked)
 	{
-		RevealInfo info = myMineField.at(aPos.x).at(aPos.y).Reveal();
+		Tile::RevealInfo info = myMineField.at(aPos.x).at(aPos.y).Reveal();
 
 		if (info.isMine && !recursive)
 		{
@@ -315,5 +329,5 @@ const bool MineField::CheckVictory() const
 
 const sf::Vector2i MineField::ToMapPos(const sf::Vector2i& aWindowPos) const
 {
-	return sf::Vector2i((aWindowPos.x - 16) / 32, (aWindowPos.y - 16) / 32);
+	return sf::Vector2i((aWindowPos.x - myOffset.x) / DEFAULT_TILE_SIZE, (aWindowPos.y - myOffset.y) / DEFAULT_TILE_SIZE);
 }

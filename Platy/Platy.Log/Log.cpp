@@ -1,5 +1,7 @@
 #include "Log.h"
+
 #include <iostream>
+
 #include "IO/IOManager.h"
 #include "Util/Util.h"
 
@@ -11,57 +13,56 @@
 #define CONSOLE_GREY        8
 #define CONSOLE_WHITE      15
 
-//using namespace Platy;
+
 namespace Platy
 {
     namespace PlatyLog
     {
-        //HANDLE Log::myConsoleHandle;
-        enum class Log::LogHeader;
+        HANDLE Log::myConsoleHandle;
 
-        PlatyLog::Log::~Log()
+        Log::~Log()
         {
         }
 
         void Log::Init()
         {
-            //myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-            PlatyLog::IO::IOManager::Init();
+            myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+            IO::IOManager::Init();
         }
 
         void Log::Dispose()
         {
-            PlatyLog::IO::IOManager::Dispose();
+            IO::IOManager::Dispose();
         }
 
         void Log::Debug(const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::DEBUG, msg);
+            WriteLogMsg(LogHeader::DEBUG, msg);
         }
 
         void Log::Warning(const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::WARNING, msg);
+            WriteLogMsg(LogHeader::WARNING, msg);
         }
 
         void Log::Warning(const std::exception& e, const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::WARNING, msg + ": " + e.what());
+            WriteLogMsg(LogHeader::WARNING, msg + ": " + e.what());
         }
 
         void Log::Critical(const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::CRITICAL, msg);
+            WriteLogMsg(LogHeader::CRITICAL, msg);
         }
 
         void Log::Critical(const std::exception& e, const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::CRITICAL, msg + ": " + e.what());
+            WriteLogMsg(LogHeader::CRITICAL, msg + ": " + e.what());
         }
 
         void Log::Information(const std::string& msg)
         {
-            WriteLogMsg(PlatyLog::Log::LogHeader::INFORMATION, msg);
+            WriteLogMsg(LogHeader::INFORMATION, msg);
         }
 
         const int Log::HeaderToColour(const LogHeader& head)
@@ -76,6 +77,8 @@ namespace Platy
                 return CONSOLE_YELLOW;
             case LogHeader::CRITICAL:
                 return CONSOLE_RED;
+            default:
+                return CONSOLE_WHITE;
             }
         }
 
@@ -91,33 +94,29 @@ namespace Platy
                 return "WARN";
             case LogHeader::CRITICAL:
                 return "CRIT";
+            default:
+                return "UNDEFINED";
             }
         }
 
         void Log::WriteInColour(const LogHeader& head, const std::string& str)
         {
-            /*SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
+            SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
             std::cout << str;
-            std::cout.flush();
-            SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);*/
+            SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
         }
 
         void Log::WriteLogMsg(const LogHeader head, const std::string& msg)
         {
-            //auto time = Core::Util::GetTime();
-            //std::string headString = HeaderToString(head);
-            std::string line = "[" + Core::Util::GetTime() + "] [" + HeaderToString(head) + "] " + msg;
+            std::string time = Core::Util::GetTime();
+            std::string headString = HeaderToString(head);
+            std::string line = "[" + time + "] [" + headString + "] " + msg;
 
             PlatyLog::IO::IOManager::WriteToFile(line);
 
-           // std::cout.flush();
-            //std::cout << line << std::endl;
-
-            /*std::cout << "[" << time << "] [";
-            std::cout.flush();
+            std::cout << "[" << time << "] [";
             WriteInColour(head, headString);
             std::cout << "] " << msg << std::endl;
-            std::cout.flush();*/
         }
     }
 }
