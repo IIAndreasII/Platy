@@ -10,7 +10,7 @@
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 
 Game::Game() :
-	myState(State::Playing),
+	myState(EState::Playing),
 	myChosenDifficulty(MineField::Size::Hard),
 	myActiveMineField(NULL),
 	myMineCounterText("", *AssetContainer::GetFontPtr("digital_characters")),
@@ -72,15 +72,15 @@ void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.texture = NULL;
 	switch (myState)
 	{
-	case Game::State::GameOver:
+	case Game::EState::GameOver:
 		break;
-	case Game::State::Menu:
+	case Game::EState::Menu:
 		break;
-	case Game::State::Playing:
+	case Game::EState::Playing:
 		target.draw(*myActiveMineField);
 		target.draw(myMineCounterText);
 		target.draw(myTimeCounterText);
-	case Game::State::Paused:
+	case Game::EState::Paused:
 		break;
 	}
 }

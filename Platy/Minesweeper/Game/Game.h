@@ -16,7 +16,7 @@ public:
 	Game();
 	~Game();
 
-	enum class State
+	enum class EState
 	{
 		GameOver,
 		Menu,
@@ -33,7 +33,7 @@ public:
 
 private:
 
-	State myState;
+	EState myState;
 
 	sf::Text myMineCounterText;
 	sf::Text myTimeCounterText;

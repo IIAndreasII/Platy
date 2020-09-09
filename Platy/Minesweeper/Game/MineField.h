@@ -33,7 +33,7 @@ public:
 		Hard
 	};
 	
-	enum class State
+	enum class EState
 	{
 		Sweeping,
 		GameOver,
@@ -70,7 +70,7 @@ private:
 	std::vector<TilePtr> myMinePtrs;
 
 	Size mySize;
-	State myState;
+	EState myState;
 
 	uint8_t myNbrCols;
 	uint8_t myNbrRows;

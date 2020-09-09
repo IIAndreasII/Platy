@@ -28,7 +28,7 @@ public:
 		const uint8_t closeMineCount;
 	};
 
-	enum class State
+	enum class EState
 	{
 		Checked,
 		Unchecked,
@@ -47,7 +47,7 @@ public:
 	/////////////////
 	// SET
 	/////////////////
-	void SetState(const State aNewState);
+	void SetState(const EState aNewState);
 
 	/// <summary>
 	/// Use only during minefield creation!
@@ -57,7 +57,7 @@ public:
 	/////////////////
 	// GET
 	/////////////////
-	const State& GetState() const;
+	const EState& GetState() const;
 
 	const uint8_t& GetCloseMineCount() const;
 
@@ -78,7 +78,7 @@ private:
 
 	bool myHasMine;
 
-	State myState;
+	EState myState;
 
 };
 

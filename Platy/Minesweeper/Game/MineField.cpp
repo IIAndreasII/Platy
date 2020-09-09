@@ -20,7 +20,7 @@ MineField::MineField(const Size aSize, const sf::Vector2i offset) :
 	myNbrMinesLeft(),
 	myMineExplosionDelay(.02f),
 	myExplosionTimer(),
-	myState(State::Sweeping),
+	myState(EState::Sweeping),
 	myElapsedTime(),
 	myFrame()
 {
@@ -70,7 +70,7 @@ void MineField::ReceiveMessage(const Message::Type& aMessageType)
 
 void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType)
 {
-	if (myState != State::Sweeping)
+	if (myState != EState::Sweeping)
 	{
 		return;
 	}
@@ -80,11 +80,11 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 	{
 	case Message::Type::MOUSE_ON_CLICK_LEFT:
 
-		if (myMineField.at(pos.x).at(pos.y).GetState() == Tile::State::Unchecked)
+		if (myMineField.at(pos.x).at(pos.y).GetState() == Tile::EState::Unchecked)
 		{
 			RevealTile(pos);
 		}
-		else if (aMessage.GetBool() && myMineField.at(pos.x).at(pos.y).GetState() == Tile::State::Checked)
+		else if (aMessage.GetBool() && myMineField.at(pos.x).at(pos.y).GetState() == Tile::EState::Checked)
 		{
 			int closeFlagCount = 0;
 
@@ -94,7 +94,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 				{
 					if ((pos.x + c != pos.x || pos.y + r != pos.y) && InRange(pos.x + c, pos.y + r))
 					{
-						if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::State::Flagged)
+						if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::EState::Flagged)
 						{
 							closeFlagCount++;
 						}
@@ -110,7 +110,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 					{
 						if ((pos.x + c != pos.x || pos.y + r != pos.y) && InRange(pos.x + c, pos.y + r))
 						{
-							if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::State::Unchecked)
+							if (myMineField.at((size_t)pos.x + c).at((size_t)pos.y + r).GetState() == Tile::EState::Unchecked)
 							{
 								RevealTile(sf::Vector2i(pos.x + c, pos.y + r));
 							}
@@ -127,7 +127,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 
 		switch (myMineField.at(pos.x).at(pos.y).GetState())
 		{
-		case Tile::State::Flagged:
+		case Tile::EState::Flagged:
 			if (myNbrMinesLeft > 0)
 			{
 				myNbrMinesLeft--;
@@ -141,17 +141,17 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::Type& aMe
 				{
 					for (size_t row = 0; row < myMineField.at(col).size(); row++)
 					{
-						if (myMineField.at(col).at(row).GetState() == Tile::State::Unchecked || myMineField.at(col).at(row).GetState() == Tile::State::Flagged)
+						if (myMineField.at(col).at(row).GetState() == Tile::EState::Unchecked || myMineField.at(col).at(row).GetState() == Tile::EState::Flagged)
 						{
 							myMineField.at(col).at(row).Reveal();
 						}
 					}
 				}
-				myState = State::Victory;
+				myState = EState::Victory;
 				SendMessage(Message::Type::VICTORY);
 			}
 			break;
-		case Tile::State::Questioned:
+		case Tile::EState::Questioned:
 			if (myNbrMinesLeft < myNbrMines)
 			{
 				myNbrMinesLeft++;
@@ -170,7 +170,7 @@ void MineField::Update(const float& deltaTime)
 {
 	switch (myState)
 	{
-	case State::GameOver:
+	case EState::GameOver:
 		myExplosionTimer -= deltaTime;
 		if (myExplosionTimer <= 0 && myMinePtrs.size() > 0)
 		{
@@ -187,7 +187,7 @@ void MineField::Update(const float& deltaTime)
 			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED_DARK, 200, 200, .5f, false, 9.82f * 2);
 		}
 		break;
-	case State::Victory:
+	case EState::Victory:
 		break;
 	default:
 		myElapsedTime += deltaTime;
@@ -262,7 +262,7 @@ void MineField::PlaceMines(const uint8_t nbrMines)
 
 void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 {
-	if (myMineField.at(aPos.x).at(aPos.y).GetState() == Tile::State::Unchecked)
+	if (myMineField.at(aPos.x).at(aPos.y).GetState() == Tile::EState::Unchecked)
 	{
 		Tile::RevealInfo info = myMineField.at(aPos.x).at(aPos.y).Reveal();
 
@@ -283,13 +283,13 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 			// Make sure flagged mines don't explode
 			for (size_t i = myMinePtrs.size(); i > 0; i--)
 			{
-				if (myMinePtrs.at(i - 1)->GetState() == Tile::State::Flagged)
+				if (myMinePtrs.at(i - 1)->GetState() == Tile::EState::Flagged)
 				{
 					myMinePtrs.at(i - 1) = NULL;
 					myMinePtrs.erase(myMinePtrs.begin() + i - 1);
 				}
 			}
-			myState = State::GameOver;
+			myState = EState::GameOver;
 			SendMessage(Message::Type::GAME_OVER);
 		}
 		else if (info.closeMineCount == 0)
@@ -300,7 +300,7 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 				{
 					if ((aPos.x + c != aPos.x || aPos.y + r != aPos.y) &&
 						InRange(aPos.x + c, aPos.y + r) &&
-						myMineField.at((size_t)aPos.x + c).at((size_t)aPos.y + r).GetState() == Tile::State::Unchecked)
+						myMineField.at((size_t)aPos.x + c).at((size_t)aPos.y + r).GetState() == Tile::EState::Unchecked)
 					{
 						RevealTile(sf::Vector2i(aPos.x + c, aPos.y + r), true);
 					}
@@ -319,7 +319,7 @@ const bool MineField::CheckVictory() const
 {
 	for (TilePtr it : myMinePtrs)
 	{
-		if (it->GetState() != Tile::State::Flagged)
+		if (it->GetState() != Tile::EState::Flagged)
 		{
 			return false;
 		}

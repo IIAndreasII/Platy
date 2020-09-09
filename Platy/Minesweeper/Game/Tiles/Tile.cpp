@@ -8,7 +8,7 @@
 Tile::Tile(const sf::Vector2i aPos) :
 	myPos(aPos),
 	myHasMine(false),
-	myState(State::Unchecked),
+	myState(EState::Unchecked),
 	myCloseMineCount(0),
 	mySprite()
 {
@@ -22,7 +22,7 @@ Tile::~Tile()
 
 const Tile::RevealInfo Tile::Reveal()
 {
-	SetState(State::Checked);
+	SetState(EState::Checked);
 	return RevealInfo(myHasMine, myCloseMineCount);
 }
 
@@ -35,14 +35,14 @@ void Tile::ToggleState()
 {
 	switch (myState)
 	{
-	case State::Unchecked:
-		SetState(State::Flagged);
+	case EState::Unchecked:
+		SetState(EState::Flagged);
 		break;
-	case State::Flagged:
-		SetState(State::Questioned);
+	case EState::Flagged:
+		SetState(EState::Questioned);
 		break;
-	case Tile::State::Questioned:
-		SetState(State::Unchecked);
+	case Tile::EState::Questioned:
+		SetState(EState::Unchecked);
 		break;
 	default:
 		break;
@@ -51,17 +51,17 @@ void Tile::ToggleState()
 
 void Tile::Explode()
 {
-	if (myState != State::Flagged)
+	if (myState != EState::Flagged)
 	{
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_mine_exploded"));
 	}
 }
 
-void Tile::SetState(const State aNewState)
+void Tile::SetState(const EState aNewState)
 {
 	switch (aNewState)
 	{
-	case State::Checked:
+	case EState::Checked:
 		if (!myHasMine)
 		{
 			mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_" + std::to_string(myCloseMineCount)));
@@ -70,10 +70,10 @@ void Tile::SetState(const State aNewState)
 		{
 			switch (myState)
 			{
-			case State::Flagged:
+			case EState::Flagged:
 				mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_flagged_mine"));
 				return;
-			case State::Questioned:
+			case EState::Questioned:
 				mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_questioned_mine"));
 				break;
 			default:
@@ -82,13 +82,13 @@ void Tile::SetState(const State aNewState)
 			}
 		}
 		break;
-	case State::Unchecked:
+	case EState::Unchecked:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_unchecked"));
 		break;
-	case State::Flagged:
+	case EState::Flagged:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_flagged"));
 		break;
-	case State::Questioned:
+	case EState::Questioned:
 		mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_questioned"));
 		break;
 	default:
@@ -102,7 +102,7 @@ void Tile::PlaceMine()
 	myHasMine = true;
 }
 
-const Tile::State& Tile::GetState() const
+const Tile::EState& Tile::GetState() const
 {
 	return myState;
 }
