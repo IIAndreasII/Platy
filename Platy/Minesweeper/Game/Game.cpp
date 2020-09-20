@@ -111,6 +111,8 @@ void Game::ResetMineField()
 	}
 
 	myActiveMineField = new MineField(myChosenDifficulty, offset);
+
+	UpdateMineCounterText();
 }
 
 void Game::UpdateMineCounterText()
