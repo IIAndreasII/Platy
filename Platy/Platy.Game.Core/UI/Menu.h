@@ -4,24 +4,24 @@
 #include <vector>
 #include "SFML/Graphics/Drawable.hpp"
 
-template<class C>
+template <class C>
 class UIButton;
 
-template<class C>
+template <class C>
 class Menu : public sf::Drawable
 {
 public:
 	Menu();
 	~Menu();
 
-	void AddButton(const UIButton<C> aButton);
+	void AddButton(UIButton<C> aButton);
 
-	void SetActive(const bool aValue) const;
+	void SetActive(bool aValue);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
-	 
+
 	bool myIsActive;
 
 	std::vector<UIButton<C>> myButtons;

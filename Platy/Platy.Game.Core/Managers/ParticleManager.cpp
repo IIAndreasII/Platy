@@ -1,22 +1,23 @@
 #include "ParticleManager.h"
-#include "Graphics/ParticleEmitter.h"
+#include "Graphics/Particles/ParticleEmitter.h"
 #include "Util/Util.h"
 
-#define ASYNC 0
 
 std::vector<ParticleEmitterPtr> ParticleManager::myParticleEmitters;
 std::vector<ParticleEmitterPtr> ParticleManager::myEarlyParticleEmitters;
+#if ASYNC
 std::vector<std::future<void>> ParticleManager::myFutures;
+#endif
 
 using namespace Platy::Core;
 
 ParticleManager::~ParticleManager()
 {
-	for (auto it : myParticleEmitters)
+	for (auto* it : myParticleEmitters)
 	{
 		Util::SafeDelete(it);
 	}
-	for (auto it : myEarlyParticleEmitters)
+	for (auto* it : myEarlyParticleEmitters)
 	{
 		Util::SafeDelete(it);
 	}
@@ -27,12 +28,14 @@ void ParticleManager::Init()
 	myParticleEmitters = std::vector<ParticleEmitterPtr>();
 }
 
+#if ASYNC
 static void UpdateEmitter(ParticleEmitter* anEmitter, float deltaTime)
 {
 	anEmitter->Update(deltaTime);
 }
+#endif
 
-void ParticleManager::Update(float deltaTime)
+void ParticleManager::Update(const float& deltaTime)
 {
 	for (size_t i = myParticleEmitters.size(); i > 0; i--)
 	{
@@ -51,7 +54,7 @@ void ParticleManager::Update(float deltaTime)
 			myEarlyParticleEmitters.erase(myEarlyParticleEmitters.begin() + i - 1);
 		}
 	}
-	
+
 	for (ParticleEmitterPtr it : myEarlyParticleEmitters)
 	{
 #if ASYNC
@@ -98,7 +101,7 @@ void ParticleManager::Draw(sf::RenderWindow& aWindow)
 	}
 }
 
-void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter, const bool early)
+void ParticleManager::AddEmitter(const ParticleEmitterPtr anEmitter, const bool early)
 {
 	if (!early)
 	{
@@ -112,12 +115,12 @@ void ParticleManager::AddEmitter(ParticleEmitterPtr anEmitter, const bool early)
 
 void ParticleManager::RemoveAllEffects()
 {
-#ifdef ASYNC
-	if (myFutures.size() > 0)
+#if ASYNC
+	if (!myFutures.empty())
 	{
-		for (size_t i = 0; i < myFutures.size(); i++)
+		for (auto& myFuture : myFutures)
 		{
-			myFutures.at(i).wait();
+			myFuture.wait();
 		}
 	}
 	myFutures.clear();
@@ -134,7 +137,7 @@ void ParticleManager::RemoveAllEffects()
 	myParticleEmitters.clear();
 }
 
-const size_t ParticleManager::GetParticleCount()
+size_t ParticleManager::GetParticleCount()
 {
 	size_t sum = 0;
 	for (ParticleEmitterPtr it : myParticleEmitters)

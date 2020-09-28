@@ -14,7 +14,7 @@ class Game : public sf::Drawable, public Subscriber
 {
 public:
 	Game();
-	~Game();
+	~Game() override;
 
 	enum class EState
 	{
@@ -26,10 +26,10 @@ public:
 
 	void Update(const float& deltaTime);
 
-	virtual void ReceiveMessage(const Message::Type& aMessageType);
-	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType);
+	void ReceiveMessage(const Message::EType& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 
@@ -38,9 +38,9 @@ private:
 	sf::Text myMineCounterText;
 	sf::Text myTimeCounterText;
 
-	MineField::Size myChosenDifficulty;
+	MineField::Size myChosenDifficulty = MineField::Size::Hard;
 
-	MineFieldPtr myActiveMineField;
+	MineFieldPtr myActiveMineField = nullptr;
 
 	void ResetMineField();
 	void UpdateMineCounterText();

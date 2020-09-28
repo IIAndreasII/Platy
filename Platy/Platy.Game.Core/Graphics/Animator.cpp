@@ -1,8 +1,8 @@
 #include "Animator.h"
 #include "SFML/Graphics/RenderTarget.hpp"
 
-Animator::Animator(const SpriteSheet& aSpritesheet, const float aScale, const bool shouldLoop) :
-	mySpriteSheet(aSpritesheet),
+Animator::Animator(const SpriteSheet& aSpriteSheet, const float aScale, const bool shouldLoop) :
+	mySpriteSheet(aSpriteSheet),
 	mySprite(*mySpriteSheet.GetTexturePtr()),
 	myIsPlaying(true),
 	myIsLooping(shouldLoop),
@@ -10,12 +10,11 @@ Animator::Animator(const SpriteSheet& aSpritesheet, const float aScale, const bo
 	myScale(aScale)
 {
 	mySprite.setScale(myScale, myScale);
-	mySprite.setOrigin(mySpriteSheet.GetFrameWidth() / 2, mySpriteSheet.GetFrameHeight() / 2);
+	mySprite.setOrigin(static_cast<float>(mySpriteSheet.GetFrameWidth()) / 2,
+	                   static_cast<float>(mySpriteSheet.GetFrameHeight()) / 2);
 }
 
-Animator::~Animator()
-{
-}
+Animator::~Animator() = default;
 
 
 void Animator::Update(const float& deltaTime, const sf::Vector2f& aPosition)
@@ -29,7 +28,7 @@ void Animator::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 			if (!myIsLooping)
 			{
 				myIsPlaying = false;
-				myCurrentFrame = mySpriteSheet.GetFrameCount() - 1;
+				myCurrentFrame = static_cast<float>(mySpriteSheet.GetFrameCount() - 1);
 			}
 			else
 			{
@@ -37,7 +36,7 @@ void Animator::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 			}
 		}
 
-		sf::IntRect tempIntRect(
+		const sf::IntRect tempIntRect(
 			mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
 			0,
 			mySpriteSheet.GetFrameWidth(),
@@ -47,9 +46,9 @@ void Animator::Update(const float& deltaTime, const sf::Vector2f& aPosition)
 	}
 }
 
-void Animator::SetAnim(const SpriteSheet& aSpritesheet)
+void Animator::SetAnim(const SpriteSheet& aSpriteSheet)
 {
-	mySpriteSheet = aSpritesheet;
+	mySpriteSheet = aSpriteSheet;
 	mySprite.setTexture(*mySpriteSheet.GetTexturePtr());
 	myCurrentFrame = 0;
 }

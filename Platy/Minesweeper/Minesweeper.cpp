@@ -15,87 +15,93 @@ constexpr const char* GAME_NAME = "Minesweeper";
 
 int main()
 {
-    srand((unsigned)time(NULL));
+	srand(static_cast<unsigned>(time(nullptr)));
 
-    sf::RenderWindow window;
-    window.create(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), GAME_NAME);
-    window.setVerticalSyncEnabled(false);
-    window.setFramerateLimit(TARGET_FRAME_RATE);
+	sf::RenderWindow window;
+	window.create(sf::VideoMode(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT), GAME_NAME);
+	window.setVerticalSyncEnabled(false);
+	window.setFramerateLimit(TARGET_FRAME_RATE);
 
-    bool isWindowInFocus;
+	bool isWindowInFocus;
 
-    /// Init clock for delta time
-    sf::Clock tempClock;
-    float deltaTime;
+	/// Init clock for delta time
+	sf::Clock tempClock;
+	float deltaTime;
 
-    // Init singletons
-    Platy::PlatyLog::Log::Init();
+	// Init singletons
+	Platy::PlatyLog::Log::Init();
 
-    PostMaster::Init();
+	PostMaster::Init();
 
-    AssetContainer::Init();
+	AssetContainer::Init();
 
-    ParticleManager::Init();
+	ParticleManager::Init();
 
-    // Init game
-    Game tempGame;
-    
+	// Init game
+	Game tempGame;
 
-    while (window.isOpen())
-    {
-        sf::Event tempEvent;
-        while (window.pollEvent(tempEvent))
-        {
-            switch (tempEvent.type)
-            {
-            case sf::Event::Closed:
-                Platy::PlatyLog::Log::Dispose();
-                window.close();
-                break;
 
-            case sf::Event::GainedFocus:
-                isWindowInFocus = true;
-                break;
+	while (window.isOpen())
+	{
+		sf::Event tempEvent{};
+		while (window.pollEvent(tempEvent))
+		{
+			switch (tempEvent.type)
+			{
+			case sf::Event::Closed:
+				Platy::PlatyLog::Log::Dispose();
+				window.close();
+				break;
 
-            case sf::Event::LostFocus:
-                isWindowInFocus = false;
-                break;
+			case sf::Event::GainedFocus:
+				isWindowInFocus = true;
+				break;
 
-            case sf::Event::KeyPressed:
-            case sf::Event::KeyReleased:
-                KeyboardEventHandler::HandleEvent(tempEvent);
-                break;
+			case sf::Event::LostFocus:
+				isWindowInFocus = false;
+				break;
 
-            case sf::Event::MouseButtonPressed:
-            case sf::Event::MouseButtonReleased:
-            case sf::Event::MouseMoved:
-                MouseEventHandler::HandleEvent(tempEvent, window);
-                break;
-            }
-        }
+			case sf::Event::KeyPressed:
+			case sf::Event::KeyReleased:
+				KeyboardEventHandler::HandleEvent(tempEvent);
+				break;
 
-        deltaTime = tempClock.restart().asSeconds();
+			case sf::Event::MouseWheelMoved:
+			case sf::Event::MouseWheelScrolled:
+			case sf::Event::MouseEntered:
+			case sf::Event::MouseLeft:
+			case sf::Event::MouseButtonPressed:
+			case sf::Event::MouseButtonReleased:
+			case sf::Event::MouseMoved:
+				MouseEventHandler::HandleEvent(tempEvent, window);
+				break;
+			default:
+				break;
+			}
+		}
 
-        //////////////////////////////////////////////////////////////////
-        // Update logic
-        //////////////////////////////////////////////////////////////////
+		deltaTime = tempClock.restart().asSeconds();
 
-        ParticleManager::Update(deltaTime);
+		//////////////////////////////////////////////////////////////////
+		// Update logic
+		//////////////////////////////////////////////////////////////////
 
-        tempGame.Update(deltaTime);
+		ParticleManager::Update(deltaTime);
 
-        //////////////////////////////////////////////////////////////////
-        // Draw logic
-        //////////////////////////////////////////////////////////////////
-        window.clear();
+		tempGame.Update(deltaTime);
 
-        ParticleManager::EarlyDraw(window);
+		//////////////////////////////////////////////////////////////////
+		// Draw logic
+		//////////////////////////////////////////////////////////////////
+		window.clear();
 
-        window.draw(tempGame);
+		ParticleManager::EarlyDraw(window);
 
-        ParticleManager::Draw(window);
+		window.draw(tempGame);
 
-        window.display();
-        //////////////////////////////////////////////////////////////////
-    }
+		ParticleManager::Draw(window);
+
+		window.display();
+		//////////////////////////////////////////////////////////////////
+	}
 }

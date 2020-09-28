@@ -1,12 +1,8 @@
 #include "MouseEventHandler.h"
 
-#include "Postmaster\PostMaster.h"
-#include "Postmaster\Message.h"
+#include "Postmaster/PostMaster.h"
+#include "Postmaster/Message.h"
 
-
-MouseEventHandler::~MouseEventHandler()
-{
-}
 
 void MouseEventHandler::HandleEvent(const sf::Event& anEvent, const sf::RenderWindow& aWindow)
 {
@@ -19,8 +15,9 @@ void MouseEventHandler::HandleEvent(const sf::Event& anEvent, const sf::RenderWi
 		switch (anEvent.key.code)
 		{
 		case sf::Mouse::Left:
-			break;
 		case sf::Mouse::Right:
+			break;
+		default:
 			break;
 		}
 		break;
@@ -31,16 +28,20 @@ void MouseEventHandler::HandleEvent(const sf::Event& anEvent, const sf::RenderWi
 		{
 		case sf::Mouse::Left:
 			msg.SetBool(anEvent.key.control);
-			PostMaster::SendMessage(msg, Message::Type::MOUSE_ON_CLICK_LEFT);
+			PostMaster::SendMessage(msg, Message::EType::MOUSE_ON_CLICK_LEFT);
 			break;
 		case sf::Mouse::Right:
-			PostMaster::SendMessage(msg, Message::Type::MOUSE_ON_CLICK_RIGHT);
+			PostMaster::SendMessage(msg, Message::EType::MOUSE_ON_CLICK_RIGHT);
+			break;
+		default:
 			break;
 		}
 		break;
 
 	case sf::Event::MouseMoved:
-		PostMaster::SendMessage(Message(sf::Mouse::getPosition(aWindow)), Message::Type::MOUSE_MOVED);
+		PostMaster::SendMessage(Message(sf::Mouse::getPosition(aWindow)), Message::EType::MOUSE_MOVED);
+		break;
+	default:
 		break;
 	}
 }

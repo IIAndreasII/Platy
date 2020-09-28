@@ -13,21 +13,21 @@ class Animator : public sf::Drawable
 {
 public:
 
-	Animator(const SpriteSheet& aSpritesheet, const float aScale = DEFAULT_ANIM_SCALE, const bool shouldLoop = true);
-	~Animator();
-	
+	Animator(const SpriteSheet& aSpriteSheet, float aScale = DEFAULT_ANIM_SCALE, bool shouldLoop = true);
+	~Animator() override;
+
 	void Update(const float& deltaTime, const sf::Vector2f& aPosition);
 
-	void SetAnim(const SpriteSheet& aSpritesheet);
+	void SetAnim(const SpriteSheet& aSpriteSheet);
 
 	void Flip();
-	void SetFacingDirection(const int aDir);
+	void SetFacingDirection(int aDir);
 	void TogglePlaying();
 	void ToggleLooping();
 
 	const sf::Sprite& GetCurrentFrame() const;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 
@@ -36,7 +36,7 @@ private:
 
 	bool myIsPlaying;
 	bool myIsLooping;
-	
+
 	float myCurrentFrame;
 	float myScale;
 };

@@ -10,20 +10,18 @@ constexpr int DEFAULT_TILE_SIZE = 32;
 class Tile : public sf::Drawable
 {
 public:
-	Tile(const sf::Vector2i aPos);
-	~Tile();
+	Tile(sf::Vector2i aPos);
+	~Tile() override;
 
 	struct RevealInfo
 	{
-	public:
-		RevealInfo(const bool& mine, const uint8_t& aCloseMineCount) : 
-			isMine(mine), 
+		RevealInfo(const bool& mine, const uint8_t& aCloseMineCount) :
+			isMine(mine),
 			closeMineCount(aCloseMineCount)
 		{
-		};
-		~RevealInfo()
-		{
-		};
+		}
+
+		~RevealInfo() = default;
 		const bool isMine;
 		const uint8_t closeMineCount;
 	};
@@ -36,7 +34,7 @@ public:
 		Questioned,
 	};
 
-	const RevealInfo Reveal();
+	RevealInfo Reveal();
 
 	void AddCloseMine();
 
@@ -47,7 +45,7 @@ public:
 	/////////////////
 	// SET
 	/////////////////
-	void SetState(const EState aNewState);
+	void SetState(EState aNewState);
 
 	/// <summary>
 	/// Use only during minefield creation!
@@ -65,7 +63,7 @@ public:
 
 	const bool& HasMine() const;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 
 private:
@@ -74,12 +72,11 @@ private:
 
 	sf::Vector2i myPos;
 
-	uint8_t myCloseMineCount;
+	uint8_t myCloseMineCount = 0;
 
 	bool myHasMine;
 
-	EState myState;
-
+	EState myState = EState::Unchecked;
 };
 
 #endif

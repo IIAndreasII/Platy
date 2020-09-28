@@ -1,5 +1,5 @@
-#ifndef SPRITESHEET_H
-#define SPRITESHEET_H
+#ifndef SPRITE_SHEET_H
+#define SPRITE_SHEET_H
 
 #include "SFML/Graphics/Texture.hpp"
 
@@ -7,8 +7,7 @@ typedef sf::Texture* TexturePtr;
 
 struct SpriteSheet
 {
-public:
-	SpriteSheet(sf::Texture* aTexturePtr, const unsigned myFrameCount, const unsigned myFrameRate = 1);
+	SpriteSheet(sf::Texture* aTexturePtr, unsigned aFrameCount, unsigned aFrameRate = 1);
 	~SpriteSheet();
 
 	const sf::Texture* GetTexturePtr() const;

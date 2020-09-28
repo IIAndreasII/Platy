@@ -2,7 +2,6 @@
 #include "Util/Util.h"
 #include <iostream>
 #include <Windows.h>
-#include <io.h>
 
 namespace Platy
 {
@@ -23,7 +22,7 @@ namespace Platy
 
 			void IOManager::Init()
 			{
-				if (CreateDirectoryA("Logs", NULL) != ERROR_PATH_NOT_FOUND)
+				if (CreateDirectoryA("Logs", nullptr) != ERROR_PATH_NOT_FOUND)
 				{
 					myFileName = "Logs\\" + Core::Util::GetTime() + ".txt";
 					myFileStream = std::ofstream(myFileName);
