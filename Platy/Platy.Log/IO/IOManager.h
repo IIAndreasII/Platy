@@ -24,10 +24,10 @@ namespace Platy
 				static void Dispose();
 
 				/// <summary>
-				/// Writes line to current filestream
+				/// Writes line to current file stream
 				/// </summary>
 				/// <param name="line">Line to write</param>
-				static void WriteToFile(std::string line);
+				static void WriteToFile(const std::string& line);
 
 			private:
 				static std::string myFileName;

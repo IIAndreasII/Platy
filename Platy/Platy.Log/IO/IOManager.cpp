@@ -42,7 +42,7 @@ namespace Platy
 				}
 			}
 
-			void IOManager::WriteToFile(const std::string line)
+			void IOManager::WriteToFile(const std::string& line)
 			{
 				if (myFileStream.is_open())
 				{
