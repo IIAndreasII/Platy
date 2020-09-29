@@ -14,7 +14,7 @@ class ParticleEmitterFactory
 public:
 	~ParticleEmitterFactory() = default;
 
-	static ParticleEmitter* CreateFountain(
+	static ParticleEmitter* CreateFountainPtr(
 		float aParticleMaxSize,
 		sf::Vector2f aPosition,
 		sf::Color aColor,
@@ -23,12 +23,26 @@ public:
 		float aLifeTime,
 		float anEmissionAngle,
 		float aSpreadAngle,
-		bool isShortLived,
+		bool isShortLived = false,
 		bool early = false,
 		float someGravity = 0,
 		bool shouldFade = true);
 
-	static ParticleEmitter* CreateExplosion(
+	static void CreateFountain(
+		float aParticleMaxSize,
+		sf::Vector2f aPosition,
+		sf::Color aColor,
+		unsigned aNbrOfParticles,
+		float anIntensity,
+		float aLifeTime,
+		float anEmissionAngle,
+		float aSpreadAngle,
+		bool isShortLived = false,
+		bool early = false,
+		float someGravity = 0,
+		bool shouldFade = true);
+
+	static ParticleEmitter* CreateExplosionPtr(
 		float aParticleMaxSize,
 		sf::Vector2f aPosition,
 		sf::Color aColor,
@@ -39,7 +53,18 @@ public:
 		float someGravity = 0,
 		bool shouldFade = true);
 
-	static ParticleEmitter* CreateCloud(
+	static void CreateExplosion(
+		float aParticleMaxSize,
+		sf::Vector2f aPosition,
+		sf::Color aColor,
+		unsigned nbrOfParticles,
+		float anIntensity,
+		float aLifeTime,
+		bool early = false,
+		float someGravity = 0,
+		bool shouldFade = true);
+
+	static ParticleEmitter* CreateCloudPtr(
 		float aParticleMaxSize,
 		sf::Vector2f aPosition,
 		sf::Color aColor,
@@ -51,7 +76,33 @@ public:
 		float someGravity = 0,
 		bool shouldFade = true);
 
-	static ParticleEmitter* CreateShower(
+	static void CreateCloud(
+		float aParticleMaxSize,
+		sf::Vector2f aPosition,
+		sf::Color aColor,
+		unsigned nbrOfParticles,
+		float anIntensity,
+		float aLifeTime,
+		float aLength,
+		bool early = false,
+		float someGravity = 0,
+		bool shouldFade = true);
+
+	static ParticleEmitter* CreateShowerPtr(
+		float aParticleMaxSize,
+		EOrientation anOrientation,
+		sf::Vector2f aPosition,
+		sf::Color aColor,
+		unsigned nbrOfParticles,
+		float anIntensity,
+		float aLifeTime,
+		float aLength,
+		bool early = false,
+		float anEmissionAngle = 90,
+		float someGravity = 0,
+		bool shouldFade = true);
+
+	static void CreateShower(
 		float aParticleMaxSize,
 		EOrientation anOrientation,
 		sf::Vector2f aPosition,

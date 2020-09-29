@@ -41,14 +41,6 @@ Fountain::Fountain(
 
 void Fountain::Update(const float& deltaTime)
 {
-	if (myIsShortLived)
-	{
-		myLifeTime -= deltaTime;
-		if (myLifeTime <= 0)
-		{
-			return;
-		}
-	}
 	ParticleEmitter::Update(deltaTime);
 }
 

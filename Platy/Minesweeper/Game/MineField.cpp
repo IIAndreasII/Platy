@@ -183,10 +183,11 @@ void MineField::Update(const float& deltaTime)
 			myMinePointers.at(myMinePointers.size() - 1) = nullptr;
 			myMinePointers.pop_back();
 
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_YELLOW, 200, 200, .5f, false, 9.82f * 2);
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_ORANGE, 200, 200, .5f, false, 9.82f * 2);
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED, 200, 200, .5f, false, 9.82f * 2);
-			ParticleEmitterFactory::CreateExplosion(4, sf::Vector2f(pos), C_RED_DARK, 200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosionPtr(4, sf::Vector2f(pos), C_YELLOW, 200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosionPtr(4, sf::Vector2f(pos), C_ORANGE, 200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosionPtr(4, sf::Vector2f(pos), C_RED, 200, 200, .5f, false, 9.82f * 2);
+			ParticleEmitterFactory::CreateExplosionPtr(4, sf::Vector2f(pos), C_RED_DARK, 200, 200, .5f, false,
+			                                           9.82f * 2);
 		}
 		break;
 	case EState::Victory:

@@ -65,9 +65,6 @@ void Tile::SetState(const EState aNewState)
 		{
 			switch (myState)
 			{
-			case EState::Checked:
-			case EState::Unchecked:
-				break;
 			case EState::Flagged:
 				mySprite.setTexture(*AssetContainer::GetTexturePtr("tile_flagged_mine"));
 				return;

@@ -51,7 +51,7 @@ void ParticleEmitter::Update(const float& deltaTime)
 		}
 
 		p.velocity.y += myGravity * myGravity * deltaTime;
-		const float ratio = (p.lifeTime / myInitLifeTime > 0) ? (p.lifeTime / myInitLifeTime) : 0;
+		const float ratio = p.lifeTime / myInitLifeTime > 0 ? p.lifeTime / myInitLifeTime : 0;
 		for (size_t j = 0; j < 4; j++)
 		{
 			myParticleVertices[i * 4 + j].position += p.velocity * deltaTime;

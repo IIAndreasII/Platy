@@ -25,7 +25,7 @@ Explosion::Explosion(
 		someGravity,
 		INTENSITY_MODULATION_DIVIDER_EXPLOSION,
 		shouldFade,
-		false)
+		true)
 {
 	for (size_t i = 0; i < myParticles.size(); i++)
 	{

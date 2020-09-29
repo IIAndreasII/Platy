@@ -15,15 +15,14 @@ public:
 		const float& aLifeTime,
 		const float& someGravity,
 		const bool& shouldFade);
-	
+
 	~Explosion() override;
 
-	void Update(const float& deltaTim) override;
+	void Update(const float& deltaTime) override;
 
 protected:
 
 	void ResetParticle(const size_t& i) override;
-
 };
 
 #endif

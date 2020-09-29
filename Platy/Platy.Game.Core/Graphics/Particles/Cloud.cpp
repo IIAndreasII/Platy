@@ -51,15 +51,5 @@ void Cloud::ResetParticle(const size_t& i)
 
 sf::Vector2f Cloud::GetCloudPosition() const
 {
-	switch (myOrientation)
-	{
-	case EOrientation::UP:
-		return {Platy::Core::Util::RandFloat(myPosition.x, myPosition.x + myLength), myPosition.y};
-	case EOrientation::DOWN:
-		return {myPosition.x + Platy::Core::Util::RandFloat(0, myLength), myPosition.y};
-	case EOrientation::RIGHT:
-	case EOrientation::LEFT:
-		return {myPosition.x, Platy::Core::Util::RandFloat(myPosition.y, myPosition.y + myLength)};
-	}
-	return {};
+	return {myPosition.x + Platy::Core::Util::RandFloat(0, myLength), myPosition.y};
 }

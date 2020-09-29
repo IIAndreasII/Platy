@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\ParticleTest.cpp" />
     <ClCompile Include="Platy.Test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,9 @@
     <ProjectReference Include="..\Platy.Log\Platy.Log.vcxproj">
       <Project>{f999c522-3444-4adf-a0be-296e7deff320}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graphics\ParticleTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

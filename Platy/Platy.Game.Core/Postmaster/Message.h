@@ -3,7 +3,6 @@
 
 #include "SFML/System/Vector2.hpp"
 
-
 class Message
 {
 public:
@@ -28,7 +27,7 @@ public:
 	};
 
 	Message();
-	explicit Message(const sf::Vector2i& aPosition);
+	Message(const sf::Vector2i& aPosition);
 	Message(const sf::Vector2i& aPosition, int aWidth, int aHeight);
 	~Message() = default;
 
