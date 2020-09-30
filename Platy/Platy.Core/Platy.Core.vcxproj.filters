@@ -8,8 +8,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\Util.cpp" />
+    <ClCompile Include="Components\CObservable.cpp" />
+    <ClCompile Include="Components\CObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\Util.h" />
+    <ClInclude Include="Components\CObservable.h" />
+    <ClInclude Include="Components\CObserver.h" />
   </ItemGroup>
 </Project>

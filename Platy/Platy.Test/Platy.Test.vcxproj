@@ -153,6 +153,8 @@
   <ItemGroup>
     <ClCompile Include="Graphics\ParticleTest.cpp" />
     <ClCompile Include="Platy.Test.cpp" />
+    <ClCompile Include="CoreTests\TestObservable.cpp" />
+    <ClCompile Include="CoreTests\TestObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Platy.Core\Platy.Core.vcxproj">
@@ -167,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\ParticleTest.h" />
+    <ClInclude Include="CoreTests\TestObservable.h" />
+    <ClInclude Include="CoreTests\TestObserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

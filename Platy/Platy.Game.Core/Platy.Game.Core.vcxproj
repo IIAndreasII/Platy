@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Graphics\Particles\Cloud.cpp" />
     <ClCompile Include="Containers\AssetContainer.cpp" />
     <ClCompile Include="Events\KeyboardEventHandler.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Graphics\Particles\Cloud.h" />
     <ClInclude Include="Containers\AssetContainer.h" />
     <ClInclude Include="Events\KeyboardEventHandler.h" />

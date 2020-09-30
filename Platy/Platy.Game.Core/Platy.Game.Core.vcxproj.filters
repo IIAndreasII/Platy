@@ -25,6 +25,7 @@
     <ClCompile Include="Graphics\Particles\Explosion.cpp" />
     <ClCompile Include="Graphics\Particles\Shower.cpp" />
     <ClCompile Include="Graphics\Particles\ParticleEmitter.cpp" />
+    <ClCompile Include="Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Postmaster\Message.h" />
@@ -47,5 +48,6 @@
     <ClInclude Include="Graphics\Particles\Shower.h" />
     <ClInclude Include="Graphics\Particles\ParticleEmitter.h" />
     <ClInclude Include="Graphics\Particles\Enum.h" />
+    <ClInclude Include="Button.h" />
   </ItemGroup>
 </Project>

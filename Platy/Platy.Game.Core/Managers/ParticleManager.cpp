@@ -77,9 +77,9 @@ void ParticleManager::Update(const float& deltaTime)
 void ParticleManager::EarlyDraw(sf::RenderWindow& aWindow)
 {
 #if ASYNC
-	for (size_t i = 0; i < myFutures.size(); i++)
+	for (auto& myFuture : myFutures)
 	{
-		myFutures.at(i).wait();
+		myFuture.wait();
 	}
 
 	if (myFutures.size() > myParticleEmitters.size() * 10) // Destroy futures every n-th frame

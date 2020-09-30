@@ -8,18 +8,37 @@
 #include "Events/MouseEventHandler.h"
 #include "Graphics/ParticleTest.h"
 #include "Managers/ParticleManager.h"
+#include "CoreTests/TestObservable.h"
+#include "CoreTests/TestObserver.h"
 
+#define TEST_CORE 1
+#define TEST_GAME_CORE 0
+#define TEST_LOG 0
 
 int main()
 {
+#if TEST_LOG || TEST_GAME_CORE
 	Platy::PlatyLog::Log::Init();
-
+#endif
+#if TEST_LOG
 	Platy::PlatyLog::Log::Debug("Test msg");
 	Platy::PlatyLog::Log::Warning("Test msg");
 	Platy::PlatyLog::Log::Critical("Test msg");
 	Platy::PlatyLog::Log::Critical(std::exception("Test exception"), "Test exception was thrown!");
 	Platy::PlatyLog::Log::Information("Test msg");
+#endif
 
+
+#if TEST_CORE
+
+	TestObserver observer;
+
+	TestObservable observable(&observer, 5);
+	observable.UpdateData(10);
+
+#endif
+
+#if TEST_GAME_CORE
 	srand(static_cast<unsigned>(time(nullptr)));
 
 	sf::RenderWindow window;
@@ -77,7 +96,7 @@ int main()
 		deltaTime = tempClock.restart().asSeconds();
 
 		//////////////////////////////////////////////////////////////////
-		// Update logic
+	// Update logic
 		//////////////////////////////////////////////////////////////////
 
 		ParticleManager::Update(deltaTime);
@@ -85,7 +104,7 @@ int main()
 		tempParticleTest.Update(deltaTime);
 
 		//////////////////////////////////////////////////////////////////
-		// Draw logic
+	// Draw logic
 		//////////////////////////////////////////////////////////////////
 		window.clear();
 
@@ -97,5 +116,7 @@ int main()
 		window.display();
 		//////////////////////////////////////////////////////////////////
 	}
+#endif
+
 	return 0;
 }
