@@ -36,6 +36,14 @@ int main()
 	TestObservable observable(&observer, 5);
 	observable.UpdateData(10);
 
+	auto* observerPtr = new TestObserver();
+
+	TestObservable observable2(observerPtr, 5);
+	observable2.UpdateData(10);
+
+	delete observerPtr;
+	observerPtr = nullptr;
+
 #endif
 
 #if TEST_GAME_CORE
