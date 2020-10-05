@@ -3,8 +3,6 @@
 
 #include "SFML/Graphics/Texture.hpp"
 
-typedef sf::Texture* TexturePtr;
-
 struct SpriteSheet
 {
 	SpriteSheet(sf::Texture* aTexturePtr, unsigned aFrameCount, unsigned aFrameRate = 1);
