@@ -53,7 +53,7 @@ sf::Font* AssetContainer::GetFontPtr(std::string name)
 		return myFontPointers.at(std::distance(myFontNames.begin(), it));
 	}
 	Log::Warning("AssetContainer::GetFontPtr(): Font with name \"" + name + "\" not found!");
-	return new sf::Font();
+	return nullptr;
 }
 
 sf::Texture* AssetContainer::GetTexturePtr(std::string name)
@@ -65,7 +65,7 @@ sf::Texture* AssetContainer::GetTexturePtr(std::string name)
 		return myTexturePointers.at(std::distance(myTextureNames.begin(), it));
 	}
 	Log::Warning("AssetContainer::GetTexturePtr(): Texture with name \"" + name + "\" not found!");
-	return new sf::Texture();
+	return nullptr;
 }
 
 SpriteSheetPtr AssetContainer::GetSpriteSheetPtr(std::string name)
@@ -77,7 +77,7 @@ SpriteSheetPtr AssetContainer::GetSpriteSheetPtr(std::string name)
 		return mySpriteSheetPointers.at(std::distance(mySpriteSheetNames.begin(), it));
 	}
 	Log::Warning("AssetContainer::GetSpriteSheetPtr(): Sprite sheet with name \"" + name + "\" not found!");
-	return SpriteSheetPtr();
+	return nullptr;
 }
 
 void AssetContainer::LoadTextures()
