@@ -15,21 +15,20 @@ public:
 
 	static void Init();
 
-	static void Subscribe(SubPtr aSubPtr, const Message::Type aEMessageType);
+	static void Subscribe(SubPtr aSubPtr, Message::EType aMessageType);
 
-	static void Unsubscribe(SubPtr aSubptr, const Message::Type aEMessageType);
+	static void Unsubscribe(SubPtr aSubPtr, Message::EType aMessageType);
 
-	static void SendMessage(const Message& aMessage, const Message::Type& aEMessageType);
+	static void SendMessage(const Message& aMessage, const Message::EType& aMessageType);
 
-	static void SendMessage(Message::Type aEMessageType);
+	static void SendMessage(Message::EType aMessageType);
 
-	static std::vector<SubPtr>& GetSubscribers(const Message::Type aMessage);
+	static std::vector<SubPtr>& GetSubscribers(Message::EType aMessageType);
 
 private:
 	PostMaster();
 
 	static std::vector<std::vector<SubPtr>> mySubscribers;
-
 };
 
 #endif

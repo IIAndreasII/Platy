@@ -2,11 +2,12 @@
 #include "Util/Util.h"
 
 SpriteSheet::SpriteSheet(sf::Texture* aTexturePtr, const unsigned aFrameCount, const unsigned aFrameRate)
-	: myTexturePtr(aTexturePtr),
+	:
+	myTexturePtr(aTexturePtr),
 	myFrameCount(aFrameCount),
 	myFrameRate(aFrameRate),
-	myFrameWidth(aTexturePtr->getSize().x / aFrameCount),
-	myFrameHeight(aTexturePtr->getSize().y)
+	myFrameHeight(aTexturePtr->getSize().y),
+	myFrameWidth(aTexturePtr->getSize().x / aFrameCount)
 {
 }
 

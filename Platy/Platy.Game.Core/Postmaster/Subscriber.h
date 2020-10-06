@@ -12,22 +12,21 @@ public:
 	Subscriber();
 	virtual ~Subscriber();
 
-	void SendMessage(const Message& aMessage, const Message::Type aMessageType);
+	void SendMessage(const Message& aMessage, Message::EType aMessageType) const;
 
-	void SendMessage(const Message::Type aMessageType);
+	void SendMessage(Message::EType aMessageType) const;
 
-	virtual void ReceiveMessage(const Message::Type& aMessageType) = 0;
-	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType) = 0;
+	virtual void ReceiveMessage(const Message::EType& aMessageType) = 0;
+	virtual void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) = 0;
 
-	void Subscribe(const Message::Type aMessageType);
+	void Subscribe(Message::EType aMessageType);
 	void RemoveAllSubscriptions();
 
-	const std::vector<Message::Type>& GetSubscriptions();
+	const std::vector<Message::EType>& GetSubscriptions() const;
 
 protected:
 
-	std::vector<Message::Type> mySubscriptions;
-
+	std::vector<Message::EType> mySubscriptions;
 };
 
 #endif

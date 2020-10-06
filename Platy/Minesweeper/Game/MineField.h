@@ -32,7 +32,7 @@ public:
 		Intermediate,
 		Hard
 	};
-	
+
 	enum class EState
 	{
 		Sweeping,
@@ -40,25 +40,25 @@ public:
 		Victory
 	};
 
-	MineField(const Size aSize, const sf::Vector2i offset = sf::Vector2i(16, 16));
+	MineField(Size aSize, sf::Vector2i offset = sf::Vector2i(16, 16));
 	~MineField();
 
 	///////////////////////////////
 	// GET
 	///////////////////////////////
 
-	const unsigned GetElapsedSeconds() const;
-	
+	unsigned GetElapsedSeconds() const;
+
 	const uint8_t& GetNbrMinesLeft() const;
 
 	///////////////////////////////
 
-	virtual void ReceiveMessage(const Message::Type& aMessageType);
-	virtual void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType);
+	void ReceiveMessage(const Message::EType& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
 
 	void Update(const float& deltaTime);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 
@@ -67,7 +67,7 @@ private:
 
 	std::vector<std::vector<Tile>> myMineField;
 
-	std::vector<TilePtr> myMinePtrs;
+	std::vector<TilePtr> myMinePointers;
 
 	Size mySize;
 	EState myState;
@@ -81,18 +81,17 @@ private:
 	float myMineExplosionDelay;
 	float myExplosionTimer;
 
-	void GenerateField(const uint8_t cols, const uint8_t rows, const uint8_t nbrMines);
+	void GenerateField(uint8_t cols, uint8_t rows, uint8_t nbrMines);
 
-	void PlaceMines(const uint8_t nbrMines);
+	void PlaceMines(uint8_t nbrMines);
 
-	void RevealTile(const sf::Vector2i aPos, const bool recursive = false);
+	void RevealTile(sf::Vector2i aPos, bool recursive = false);
 
-	const bool InRange(const int col, const int row) const;
+	bool InRange(int col, int row) const;
 
-	const bool CheckVictory() const;
+	bool CheckVictory() const;
 
-	const sf::Vector2i ToMapPos(const sf::Vector2i& aWindowPos) const;
-
+	sf::Vector2i ToMapPos(const sf::Vector2i& aWindowPos) const;
 };
 
 #endif

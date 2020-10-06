@@ -1,5 +1,5 @@
-#ifndef MOUSEEVENTHANDLER_H
-#define MOUSEEVENTHANDLER_H
+#ifndef MOUSE_EVENT_HANDLER_H
+#define MOUSE_EVENT_HANDLER_H
 
 #include "SFML/Window/Event.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
@@ -10,12 +10,9 @@
 class MouseEventHandler
 {
 public:
-	~MouseEventHandler();
+	~MouseEventHandler() = default;
 
 	static void HandleEvent(const sf::Event& anEvent, const sf::RenderWindow& aWindow);
-
-private:
-	MouseEventHandler();
 };
 
 #endif

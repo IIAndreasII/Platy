@@ -2,8 +2,6 @@
 #define UTIL_H
 
 #include <string>
-#include <time.h>
-#include <algorithm>
 
 namespace Platy
 {
@@ -22,8 +20,8 @@ namespace Platy
 			/// <summary>
 			/// Safely deletes a pointer
 			/// </summary>
-			template<typename C>
-			static inline void SafeDelete(C*& aPtrToDelete)
+			template <typename C>
+			static void SafeDelete(C*& aPtrToDelete)
 			{
 				delete aPtrToDelete;
 				aPtrToDelete = nullptr;
@@ -31,16 +29,14 @@ namespace Platy
 
 			static void ToLowerCase(std::string& aString);
 
-			static int RandInt(const int min, const int max);
+			static int RandInt(int min, int max);
 
-			static float RandFloat(const float min, const float max);
+			static float RandFloat(float min, float max);
 
 			static void ClampDeg(float& anAngle);
 
-			template<typename T>
-			static inline T Clamp(const T min, const T max, T& value);
-		private:
-			Util();
+			template <typename T>
+			static T Clamp(T min, T max, T& value);
 		};
 	}
 }

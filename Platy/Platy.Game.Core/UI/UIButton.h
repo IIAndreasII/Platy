@@ -1,7 +1,6 @@
-#ifndef UIBUTTON_H
-#define UIBUTTON_H
+#ifndef UI_BUTTON_H
+#define UI_BUTTON_H
 
-#include <functional>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -17,25 +16,25 @@ constexpr unsigned DEFAULT_BUTTON_WIDTH = 100;
 constexpr unsigned DEFAULT_BUTTON_HEIGHT = 45;
 
 
-template<class C>
+template <class C>
 class UIButton : public Subscriber, public sf::Drawable
 {
 public:
 	UIButton();
-	UIButton(const char* aText, void(C::* aFunc)(), C* aClassPtr, const sf::Vector2f aPosition, const bool isActive = true);
+	UIButton(const char* aText, void (C::* aFunc)(), C* aClassPtr, sf::Vector2f aPosition, bool isActive = true);
 	~UIButton();
 
-	void ReceiveMessage(const Message& aMessage, const Message::Type& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
 
-	void SetActive(const bool aValue);
+	void SetActive(bool aValue);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 
 	bool myIsActive;
 
-	void(C::* myFunction)();
+	void (C::* myFunction)();
 	C* myClassPtr;
 	sf::Text myText;
 	sf::RectangleShape myRect;

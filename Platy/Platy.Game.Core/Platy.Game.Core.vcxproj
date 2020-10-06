@@ -155,35 +155,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Graphics\Particles\Cloud.cpp" />
     <ClCompile Include="Containers\AssetContainer.cpp" />
     <ClCompile Include="Events\KeyboardEventHandler.cpp" />
     <ClCompile Include="Events\MouseEventHandler.cpp" />
+    <ClCompile Include="Graphics\Particles\Explosion.cpp" />
     <ClCompile Include="Factories\ParticleEmitterFactory.cpp" />
+    <ClCompile Include="Graphics\Particles\Fountain.cpp" />
     <ClCompile Include="Graphics\Animator.cpp" />
-    <ClCompile Include="Graphics\ParticleEmitter.cpp" />
+    <ClCompile Include="Graphics\Particles\ParticleEmitter.cpp" />
     <ClCompile Include="Graphics\Spritesheet.cpp" />
     <ClCompile Include="Managers\ParticleManager.cpp" />
     <ClCompile Include="Postmaster\Message.cpp" />
     <ClCompile Include="Postmaster\PostMaster.cpp" />
     <ClCompile Include="Postmaster\Subscriber.cpp" />
+    <ClCompile Include="Graphics\Particles\Shower.cpp" />
     <ClCompile Include="UI\Menu.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Graphics\Particles\Cloud.h" />
     <ClInclude Include="Containers\AssetContainer.h" />
     <ClInclude Include="Events\KeyboardEventHandler.h" />
     <ClInclude Include="Events\MouseEventHandler.h" />
+    <ClInclude Include="Graphics\Particles\Explosion.h" />
     <ClInclude Include="Factories\ParticleEmitterFactory.h" />
+    <ClInclude Include="Graphics\Particles\Fountain.h" />
     <ClInclude Include="Graphics\Animator.h" />
     <ClInclude Include="Graphics\Colors.h" />
-    <ClInclude Include="Graphics\Enum.h" />
-    <ClInclude Include="Graphics\ParticleEmitter.h" />
+    <ClInclude Include="Graphics\Particles\Enum.h" />
+    <ClInclude Include="Graphics\Particles\ParticleEmitter.h" />
     <ClInclude Include="Graphics\Spritesheet.h" />
     <ClInclude Include="Managers\ParticleManager.h" />
     <ClInclude Include="Postmaster\Message.h" />
     <ClInclude Include="Postmaster\PostMaster.h" />
     <ClInclude Include="Postmaster\Subscriber.h" />
+    <ClInclude Include="Graphics\Particles\Shower.h" />
     <ClInclude Include="UI\Menu.h" />
     <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="Util\Util.h" />

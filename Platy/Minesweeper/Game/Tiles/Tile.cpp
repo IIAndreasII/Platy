@@ -7,20 +7,15 @@
 
 Tile::Tile(const sf::Vector2i aPos) :
 	myPos(aPos),
-	myHasMine(false),
-	myState(EState::Unchecked),
-	myCloseMineCount(0),
-	mySprite()
+	myHasMine(false)
 {
 	SetState(myState);
 	mySprite.setPosition(sf::Vector2f(aPos));
 }
 
-Tile::~Tile()
-{
-}
+Tile::~Tile() = default;
 
-const Tile::RevealInfo Tile::Reveal()
+Tile::RevealInfo Tile::Reveal()
 {
 	SetState(EState::Checked);
 	return RevealInfo(myHasMine, myCloseMineCount);
@@ -41,7 +36,7 @@ void Tile::ToggleState()
 	case EState::Flagged:
 		SetState(EState::Questioned);
 		break;
-	case Tile::EState::Questioned:
+	case EState::Questioned:
 		SetState(EState::Unchecked);
 		break;
 	default:
@@ -124,6 +119,6 @@ const bool& Tile::HasMine() const
 
 void Tile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	states.texture = NULL;
+	states.texture = nullptr;
 	target.draw(mySprite);
 }

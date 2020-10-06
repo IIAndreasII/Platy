@@ -1,38 +1,34 @@
 #include "Message.h"
 
 Message::Message() :
-	myBool(false),
 	myFloat(),
 	myInt(),
 	myWidth(),
 	myHeight(),
-	myPosition()
+	myBool(false)
 {
 }
 
-Message::Message(const sf::Vector2i& aPosition) : 
-	myBool(false),
+Message::Message(const sf::Vector2i& aPosition) :
+	myPosition(aPosition),
 	myFloat(),
 	myInt(),
 	myWidth(),
 	myHeight(),
-	myPosition(aPosition)
+	myBool(false)
 {
 }
 
 Message::Message(const sf::Vector2i& aPosition, const int aWidth, const int aHeight) :
-	myBool(false),
+	myPosition(aPosition),
 	myFloat(),
 	myInt(),
 	myWidth(aWidth),
 	myHeight(aHeight),
-	myPosition(aPosition)
+	myBool(false)
 {
 }
 
-Message::~Message()
-{
-}
 
 void Message::SetFloat(const float aValue)
 {
@@ -54,9 +50,9 @@ const sf::Vector2i& Message::GetPosition() const
 	return myPosition;
 }
 
-const sf::Vector2i Message::GetSize() const
+sf::Vector2i Message::GetSize() const
 {
-	return sf::Vector2i(myWidth, myHeight);
+	return {myWidth, myHeight};
 }
 
 const int& Message::GetInt() const

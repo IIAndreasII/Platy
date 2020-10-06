@@ -1,5 +1,5 @@
-#ifndef IOMANAGER_H
-#define IOMANAGER_H
+#ifndef IO_MANAGER_H
+#define IO_MANAGER_H
 
 #include <string>
 #include <fstream>
@@ -24,14 +24,12 @@ namespace Platy
 				static void Dispose();
 
 				/// <summary>
-				/// Writes line to current filestream
+				/// Writes line to current file stream
 				/// </summary>
 				/// <param name="line">Line to write</param>
-				static void WriteToFile(const std::string line);
+				static void WriteToFile(const std::string& line);
 
 			private:
-				IOManager();
-
 				static std::string myFileName;
 				static std::ofstream myFileStream;
 			};

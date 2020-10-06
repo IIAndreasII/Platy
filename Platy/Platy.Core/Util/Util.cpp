@@ -1,26 +1,27 @@
 #include "Util.h"
 
-Platy::Core::Util::~Util()
-{
-}
+#include <algorithm>
+#include <ctime>
+
+Platy::Core::Util::~Util() = default;
 
 std::string Platy::Core::Util::GetTime()
 {
-	time_t rawtime;
-	struct tm timeinfo;
+	time_t tempRawTime;
+	struct tm tempTimeInfo;
 	char buffer[44];
 
-	time(&rawtime);
-	localtime_s(&timeinfo, &rawtime);
+	time(&tempRawTime);
+	localtime_s(&tempTimeInfo, &tempRawTime);
 
-	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H-%M-%S", &timeinfo);
+	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H-%M-%S", &tempTimeInfo);
 	std::string str(buffer);
 	return str;
 }
 
 void Platy::Core::Util::ToLowerCase(std::string& aString)
 {
-	std::transform(aString.begin(), aString.end(), aString.begin(), [](unsigned char c) {return std::tolower(c); });
+	std::transform(aString.begin(), aString.end(), aString.begin(), [](unsigned char c) { return std::tolower(c); });
 }
 
 int Platy::Core::Util::RandInt(const int min, const int max)
@@ -30,7 +31,7 @@ int Platy::Core::Util::RandInt(const int min, const int max)
 
 float Platy::Core::Util::RandFloat(const float min, const float max)
 {
-	return min + static_cast<float> (rand()) / (static_cast<float>(RAND_MAX / (max - min)));
+	return min + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max - min)));
 }
 
 void Platy::Core::Util::ClampDeg(float& anAngle)
@@ -45,15 +46,8 @@ void Platy::Core::Util::ClampDeg(float& anAngle)
 	}
 }
 
-//template<typename C>
-//void Platy::Core::Util::SafeDelete(C*& aPtrToDelete)
-//{
-//	delete aPtrToDelete;
-//	aPtrToDelete = nullptr;
-//}
-
-template<typename T>
-inline T Platy::Core::Util::Clamp(const T min, const T max, T& value)
+template <typename T>
+T Platy::Core::Util::Clamp(const T min, const T max, T& value)
 {
 	if (value < min)
 	{
