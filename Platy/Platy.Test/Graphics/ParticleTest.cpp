@@ -1,9 +1,13 @@
 #include "ParticleTest.h"
+
+#include "SFML/Graphics/Color.hpp"
+#include "Graphics/Colors.h"
+#include "Graphics/Factories/ParticleEmitterFactory.h"
 #include "Platy.Core/Util/Util.h"
-#include "Platy.Game.Core/Factories/ParticleEmitterFactory.h"
 #include "Platy.Game.Core/Graphics/Particles/Enum.h"
 
 using namespace Platy::Core;
+using namespace Platy::Game::Graphics;
 
 ParticleTest::ParticleTest()
 	:
@@ -11,7 +15,8 @@ ParticleTest::ParticleTest()
 	myExplosionInterval(1)
 
 {
-	ParticleEmitterFactory::CreateCloud(10, sf::Vector2f(90, 50), C_GREY_LIGHT, 3000, 5, 2.5f, 720);
+	ParticleEmitterFactory::CreateCloud(10, sf::Vector2f(90, 50), C_GREY_LIGHT, 3000, 5, 2.5f,
+	                                    720);
 	ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(100, 50), C_RED, 3000, 200, 2, 700,
 	                                     true,
 	                                     90, 9.82f * 2);
@@ -20,9 +25,9 @@ ParticleTest::ParticleTest()
 	                                       9.82f * 2);
 }
 
-void ParticleTest::Update(const float& deltaTime)
+void ParticleTest::Update(const float& someDeltaTime)
 {
-	myExplosionTimer -= deltaTime;
+	myExplosionTimer -= someDeltaTime;
 	if (myExplosionTimer <= 0)
 	{
 		ParticleEmitterFactory::CreateExplosion(

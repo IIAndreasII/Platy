@@ -1,5 +1,6 @@
 #include "Log.h"
 
+#include <fstream>
 #include <iostream>
 
 #include "IO/IOManager.h"
@@ -16,107 +17,141 @@
 
 namespace Platy
 {
-    namespace PlatyLog
-    {
-        HANDLE Log::myConsoleHandle;
+	HANDLE Log::myConsoleHandle;
 
-        Log::~Log()
-        {
-        }
+	void Log::Init()
+	{
+		myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+		IOManager::Init();
+	}
 
-        void Log::Init()
-        {
-            myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-            IO::IOManager::Init();
-        }
+	void Log::Dispose()
+	{
+		IOManager::Dispose();
+	}
 
-        void Log::Dispose()
-        {
-            IO::IOManager::Dispose();
-        }
+	void Log::Debug(const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::DEBUG, msg);
+	}
 
-        void Log::Debug(const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::DEBUG, msg);
-        }
+	void Log::Warning(const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::WARNING, msg);
+	}
 
-        void Log::Warning(const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::WARNING, msg);
-        }
+	void Log::Warning(const std::exception& e, const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::WARNING, msg + ": " + e.what());
+	}
 
-        void Log::Warning(const std::exception& e, const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::WARNING, msg + ": " + e.what());
-        }
+	void Log::Critical(const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::CRITICAL, msg);
+	}
 
-        void Log::Critical(const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::CRITICAL, msg);
-        }
+	void Log::Critical(const std::exception& e, const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::CRITICAL, msg + ": " + e.what());
+	}
 
-        void Log::Critical(const std::exception& e, const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::CRITICAL, msg + ": " + e.what());
-        }
+	void Log::Information(const std::string& msg)
+	{
+		WriteLogMsg(ELogHeader::INFORMATION, msg);
+	}
 
-        void Log::Information(const std::string& msg)
-        {
-            WriteLogMsg(LogHeader::INFORMATION, msg);
-        }
+	unsigned short Log::HeaderToColour(const ELogHeader& head)
+	{
+		switch (head)
+		{
+		case ELogHeader::DEBUG:
+			return CONSOLE_GREY;
+		case ELogHeader::INFORMATION:
+			return CONSOLE_GREEN;
+		case ELogHeader::WARNING:
+			return CONSOLE_YELLOW;
+		case ELogHeader::CRITICAL:
+			return CONSOLE_RED;
+		default:
+			return CONSOLE_WHITE;
+		}
+	}
 
-        const int Log::HeaderToColour(const LogHeader& head)
-        {
-            switch (head)
-            {
-            case LogHeader::DEBUG:
-                return CONSOLE_GREY;
-            case LogHeader::INFORMATION:
-                return CONSOLE_GREEN;
-            case LogHeader::WARNING:
-                return CONSOLE_YELLOW;
-            case LogHeader::CRITICAL:
-                return CONSOLE_RED;
-            default:
-                return CONSOLE_WHITE;
-            }
-        }
+	std::string Log::HeaderToString(const ELogHeader& head)
+	{
+		switch (head)
+		{
+		case ELogHeader::DEBUG:
+			return "DBG ";
+		case ELogHeader::INFORMATION:
+			return "INFO";
+		case ELogHeader::WARNING:
+			return "WARN";
+		case ELogHeader::CRITICAL:
+			return "CRIT";
+		default:
+			return "UNDEFINED";
+		}
+	}
 
-        const std::string Log::HeaderToString(const LogHeader& head)
-        {
-            switch (head)
-            {
-            case LogHeader::DEBUG:
-                return "DBG ";
-            case LogHeader::INFORMATION:
-                return "INFO";
-            case LogHeader::WARNING:
-                return "WARN";
-            case LogHeader::CRITICAL:
-                return "CRIT";
-            default:
-                return "UNDEFINED";
-            }
-        }
+	void Log::WriteInColour(const ELogHeader& head, const std::string& str)
+	{
+		SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
+		std::cout << str;
+		SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
+	}
 
-        void Log::WriteInColour(const LogHeader& head, const std::string& str)
-        {
-            SetConsoleTextAttribute(myConsoleHandle, HeaderToColour(head));
-            std::cout << str;
-            SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
-        }
+	void Log::WriteLogMsg(const ELogHeader head, const std::string& msg)
+	{
+		const std::string time = Core::Util::GetTime();
+		const std::string headString = HeaderToString(head);
+		const std::string line = "[" + time + "] [" + headString + "] " + msg;
 
-        void Log::WriteLogMsg(const LogHeader head, const std::string& msg)
-        {
-            std::string time = Core::Util::GetTime();
-            std::string headString = HeaderToString(head);
-            std::string line = "[" + time + "] [" + headString + "] " + msg;
+		IOManager::WriteToFile(line);
 
-            PlatyLog::IO::IOManager::WriteToFile(line);
+		std::cout << "[" << time << "] [";
+		WriteInColour(head, headString);
+		std::cout << "] " << msg << std::endl;
+	}
 
-            std::cout << "[" << time << "] [";
-            WriteInColour(head, headString);
-            std::cout << "] " << msg << std::endl;
-        }
-    }
+	std::string Log::IOManager::myFileName;
+	std::ofstream Log::IOManager::myFileStream;
+
+	Log::IOManager::~IOManager()
+	{
+		if (myFileStream && myFileStream.is_open())
+		{
+			myFileStream.close();
+		}
+	}
+
+	void Log::IOManager::Init()
+	{
+		if (CreateDirectoryA("Logs", nullptr) != ERROR_PATH_NOT_FOUND)
+		{
+			myFileName = "Logs\\" + Core::Util::GetTime() + ".txt";
+			myFileStream = std::ofstream(myFileName);
+		}
+		else
+		{
+			std::cout << "Could not create directory. Invalid path" << std::endl;
+		}
+	}
+
+	void Log::IOManager::Dispose()
+	{
+		if (myFileStream && myFileStream.is_open())
+		{
+			myFileStream.close();
+			std::cout << "\nLog saved to: " << myFileName << std::endl;
+		}
+	}
+
+	void Log::IOManager::WriteToFile(const std::string& line)
+	{
+		if (myFileStream.is_open())
+		{
+			myFileStream << line << std::endl;
+		}
+	}
 }

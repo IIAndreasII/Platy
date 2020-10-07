@@ -3,29 +3,36 @@
 
 #include "ParticleEmitter.h"
 
-class Cloud final : public ParticleEmitter
+namespace Platy
 {
-public:
-	Cloud(
-		const float& aParticleMaxSize,
-		const sf::Vector2f& aPosition,
-		const sf::Color& aColor,
-		const size_t& aParticleCount,
-		const float& anIntensity,
-		const float& aLifeTime,
-		const float& aLength,
-		const float& someGravity,
-		const bool& shouldFade);
+	namespace Game
+	{
+		namespace Graphics
+		{
+			class Cloud final : public ParticleEmitter
+			{
+			public:
+				Cloud(
+					const float& aParticleMaxSize,
+					const sf::Vector2f& aPosition,
+					const sf::Color& aColor,
+					const size_t& aParticleCount,
+					const float& anIntensity,
+					const float& aLifeTime,
+					const float& aLength,
+					const float& someGravity,
+					const bool& shouldFade);
 
-	~Cloud() override;
-	
-	void Update(const float& deltaTime) override;
-protected:
-	void ResetParticle(const size_t& i) override;
+				~Cloud() override;
 
-private:
+				void Update(const float& someDeltaTime) override;
+			protected:
+				void ResetParticle(const size_t& anIndex) override;
 
-	sf::Vector2f GetCloudPosition() const;
-};
-
+			private:
+				sf::Vector2f GetCloudPosition() const;
+			};
+		}
+	}
+}
 #endif

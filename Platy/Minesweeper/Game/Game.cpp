@@ -4,10 +4,14 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+
+#include "Graphics/Managers/ParticleManager.h"
 #include "Platy.Core/Util/Util.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
-#include "Platy.Game.Core/Managers/ParticleManager.h"
 #include "Platy.Game.Core/Postmaster/Message.h"
+
+using namespace Platy::Game;
+using namespace Graphics;
 
 Game::Game() :
 	myState(EState::Playing),

@@ -3,51 +3,60 @@
 #include "Platy.Core/Util/Util.h"
 #include "Util/Util.h"
 
-Explosion::Explosion(
-	const float& aParticleMaxSize,
-	const sf::Vector2f& aPosition,
-	const sf::Color& aColor,
-	const size_t& aParticleCount,
-	const float& anIntensity,
-	const float& aLifeTime,
-	const float& someGravity,
-	const bool& shouldFade)
-	: ParticleEmitter(
-		aParticleMaxSize,
-		EOrientation(),
-		aPosition,
-		aColor,
-		aParticleCount,
-		anIntensity,
-		aLifeTime,
-		0,
-		0,
-		someGravity,
-		INTENSITY_MODULATION_DIVIDER_EXPLOSION,
-		shouldFade,
-		true)
+namespace Platy
 {
-	for (size_t i = 0; i < myParticles.size(); i++)
+	namespace Game
 	{
-		ResetParticle(i);
+		namespace Graphics
+		{
+			Explosion::Explosion(
+				const float& aParticleMaxSize,
+				const sf::Vector2f& aPosition,
+				const sf::Color& aColor,
+				const size_t& aParticleCount,
+				const float& anIntensity,
+				const float& aLifeTime,
+				const float& someGravity,
+				const bool& shouldFade)
+				: ParticleEmitter(
+					aParticleMaxSize,
+					EOrientation(),
+					aPosition,
+					aColor,
+					aParticleCount,
+					anIntensity,
+					aLifeTime,
+					0,
+					0,
+					someGravity,
+					INTENSITY_MODULATION_DIVIDER_EXPLOSION,
+					shouldFade,
+					true)
+			{
+				for (size_t i = 0; i < myParticles.size(); i++)
+				{
+					ResetParticle(i);
+				}
+			}
+
+			Explosion::~Explosion() = default;
+
+			void Explosion::Update(const float& someDeltaTime)
+			{
+				myLifeTime -= someDeltaTime;
+				if (myLifeTime <= 0)
+				{
+					return;
+				}
+				ParticleEmitter::Update(someDeltaTime);
+			}
+
+			void Explosion::ResetParticle(const size_t& anIndex)
+			{
+				myParticles[anIndex].velocity = Util::DegToVec2(Core::Util::RandFloat(0, 360));
+				myParticleVertices[anIndex * 4].position = myPosition;
+				ParticleEmitter::ResetParticle(anIndex);
+			}
+		}
 	}
-}
-
-Explosion::~Explosion() = default;
-
-void Explosion::Update(const float& deltaTime)
-{
-	myLifeTime -= deltaTime;
-	if (myLifeTime <= 0)
-	{
-		return;
-	}
-	ParticleEmitter::Update(deltaTime);
-}
-
-void Explosion::ResetParticle(const size_t& i)
-{
-	myParticles[i].velocity = Platy::Game::Core::Util::DegToVec2(Platy::Core::Util::RandFloat(0, 360));
-	myParticleVertices[i * 4].position = myPosition;
-	ParticleEmitter::ResetParticle(i);
 }

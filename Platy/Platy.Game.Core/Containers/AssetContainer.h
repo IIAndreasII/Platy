@@ -2,37 +2,43 @@
 #define ASSET_CONTAINER_H
 
 #include <vector>
-#include "Graphics/Spritesheet.h"
-#include "SFML/Graphics/Font.hpp"
+#include <Graphics/Spritesheet.h>
+#include <SFML/Graphics/Font.hpp>
 
-typedef SpriteSheet* SpriteSheetPtr;
-
-class AssetContainer
+namespace Platy
 {
-public:
-	~AssetContainer();
+	namespace Game
+	{
+		typedef Graphics::SpriteSheet* SpriteSheetPtr;
 
-	static void Init();
+		class AssetContainer
+		{
+		public:
+			AssetContainer() = delete;
+			~AssetContainer();
 
-	static sf::Texture* GetTexturePtr(std::string name);
-	static SpriteSheetPtr GetSpriteSheetPtr(std::string name);
-	static sf::Font* GetFontPtr(std::string name);
+			static void Init();
 
-private:
+			static sf::Texture* GetTexturePtr(std::string name);
+			static SpriteSheetPtr GetSpriteSheetPtr(std::string name);
+			static sf::Font* GetFontPtr(std::string name);
 
-	static void LoadTextures();
-	static void LoadAndParseSpriteSheets();
-	static void LoadFonts();
+		private:
 
-	static std::vector<sf::Texture*> myTexturePointers;
-	static std::vector<SpriteSheetPtr> mySpriteSheetPointers;
-	static std::vector<sf::Font*> myFontPointers;
+			static void LoadTextures();
+			static void LoadAndParseSpriteSheets();
+			static void LoadFonts();
 
-	static std::vector<std::string> myTextureNames;
-	static std::vector<std::string> mySpriteSheetNames;
-	static std::vector<std::string> myFontNames;
+			static std::vector<sf::Texture*> myTexturePointers;
+			static std::vector<SpriteSheetPtr> mySpriteSheetPointers;
+			static std::vector<sf::Font*> myFontPointers;
 
-	static const std::string& TrimFileName(std::string& path);
-};
+			static std::vector<std::string> myTextureNames;
+			static std::vector<std::string> mySpriteSheetNames;
+			static std::vector<std::string> myFontNames;
 
+			static const std::string& TrimFileName(std::string& path);
+		};
+	}
+}
 #endif

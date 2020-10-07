@@ -12,10 +12,7 @@
     <ClCompile Include="Postmaster\Subscriber.cpp" />
     <ClCompile Include="Graphics\Animator.cpp" />
     <ClCompile Include="Graphics\Spritesheet.cpp" />
-    <ClCompile Include="Factories\ParticleEmitterFactory.cpp" />
-    <ClCompile Include="Managers\ParticleManager.cpp" />
     <ClCompile Include="Containers\AssetContainer.cpp" />
-    <ClCompile Include="UI\Menu.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="Events\KeyboardEventHandler.cpp" />
     <ClCompile Include="Events\MouseEventHandler.cpp" />
@@ -25,7 +22,9 @@
     <ClCompile Include="Graphics\Particles\Explosion.cpp" />
     <ClCompile Include="Graphics\Particles\Shower.cpp" />
     <ClCompile Include="Graphics\Particles\ParticleEmitter.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Graphics\Managers\ParticleManager.cpp" />
+    <ClCompile Include="Graphics\Factories\ParticleEmitterFactory.cpp" />
+    <ClCompile Include="UI\Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Postmaster\Message.h" />
@@ -33,10 +32,7 @@
     <ClInclude Include="Postmaster\Subscriber.h" />
     <ClInclude Include="Graphics\Animator.h" />
     <ClInclude Include="Graphics\Spritesheet.h" />
-    <ClInclude Include="Factories\ParticleEmitterFactory.h" />
-    <ClInclude Include="Managers\ParticleManager.h" />
     <ClInclude Include="Containers\AssetContainer.h" />
-    <ClInclude Include="UI\Menu.h" />
     <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="Events\KeyboardEventHandler.h" />
     <ClInclude Include="Events\MouseEventHandler.h" />
@@ -48,6 +44,8 @@
     <ClInclude Include="Graphics\Particles\Shower.h" />
     <ClInclude Include="Graphics\Particles\ParticleEmitter.h" />
     <ClInclude Include="Graphics\Particles\Enum.h" />
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="Graphics\Managers\ParticleManager.h" />
+    <ClInclude Include="Graphics\Factories\ParticleEmitterFactory.h" />
+    <ClInclude Include="UI\Button.h" />
   </ItemGroup>
 </Project>

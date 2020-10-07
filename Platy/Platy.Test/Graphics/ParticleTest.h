@@ -9,7 +9,7 @@ public:
 	ParticleTest();
 	~ParticleTest() = default;
 
-	void Update(const float& deltaTime);
+	void Update(const float& someDeltaTime);
 
 private:
 

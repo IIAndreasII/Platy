@@ -3,16 +3,21 @@
 
 #include "SFML/Window/Event.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
-//
+
 // TODO: Add message codes for mouse events
-//
 
-class MouseEventHandler
+namespace Platy
 {
-public:
-	~MouseEventHandler() = default;
+	namespace Game
+	{
+		class MouseEventHandler
+		{
+		public:
+			MouseEventHandler() = delete;
+			~MouseEventHandler() = default;
 
-	static void HandleEvent(const sf::Event& anEvent, const sf::RenderWindow& aWindow);
-};
-
+			static void HandleEvent(const sf::Event& anEvent, const sf::RenderWindow& aWindow);
+		};
+	}
+}
 #endif

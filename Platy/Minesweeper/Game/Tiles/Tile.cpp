@@ -5,6 +5,8 @@
 
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 
+using namespace Platy::Game;
+
 Tile::Tile(const sf::Vector2i aPos) :
 	myPos(aPos),
 	myHasMine(false)

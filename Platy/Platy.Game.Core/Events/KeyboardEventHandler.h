@@ -3,16 +3,20 @@
 
 #include "SFML/Window/Event.hpp"
 
-//
 // TODO: Add message codes for each key I want in the game, i.e w,a,s d
-//
 
-class KeyboardEventHandler
+namespace Platy
 {
-public:
-	~KeyboardEventHandler() = default;
+	namespace Game
+	{
+		class KeyboardEventHandler
+		{
+		public:
+			KeyboardEventHandler() = delete;
+			~KeyboardEventHandler() = default;
 
-	static void HandleEvent(const sf::Event& anEvent);
-};
-
+			static void HandleEvent(const sf::Event& anEvent);
+		};
+	}
+}
 #endif

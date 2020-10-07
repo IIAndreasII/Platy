@@ -1,4 +1,6 @@
 #include "MineField.h"
+
+#include "Graphics/Colors.h"
 #include "Tiles/Tile.h"
 
 #include "SFML/Graphics/RenderTarget.hpp"
@@ -6,8 +8,10 @@
 
 #include "Platy.Core/Util/Util.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
-#include "Platy.Game.Core/Factories/ParticleEmitterFactory.h"
+#include "Platy.Game.Core/Graphics/Factories/ParticleEmitterFactory.h"
 
+using namespace Platy::Game;
+using namespace Graphics;
 
 MineField::MineField(const Size aSize, const sf::Vector2i offset) :
 	myOffset(offset),

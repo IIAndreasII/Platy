@@ -7,25 +7,28 @@
 #include "Events/KeyboardEventHandler.h"
 #include "Events/MouseEventHandler.h"
 #include "Graphics/ParticleTest.h"
-#include "Managers/ParticleManager.h"
 #include "CoreTests/TestObservable.h"
 #include "CoreTests/TestObserver.h"
+#include "Graphics/Managers/ParticleManager.h"
 
-#define TEST_CORE 1
-#define TEST_GAME_CORE 0
-#define TEST_LOG 0
+#define TEST_CORE 0
+#define TEST_GAME_CORE 1
+#define TEST_LOG 1
+
+using namespace Platy::Game;
+using namespace Graphics;
 
 int main()
 {
 #if TEST_LOG || TEST_GAME_CORE
-	Platy::PlatyLog::Log::Init();
+	Platy::Log::Init();
 #endif
 #if TEST_LOG
-	Platy::PlatyLog::Log::Debug("Test msg");
-	Platy::PlatyLog::Log::Warning("Test msg");
-	Platy::PlatyLog::Log::Critical("Test msg");
-	Platy::PlatyLog::Log::Critical(std::exception("Test exception"), "Test exception was thrown!");
-	Platy::PlatyLog::Log::Information("Test msg");
+	Platy::Log::Debug("Test msg");
+	Platy::Log::Warning("Test msg");
+	Platy::Log::Critical("Test msg");
+	Platy::Log::Critical(std::exception("Test exception"), "Test exception was thrown!");
+	Platy::Log::Information("Test msg");
 #endif
 
 
@@ -60,7 +63,7 @@ int main()
 	sf::Clock tempClock;
 	float deltaTime;
 	// Init singletons
-	Platy::PlatyLog::Log::Init();
+	Platy::Log::Init();
 	PostMaster::Init();
 	AssetContainer::Init();
 	ParticleManager::Init();
@@ -75,7 +78,7 @@ int main()
 			switch (tempEvent.type)
 			{
 			case sf::Event::Closed:
-				Platy::PlatyLog::Log::Dispose();
+				Platy::Log::Dispose();
 				window.close();
 				break;
 
@@ -104,7 +107,7 @@ int main()
 		deltaTime = tempClock.restart().asSeconds();
 
 		//////////////////////////////////////////////////////////////////
-	// Update logic
+		// Update logic
 		//////////////////////////////////////////////////////////////////
 
 		ParticleManager::Update(deltaTime);
@@ -112,7 +115,7 @@ int main()
 		tempParticleTest.Update(deltaTime);
 
 		//////////////////////////////////////////////////////////////////
-	// Draw logic
+		// Draw logic
 		//////////////////////////////////////////////////////////////////
 		window.clear();
 

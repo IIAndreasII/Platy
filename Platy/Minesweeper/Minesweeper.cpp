@@ -3,15 +3,17 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Platy.Log/Log.h"
-#include "Platy.Game.Core/Postmaster/PostMaster.h"
-#include "Platy.Game.Core/Events/MouseEventHandler.h"
-#include "Platy.Game.Core/Managers/ParticleManager.h"
+#include "Graphics/Managers/ParticleManager.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Events/KeyboardEventHandler.h"
+#include "Platy.Game.Core/Events/MouseEventHandler.h"
+#include "Platy.Game.Core/Postmaster/PostMaster.h"
+#include "Platy.Log/Log.h"
 
 constexpr const char* GAME_NAME = "Minesweeper";
 
+using namespace Platy::Game;
+using namespace Graphics;
 
 int main()
 {
@@ -29,7 +31,7 @@ int main()
 	float deltaTime;
 
 	// Init singletons
-	Platy::PlatyLog::Log::Init();
+	Platy::Log::Init();
 
 	PostMaster::Init();
 
@@ -49,7 +51,7 @@ int main()
 			switch (tempEvent.type)
 			{
 			case sf::Event::Closed:
-				Platy::PlatyLog::Log::Dispose();
+				Platy::Log::Dispose();
 				window.close();
 				break;
 

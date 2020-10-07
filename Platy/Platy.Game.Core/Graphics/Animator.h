@@ -1,44 +1,52 @@
-#ifndef ANIMATOR2D
-#define ANIMATOR2D
+#ifndef ANIMATOR_2D_H
+#define ANIMATOR_2D_H
 
 #include "Spritesheet.h"
 #include "SFML/System/Vector2.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include "SFML/Graphics/Drawable.hpp"
 
-
-constexpr float DEFAULT_ANIM_SCALE = 4;
-
-class Animator : public sf::Drawable
+namespace Platy
 {
-public:
+	namespace Game
+	{
+		namespace Graphics
+		{
+			constexpr float DEFAULT_ANIM_SCALE = 4;
 
-	Animator(const SpriteSheet& aSpriteSheet, float aScale = DEFAULT_ANIM_SCALE, bool shouldLoop = true);
-	~Animator() override;
+			class Animator final : public sf::Drawable
+			{
+			public:
 
-	void Update(const float& deltaTime, const sf::Vector2f& aPosition);
+				explicit Animator(const SpriteSheet& aSpriteSheet, float aScale = DEFAULT_ANIM_SCALE,
+				                  bool shouldLoop = true);
+				~Animator() override;
 
-	void SetAnim(const SpriteSheet& aSpriteSheet);
+				void Update(const float& someDeltaTime, const sf::Vector2f& aPosition);
 
-	void Flip();
-	void SetFacingDirection(int aDir);
-	void TogglePlaying();
-	void ToggleLooping();
+				void SetAnim(const SpriteSheet& aSpriteSheet);
 
-	const sf::Sprite& GetCurrentFrame() const;
+				void Flip();
+				void SetFacingDirection(int aDir);
+				void TogglePlaying();
+				void ToggleLooping();
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+				const sf::Sprite& GetCurrentFrame() const;
 
-private:
+				void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	SpriteSheet mySpriteSheet;
-	sf::Sprite mySprite;
+			private:
 
-	bool myIsPlaying;
-	bool myIsLooping;
+				SpriteSheet mySpriteSheet;
+				sf::Sprite mySprite;
 
-	float myCurrentFrame;
-	float myScale;
-};
+				bool myIsPlaying;
+				bool myIsLooping;
 
+				float myCurrentFrame;
+				float myScale;
+			};
+		}
+	}
+}
 #endif
