@@ -4,29 +4,34 @@
 #include <vector>
 #include "Message.h"
 
-class Message;
-
-class Subscriber
+namespace Platy
 {
-public:
-	Subscriber();
-	virtual ~Subscriber();
+	namespace Game
+	{
+		class Message;
 
-	void SendMessage(const Message& aMessage, Message::EType aMessageType) const;
+		class Subscriber
+		{
+		public:
+			Subscriber();
+			virtual ~Subscriber();
 
-	void SendMessage(Message::EType aMessageType) const;
+			void SendMessage(const Message& aMessage, Message::EType aMessageType) const;
 
-	virtual void ReceiveMessage(const Message::EType& aMessageType) = 0;
-	virtual void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) = 0;
+			void SendMessage(Message::EType aMessageType) const;
 
-	void Subscribe(Message::EType aMessageType);
-	void RemoveAllSubscriptions();
+			virtual void ReceiveMessage(const Message::EType& aMessageType) = 0;
+			virtual void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) = 0;
 
-	const std::vector<Message::EType>& GetSubscriptions() const;
+			void Subscribe(Message::EType aMessageType);
+			void RemoveAllSubscriptions();
 
-protected:
+			const std::vector<Message::EType>& GetSubscriptions() const;
 
-	std::vector<Message::EType> mySubscriptions;
-};
+		protected:
 
+			std::vector<Message::EType> mySubscriptions;
+		};
+	}
+}
 #endif

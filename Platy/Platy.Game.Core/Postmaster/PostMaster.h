@@ -4,31 +4,36 @@
 #include <vector>
 #include "Message.h"
 
-class Subscriber;
-
-typedef Subscriber* SubPtr;
-
-class PostMaster
+namespace Platy
 {
-public:
-	~PostMaster();
+	namespace Game
+	{
+		class Subscriber;
 
-	static void Init();
+		typedef Subscriber* SubPtr;
 
-	static void Subscribe(SubPtr aSubPtr, Message::EType aMessageType);
+		class PostMaster
+		{
+		public:
+			~PostMaster();
 
-	static void Unsubscribe(SubPtr aSubPtr, Message::EType aMessageType);
+			static void Init();
 
-	static void SendMessage(const Message& aMessage, const Message::EType& aMessageType);
+			static void Subscribe(SubPtr aSubPtr, Message::EType aMessageType);
 
-	static void SendMessage(Message::EType aMessageType);
+			static void Unsubscribe(SubPtr aSubPtr, Message::EType aMessageType);
 
-	static std::vector<SubPtr>& GetSubscribers(Message::EType aMessageType);
+			static void SendMessage(const Message& aMessage, const Message::EType& aMessageType);
 
-private:
-	PostMaster();
+			static void SendMessage(Message::EType aMessageType);
 
-	static std::vector<std::vector<SubPtr>> mySubscribers;
-};
+			static std::vector<SubPtr>& GetSubscribers(Message::EType aMessageType);
 
+		private:
+			PostMaster();
+
+			static std::vector<std::vector<SubPtr>> mySubscribers;
+		};
+	}
+}
 #endif

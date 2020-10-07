@@ -23,25 +23,27 @@ constexpr uint8_t MINES_HARD = 99;
 class Tile;
 typedef Tile* TilePtr;
 
-class MineField : public sf::Drawable, public Subscriber
+using namespace Platy::Game;
+
+class MineField final : public sf::Drawable, public Subscriber
 {
 public:
-	enum class Size
+	enum class ESize
 	{
-		Easy,
-		Intermediate,
-		Hard
+		EASY,
+		INTERMEDIATE,
+		HARD
 	};
 
 	enum class EState
 	{
-		Sweeping,
-		GameOver,
-		Victory
+		SWEEPING,
+		GAME_OVER,
+		VICTORY
 	};
 
-	MineField(Size aSize, sf::Vector2i offset = sf::Vector2i(16, 16));
-	~MineField();
+	explicit MineField(ESize aSize, sf::Vector2i offset = sf::Vector2i(16, 16));
+	~MineField() override;
 
 	///////////////////////////////
 	// GET
@@ -69,7 +71,7 @@ private:
 
 	std::vector<TilePtr> myMinePointers;
 
-	Size mySize;
+	//ESize mySize;
 	EState myState;
 
 	uint8_t myNbrCols;
