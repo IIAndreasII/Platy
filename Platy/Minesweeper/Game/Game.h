@@ -38,7 +38,7 @@ private:
 	sf::Text myMineCounterText;
 	sf::Text myTimeCounterText;
 
-	MineField::Size myChosenDifficulty = MineField::Size::Hard;
+	MineField::ESize myChosenDifficulty = MineField::ESize::HARD;
 
 	MineFieldPtr myActiveMineField = nullptr;
 

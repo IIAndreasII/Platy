@@ -13,10 +13,10 @@
 using namespace Platy::Game;
 using namespace Graphics;
 
-MineField::MineField(const Size aSize, const sf::Vector2i offset) :
+MineField::MineField(const ESize aSize, const sf::Vector2i offset) :
 	myOffset(offset),
 	mySize(aSize),
-	myState(EState::Sweeping),
+	myState(EState::SWEEPING),
 	myNbrCols(),
 	myNbrRows(),
 	myNbrMines(),
@@ -31,15 +31,15 @@ MineField::MineField(const Size aSize, const sf::Vector2i offset) :
 	myFrame.setPosition(sf::Vector2f(offset - sf::Vector2i(DEFAULT_FRAME_THICKNESS, DEFAULT_FRAME_THICKNESS)));
 	switch (aSize)
 	{
-	case Size::Easy:
+	case ESize::EASY:
 		myFrame.setTexture(*AssetContainer::GetTexturePtr("frame_easy"));
 		GenerateField(COLS_EASY, ROWS_EASY, MINES_EASY);
 		break;
-	case Size::Intermediate:
+	case ESize::INTERMEDIATE:
 		myFrame.setTexture(*AssetContainer::GetTexturePtr("frame_intermediate"));
 		GenerateField(COLS_INTERMEDIATE, ROWS_INTERMEDIATE, MINES_INTERMEDIATE);
 		break;
-	case Size::Hard:
+	case ESize::HARD:
 		myFrame.setTexture(*AssetContainer::GetTexturePtr("frame_hard"));
 		GenerateField(COLS_HARD, ROWS_HARD, MINES_HARD);
 		break;
@@ -71,7 +71,7 @@ void MineField::ReceiveMessage(const Message::EType& aMessageType)
 
 void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType)
 {
-	if (myState != EState::Sweeping)
+	if (myState != EState::SWEEPING)
 	{
 		return;
 	}
@@ -151,7 +151,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 						}
 					}
 				}
-				myState = EState::Victory;
+				myState = EState::VICTORY;
 				SendMessage(Message::EType::VICTORY);
 			}
 			break;
@@ -175,7 +175,7 @@ void MineField::Update(const float& deltaTime)
 {
 	switch (myState)
 	{
-	case EState::GameOver:
+	case EState::GAME_OVER:
 		myExplosionTimer -= deltaTime;
 		if (myExplosionTimer <= 0 && !myMinePointers.empty())
 		{
@@ -194,8 +194,8 @@ void MineField::Update(const float& deltaTime)
 			                                           9.82f * 2);
 		}
 		break;
-	case EState::Victory:
-	case EState::Sweeping:
+	case EState::VICTORY:
+	case EState::SWEEPING:
 		break;
 	default:
 		myElapsedTime += deltaTime;
@@ -297,7 +297,7 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 					myMinePointers.erase(myMinePointers.begin() + i - 1);
 				}
 			}
-			myState = EState::GameOver;
+			myState = EState::GAME_OVER;
 			SendMessage(Message::EType::GAME_OVER);
 		}
 		else if (info.closeMineCount == 0)

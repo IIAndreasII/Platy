@@ -96,17 +96,17 @@ void Game::ResetMineField()
 	sf::Vector2i offset;
 	switch (myChosenDifficulty)
 	{
-	case MineField::Size::Easy:
+	case MineField::ESize::EASY:
 		offset = sf::Vector2i(
 			DEFAULT_WINDOW_WIDTH / 2 - static_cast<int>(static_cast<float>(COLS_EASY) / 2) * 32,
 			DEFAULT_WINDOW_HEIGHT / 2 - static_cast<int>(static_cast<float>(ROWS_EASY) / 2) * 32);
 		break;
-	case MineField::Size::Intermediate:
+	case MineField::ESize::INTERMEDIATE:
 		offset = sf::Vector2i(
 			DEFAULT_WINDOW_WIDTH / 2 - static_cast<int>(static_cast<float>(COLS_INTERMEDIATE) / 2) * 32,
 			DEFAULT_WINDOW_HEIGHT / 2 - static_cast<int>(static_cast<float>(ROWS_INTERMEDIATE) / 2) * 32);
 		break;
-	case MineField::Size::Hard:
+	case MineField::ESize::HARD:
 		offset = sf::Vector2i(
 			DEFAULT_WINDOW_WIDTH / 2 - static_cast<int>(static_cast<float>(COLS_HARD) / 2) * 32,
 			DEFAULT_WINDOW_HEIGHT / 2 - static_cast<int>(static_cast<float>(ROWS_HARD) / 2) * 32);
