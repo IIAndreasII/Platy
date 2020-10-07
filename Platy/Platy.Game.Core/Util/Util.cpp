@@ -1,5 +1,7 @@
 #include "Util.h"
 
+#include <cmath>
+
 namespace Platy
 {
 	namespace Game
@@ -7,7 +9,7 @@ namespace Platy
 		sf::Vector2f Util::DegToVec2(float& anAngle)
 		{
 			Core::Util::ClampDeg(anAngle);
-			return {cos(anAngle * DEG_TO_RAD), sin(anAngle * DEG_TO_RAD)};
+			return {std::cos(anAngle * DEG_TO_RAD), sin(anAngle * DEG_TO_RAD)};
 		}
 
 		sf::Vector2f Util::DegToVec2(float anAngle)
