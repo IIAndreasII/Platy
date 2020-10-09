@@ -22,6 +22,7 @@ namespace Platy
 	void Log::Init()
 	{
 		myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
 		IOManager::Init();
 	}
 
@@ -103,9 +104,9 @@ namespace Platy
 
 	void Log::WriteLogMsg(const ELogHeader head, const std::string& msg)
 	{
-		const std::string time = Core::Util::GetTime();
-		const std::string headString = HeaderToString(head);
-		const std::string line = "[" + time + "] [" + headString + "] " + msg;
+		const auto time = Core::Util::GetTime();
+		const auto headString = HeaderToString(head);
+		const auto line = "[" + time + "] [" + headString + "] " + msg;
 
 		IOManager::WriteToFile(line);
 
@@ -119,9 +120,16 @@ namespace Platy
 
 	Log::IOManager::~IOManager()
 	{
-		if (myFileStream && myFileStream.is_open())
+		try
 		{
-			myFileStream.close();
+			if (myFileStream && myFileStream.is_open())
+			{
+				myFileStream.close();
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
 		}
 	}
 

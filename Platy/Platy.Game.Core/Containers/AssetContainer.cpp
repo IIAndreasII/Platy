@@ -57,7 +57,7 @@ namespace Platy
 			{
 				return myFontPointers.at(std::distance(myFontNames.begin(), it));
 			}
-			Log::Warning("AssetContainer::GetFontPtr(): Font with name \"" + name + "\" not found!");
+			Log::Warning("AssetContainer::GetFontPtr(): Font with name \"" + name + "\" not found");
 			return nullptr;
 		}
 
@@ -69,7 +69,7 @@ namespace Platy
 			{
 				return myTexturePointers.at(std::distance(myTextureNames.begin(), it));
 			}
-			Log::Warning("AssetContainer::GetTexturePtr(): Texture with name \"" + name + "\" not found!");
+			Log::Warning("AssetContainer::GetTexturePtr(): Texture with name \"" + name + "\" not found");
 			return nullptr;
 		}
 
@@ -82,7 +82,7 @@ namespace Platy
 				return mySpriteSheetPointers.at(std::distance(mySpriteSheetNames.begin(), it));
 			}
 			Log::Warning(
-				"AssetContainer::GetSpriteSheetPtr(): Sprite sheet with name \"" + name + "\" not found!");
+				"AssetContainer::GetSpriteSheetPtr(): Sprite sheet with name \"" + name + "\" not found");
 			return nullptr;
 		}
 
@@ -102,7 +102,7 @@ namespace Platy
 					if (!tempTexture->loadFromFile(FILEPATH_TEXTURES + tempPath))
 					{
 						Util::SafeDelete(tempTexture);
-						auto msg = "AssetContainer::LoadTextures(): Couldn't load file '" + tempPath + "'";
+						auto msg = "AssetContainer::LoadTextures(): Couldn't load file \"" + tempPath + "\"";
 						Log::Critical(msg);
 					}
 					else
@@ -112,13 +112,16 @@ namespace Platy
 					}
 				}
 				tempTxtFile.close();
-				Log::Information(
-					"AssetContainer::LoadTextures(): " + std::to_string(myTexturePointers.size()) + "/" +
-					std::to_string(tempTotalTextures) + " textures loaded!");
+				if (tempTotalTextures != 0)
+				{
+					Log::Information(
+						"AssetContainer::LoadTextures(): " + std::to_string(myTexturePointers.size()) + "/" +
+						std::to_string(tempTotalTextures) + " textures loaded");
+				}
 			}
 			else
 			{
-				Log::Warning("AssetContainer::LoadTextures(): Unable to load textures!");
+				Log::Warning("AssetContainer::LoadTextures(): Unable to load textures");
 			}
 		}
 
@@ -140,8 +143,8 @@ namespace Platy
 					if (!tempTexture->loadFromFile(FILEPATH_SPRITE_SHEETS + tempPath))
 					{
 						Util::SafeDelete(tempTexture);
-						auto msg = "AssetContainer::LoadAndParseSpriteSheets(): Couldn't load file '" + tempPath
-							+ "'";
+						auto msg = "AssetContainer::LoadAndParseSpriteSheets(): Couldn't load file \"" + tempPath
+							+ "\"";
 						Log::Critical(msg);
 						std::getline(tempTxtFile, tempPath);
 						std::getline(tempTxtFile, tempPath);
@@ -177,11 +180,11 @@ namespace Platy
 				Log::Information(
 					"AssetContainer::LoadAndParseSpriteSheets(): " + std::to_string(mySpriteSheetPointers.size()) + "/"
 					+
-					std::to_string(tempTotalSheets) + " sprite sheets loaded!");
+					std::to_string(tempTotalSheets) + " sprite sheets loaded");
 			}
 			else
 			{
-				Log::Warning("AssetContainer::LoadAndParseSpriteSheets(): Unable load sprite sheets!");
+				Log::Warning("AssetContainer::LoadAndParseSpriteSheets(): Unable load sprite sheets");
 			}
 		}
 
@@ -201,7 +204,7 @@ namespace Platy
 					if (!tempFont->loadFromFile(FILEPATH_FONTS + tempPath))
 					{
 						Util::SafeDelete(tempFont);
-						auto msg = "AssetContainer::LoadFonts(): Couldn't load file '" + tempPath + "'";
+						auto msg = "AssetContainer::LoadFonts(): Couldn't load file \"" + tempPath + "\"";
 						Log::Critical(msg);
 					}
 					else
@@ -213,11 +216,11 @@ namespace Platy
 				tempTxtFile.close();
 				Log::Information(
 					"AssetContainer::LoadFonts(): " + std::to_string(myFontPointers.size()) + "/" +
-					std::to_string(tempTotalFonts) + " fonts loaded!");
+					std::to_string(tempTotalFonts) + " fonts loaded");
 			}
 			else
 			{
-				Log::Warning("AssetContainer::LoadFonts(): Unable load Fonts!");
+				Log::Warning("AssetContainer::LoadFonts(): Unable load fonts");
 			}
 		}
 
