@@ -1,3 +1,7 @@
+#define TEST_CORE 0
+#define TEST_GAME_CORE 1
+#define TEST_LOG 0
+
 #include <SFML/Graphics.hpp>
 
 #include "Postmaster/PostMaster.h"
@@ -9,11 +13,9 @@
 #include "Graphics/ParticleTest.h"
 #include "CoreTests/TestObservable.h"
 #include "CoreTests/TestObserver.h"
+#include "Graphics/Animator.h"
 #include "Graphics/Managers/ParticleManager.h"
 
-#define TEST_CORE 0
-#define TEST_GAME_CORE 1
-#define TEST_LOG 1
 
 using namespace Platy::Game;
 using namespace Graphics;
@@ -23,6 +25,7 @@ int main()
 #if TEST_LOG || TEST_GAME_CORE
 	Platy::Log::Init();
 #endif
+
 #if TEST_LOG
 	Platy::Log::Debug("Test msg");
 	Platy::Log::Warning("Test msg");
@@ -57,6 +60,11 @@ int main()
 	window.setVerticalSyncEnabled(false);
 	window.setFramerateLimit(144);
 
+	sf::Image icon;
+	icon.loadFromFile("Assets/icon.png");
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
+
 	bool isWindowInFocus;
 
 	/// Init clock for delta time
@@ -69,6 +77,10 @@ int main()
 	ParticleManager::Init();
 
 	ParticleTest tempParticleTest;
+
+	auto tempAnimator = Animator(*AssetContainer::GetSpriteSheetPtr("tailstest"), 1);
+	auto tempAnimPos = sf::Vector2f(300, 300);
+	tempAnimator.Flip();
 
 	while (window.isOpen())
 	{
@@ -113,7 +125,7 @@ int main()
 		ParticleManager::Update(deltaTime);
 
 		tempParticleTest.Update(deltaTime);
-
+		tempAnimator.Update(deltaTime, tempAnimPos);
 		//////////////////////////////////////////////////////////////////
 		// Draw logic
 		//////////////////////////////////////////////////////////////////
@@ -121,6 +133,7 @@ int main()
 
 		ParticleManager::EarlyDraw(window);
 
+		window.draw(tempAnimator);
 
 		ParticleManager::Draw(window);
 

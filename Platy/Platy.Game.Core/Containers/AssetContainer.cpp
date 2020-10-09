@@ -158,8 +158,17 @@ namespace Platy
 						std::getline(tempTxtFile, tempPath);
 						const unsigned tempFrameRate = std::stoi(tempPath);
 
+						// Get rows
+						std::getline(tempTxtFile, tempPath);
+						const unsigned tempRows = std::stoi(tempPath);
+
+						// Get columns
+						std::getline(tempTxtFile, tempPath);
+						const unsigned tempCols = std::stoi(tempPath);
+
 						// Create sprite sheet
-						auto* tempSheet = new Graphics::SpriteSheet(tempTexture, tempFrameCount, tempFrameRate);
+						auto* tempSheet = new Graphics::SpriteSheet(tempTexture, tempFrameCount, tempFrameRate,
+						                                            tempRows, tempCols);
 
 						mySpriteSheetPointers.push_back(tempSheet);
 					}

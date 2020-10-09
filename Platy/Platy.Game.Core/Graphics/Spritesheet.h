@@ -11,21 +11,36 @@ namespace Platy
 		{
 			struct SpriteSheet
 			{
-				SpriteSheet(sf::Texture* aTexturePtr, unsigned aFrameCount, unsigned aFrameRate = 1);
+				SpriteSheet(
+					sf::Texture* aTexturePtr,
+					int aFrameRate,
+					int aFrameCount,
+					int aRowCount,
+					int aColCount);
+
+				SpriteSheet(const SpriteSheet& other);
 				~SpriteSheet();
 
+				sf::IntRect GetFrameRect(const int& aFrameNbr) const;
+
 				const sf::Texture* GetTexturePtr() const;
-				const unsigned& GetFrameCount() const;
-				const unsigned& GetFrameRate() const;
-				const unsigned& GetFrameHeight() const;
-				const unsigned& GetFrameWidth() const;
+				const int& GetFrameCount() const;
+				const int& GetFrameRate() const;
+				const int& GetFrameHeight() const;
+				const int& GetFrameWidth() const;
+
+				const int& GetRows() const;
+				const int& GetCols() const;
 
 			private:
 				sf::Texture* myTexturePtr;
-				unsigned myFrameCount;
-				unsigned myFrameRate;
-				unsigned myFrameHeight;
-				unsigned myFrameWidth;
+				int myFrameCount;
+				int myFrameRate;
+				int myFrameHeight;
+				int myFrameWidth;
+
+				int myRows;
+				int myCols;
 			};
 		}
 	}

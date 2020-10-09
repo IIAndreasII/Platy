@@ -42,13 +42,7 @@ namespace Platy
 						}
 					}
 
-					const sf::IntRect tempIntRect(
-						mySpriteSheet.GetFrameWidth() * static_cast<int>(myCurrentFrame),
-						0,
-						mySpriteSheet.GetFrameWidth(),
-						mySpriteSheet.GetFrameHeight());
-
-					mySprite.setTextureRect(tempIntRect);
+					mySprite.setTextureRect(mySpriteSheet.GetFrameRect(static_cast<int>(myCurrentFrame)));
 				}
 			}
 
