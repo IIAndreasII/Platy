@@ -10,26 +10,6 @@ namespace Platy
 		class Message
 		{
 		public:
-
-			enum class EType
-			{
-				GAME_OVER,
-				VICTORY,
-				TILE_FLAGGED,
-				TILE_UN_FLAGGED,
-				MOUSE_ON_CLICK_LEFT,
-				MOUSE_ON_CLICK_RIGHT,
-				MOUSE_MOVED,
-				TOGGLE_PAUSE,
-				KEY_A_PRESSED,
-				KEY_A_RELEASED,
-				KEY_D_PRESSED,
-				KEY_D_RELEASED,
-				KEY_ESCAPE_PRESSED,
-				KEY_ESCAPE_RELEASED,
-				COUNT
-			};
-
 			Message();
 			explicit Message(const sf::Vector2i& aPosition);
 			Message(const sf::Vector2i& aPosition, int aWidth, int aHeight);

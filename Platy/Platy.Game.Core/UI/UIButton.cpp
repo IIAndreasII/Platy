@@ -7,8 +7,8 @@
 //template <class C>
 //UIButton<C>::UIButton()
 //{
-//	Subscribe(Message::EType::MOUSE_ON_CLICK_LEFT);
-//	Subscribe(Message::EType::MOUSE_MOVED);
+//	Subscribe(Message::EMessageType::MOUSE_ON_CLICK_LEFT);
+//	Subscribe(Message::EMessageType::MOUSE_MOVED);
 //}
 //
 //template <class C>
@@ -20,8 +20,8 @@
 //	myText(aText, *AssetContainer::GetFontPtr("firstorder")),
 //	myRect(sf::Vector2f(DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT))
 //{
-//	Subscribe(Message::EType::MOUSE_ON_CLICK_LEFT);
-//	Subscribe(Message::EType::MOUSE_MOVED);
+//	Subscribe(Message::EMessageType::MOUSE_ON_CLICK_LEFT);
+//	Subscribe(Message::EMessageType::MOUSE_MOVED);
 //
 //	myText.setPosition(aPosition.x + TEXT_OFFSET_X, aPosition.y + TEXT_OFFSET_Y);
 //	myText.setFillColor(C_BLACK);
@@ -41,13 +41,13 @@
 //}
 //
 //template <class C>
-//void UIButton<C>::ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType)
+//void UIButton<C>::ReceiveMessage(const Message& aMessage, const Message::EMessageType& aMessageType)
 //{
 //	if (myIsActive)
 //	{
 //		switch (aMessageType)
 //		{
-//		case Message::EType::MOUSE_ON_CLICK_LEFT:
+//		case Message::EMessageType::MOUSE_ON_CLICK_LEFT:
 //			if ((sf::IntRect(myRect.getPosition().x, myRect.getPosition().y, myRect.getSize().x, myRect.getSize().y)).
 //				intersects(sf::IntRect(aMessage.GetPosition(), sf::Vector2i(1, 1))))
 //			{
@@ -55,7 +55,7 @@
 //			}
 //			break;
 //
-//		case Message::EType::MOUSE_MOVED:
+//		case Message::EMessageType::MOUSE_MOVED:
 //			if ((sf::IntRect(myRect.getPosition().x, myRect.getPosition().y, myRect.getSize().x, myRect.getSize().y)).
 //				intersects(sf::IntRect(aMessage.GetPosition(), sf::Vector2i(1, 1))))
 //			{

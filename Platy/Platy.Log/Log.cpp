@@ -1,6 +1,5 @@
 #include "Log.h"
 
-#include <fstream>
 #include <iostream>
 
 #include "IO/IOManager.h"
@@ -23,12 +22,12 @@ namespace Platy
 	{
 		myConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(myConsoleHandle, CONSOLE_WHITE);
-		IOManager::Init();
+		IO::IOManager::Init();
 	}
 
 	void Log::Dispose()
 	{
-		IOManager::Dispose();
+		IO::IOManager::Dispose();
 	}
 
 	void Log::Debug(const std::string& msg)
@@ -108,58 +107,10 @@ namespace Platy
 		const auto headString = HeaderToString(head);
 		const auto line = "[" + time + "] [" + headString + "] " + msg;
 
-		IOManager::WriteToFile(line);
+		IO::IOManager::WriteToFile(line);
 
 		std::cout << "[" << time << "] [";
 		WriteInColour(head, headString);
 		std::cout << "] " << msg << std::endl;
-	}
-
-	std::string Log::IOManager::myFileName;
-	std::ofstream Log::IOManager::myFileStream;
-
-	Log::IOManager::~IOManager()
-	{
-		try
-		{
-			if (myFileStream && myFileStream.is_open())
-			{
-				myFileStream.close();
-			}
-		}
-		catch (const std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-	}
-
-	void Log::IOManager::Init()
-	{
-		if (CreateDirectoryA("Logs", nullptr) != ERROR_PATH_NOT_FOUND)
-		{
-			myFileName = "Logs\\" + Core::Util::GetTime() + ".txt";
-			myFileStream = std::ofstream(myFileName);
-		}
-		else
-		{
-			std::cout << "Could not create directory. Invalid path" << std::endl;
-		}
-	}
-
-	void Log::IOManager::Dispose()
-	{
-		if (myFileStream && myFileStream.is_open())
-		{
-			myFileStream.close();
-			std::cout << "\nLog saved to: " << myFileName << std::endl;
-		}
-	}
-
-	void Log::IOManager::WriteToFile(const std::string& line)
-	{
-		if (myFileStream.is_open())
-		{
-			myFileStream << line << std::endl;
-		}
 	}
 }

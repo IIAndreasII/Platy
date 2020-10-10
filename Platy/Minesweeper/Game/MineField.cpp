@@ -10,6 +10,9 @@
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Graphics/Factories/ParticleEmitterFactory.h"
 
+#include "Platy.Game.Core/Postmaster/Message.h"
+#include "Platy.Game.Core/Postmaster/MessageType.h"
+
 using namespace Platy::Game;
 using namespace Graphics;
 
@@ -24,8 +27,8 @@ MineField::MineField(const ESize aSize, const sf::Vector2i offset) :
 	myMineExplosionDelay(.02f),
 	myExplosionTimer()
 {
-	Subscribe(Message::EType::MOUSE_ON_CLICK_LEFT);
-	Subscribe(Message::EType::MOUSE_ON_CLICK_RIGHT);
+	Subscribe(EMessageType::MOUSE_ON_CLICK_LEFT);
+	Subscribe(EMessageType::MOUSE_ON_CLICK_RIGHT);
 
 	myFrame.setPosition(sf::Vector2f(offset - sf::Vector2i(DEFAULT_FRAME_THICKNESS, DEFAULT_FRAME_THICKNESS)));
 	switch (aSize)
@@ -64,11 +67,11 @@ const uint8_t& MineField::GetNbrMinesLeft() const
 	return myNbrMinesLeft;
 }
 
-void MineField::ReceiveMessage(const Message::EType& aMessageType)
+void MineField::ReceiveMessage(const EMessageType& aMessageType)
 {
 }
 
-void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType)
+void MineField::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
 {
 	if (myState != EState::SWEEPING)
 	{
@@ -78,7 +81,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 	sf::Vector2i pos = ToMapPos(aMessage.GetPosition());
 	switch (aMessageType)
 	{
-	case Message::EType::MOUSE_ON_CLICK_LEFT:
+	case EMessageType::MOUSE_ON_CLICK_LEFT:
 
 		if (myMineField.at(pos.x).at(pos.y).GetState() == Tile::EState::Unchecked)
 		{
@@ -124,7 +127,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 
 		break;
 
-	case Message::EType::MOUSE_ON_CLICK_RIGHT:
+	case EMessageType::MOUSE_ON_CLICK_RIGHT:
 		myMineField.at(pos.x).at(pos.y).ToggleState();
 
 		switch (myMineField.at(pos.x).at(pos.y).GetState())
@@ -135,7 +138,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 				myNbrMinesLeft--;
 			}
 
-			SendMessage(Message::EType::TILE_FLAGGED);
+			SendMessage(EMessageType::TILE_FLAGGED);
 
 			if (CheckVictory())
 			{
@@ -151,7 +154,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 					}
 				}
 				myState = EState::VICTORY;
-				SendMessage(Message::EType::VICTORY);
+				SendMessage(EMessageType::VICTORY);
 			}
 			break;
 		case Tile::EState::Questioned:
@@ -159,7 +162,7 @@ void MineField::ReceiveMessage(const Message& aMessage, const Message::EType& aM
 			{
 				myNbrMinesLeft++;
 			}
-			SendMessage(Message::EType::TILE_UN_FLAGGED);
+			SendMessage(EMessageType::TILE_UN_FLAGGED);
 			break;
 		default:
 			break;
@@ -297,7 +300,7 @@ void MineField::RevealTile(const sf::Vector2i aPos, const bool recursive)
 				}
 			}
 			myState = EState::GAME_OVER;
-			SendMessage(Message::EType::GAME_OVER);
+			SendMessage(EMessageType::GAME_OVER);
 		}
 		else if (info.closeMineCount == 0)
 		{
@@ -337,6 +340,8 @@ bool MineField::CheckVictory() const
 
 sf::Vector2i MineField::ToMapPos(const sf::Vector2i& aWindowPos) const
 {
-	return sf::Vector2i((aWindowPos.x - myOffset.x) / DEFAULT_TILE_SIZE,
-	                    (aWindowPos.y - myOffset.y) / DEFAULT_TILE_SIZE);
+	return {
+		(aWindowPos.x - myOffset.x) / DEFAULT_TILE_SIZE,
+		(aWindowPos.y - myOffset.y) / DEFAULT_TILE_SIZE
+	};
 }

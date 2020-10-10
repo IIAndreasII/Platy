@@ -1,6 +1,7 @@
 #include "Explosion.h"
 
 #include "Platy.Core/Util/Util.h"
+#include "Platy.Game.Core/Util/Util.h"
 #include "Util/Util.h"
 
 namespace Platy

@@ -1,39 +1,41 @@
-#ifndef POSTMASTER_H
-#define POSTMASTER_H
+#ifndef POST_MASTER_H
+#define POST_MASTER_H
 
 #include <vector>
-#include "Message.h"
 
 namespace Platy
 {
 	namespace Game
 	{
+		class Message;
 		class Subscriber;
+
+		enum class EMessageType;
 
 		typedef Subscriber* SubPtr;
 
 		class PostMaster
 		{
 		public:
+			PostMaster() = delete;
 			~PostMaster();
 
 			static void Init();
 
-			static void Subscribe(SubPtr aSubPtr, Message::EType aMessageType);
+			static void Subscribe(SubPtr aSubPtr, EMessageType aMessageType);
 
-			static void Unsubscribe(SubPtr aSubPtr, Message::EType aMessageType);
+			static void Unsubscribe(SubPtr aSubPtr, EMessageType aMessageType);
+			static void SendMessage(const Message& aMessage, EMessageType aMessageType);
 
-			static void SendMessage(const Message& aMessage, const Message::EType& aMessageType);
+			static void SendMessage(EMessageType aMessageType);
 
-			static void SendMessage(Message::EType aMessageType);
-
-			static std::vector<SubPtr>& GetSubscribers(Message::EType aMessageType);
+			static std::vector<SubPtr>& GetSubscribers(EMessageType aMessageType);
 
 		private:
-			PostMaster();
 
 			static std::vector<std::vector<SubPtr>> mySubscribers;
 		};
 	}
 }
+
 #endif

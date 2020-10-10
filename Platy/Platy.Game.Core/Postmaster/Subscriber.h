@@ -2,13 +2,13 @@
 #define SUB_H
 
 #include <vector>
-#include "Message.h"
 
 namespace Platy
 {
 	namespace Game
 	{
 		class Message;
+		enum class EMessageType;
 
 		class Subscriber
 		{
@@ -16,21 +16,21 @@ namespace Platy
 			Subscriber();
 			virtual ~Subscriber();
 
-			void SendMessage(const Message& aMessage, Message::EType aMessageType) const;
+			void SendMessage(const Message& aMessage, EMessageType aMessageType) const;
 
-			void SendMessage(Message::EType aMessageType) const;
+			void SendMessage(EMessageType aMessageType) const;
 
-			virtual void ReceiveMessage(const Message::EType& aMessageType) = 0;
-			virtual void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) = 0;
+			virtual void ReceiveMessage(const EMessageType& aMessageType) = 0;
+			virtual void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType) = 0;
 
-			void Subscribe(Message::EType aMessageType);
+			void Subscribe(EMessageType aMessageType);
 			void RemoveAllSubscriptions();
 
-			const std::vector<Message::EType>& GetSubscriptions() const;
+			const std::vector<EMessageType>& GetSubscriptions() const;
 
 		protected:
 
-			std::vector<Message::EType> mySubscriptions;
+			std::vector<EMessageType> mySubscriptions;
 		};
 	}
 }

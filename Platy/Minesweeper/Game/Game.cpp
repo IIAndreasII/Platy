@@ -9,6 +9,7 @@
 #include "Platy.Core/Util/Util.h"
 #include "Platy.Game.Core/Containers/AssetContainer.h"
 #include "Platy.Game.Core/Postmaster/Message.h"
+#include "Platy.Game.Core/Postmaster/MessageType.h"
 
 using namespace Platy::Game;
 using namespace Graphics;
@@ -30,11 +31,11 @@ Game::Game() :
 	UpdateMineCounterText();
 	UpdateTimeCounterText();
 
-	Subscribe(Message::EType::GAME_OVER);
-	Subscribe(Message::EType::VICTORY);
-	Subscribe(Message::EType::KEY_ESCAPE_RELEASED);
-	Subscribe(Message::EType::TILE_FLAGGED);
-	Subscribe(Message::EType::TILE_UN_FLAGGED);
+	Subscribe(EMessageType::GAME_OVER);
+	Subscribe(EMessageType::VICTORY);
+	Subscribe(EMessageType::KEY_ESCAPE_RELEASED);
+	Subscribe(EMessageType::TILE_FLAGGED);
+	Subscribe(EMessageType::TILE_UN_FLAGGED);
 }
 
 Game::~Game()
@@ -49,17 +50,17 @@ void Game::Update(const float& someDeltaTime)
 	UpdateTimeCounterText();
 }
 
-void Game::ReceiveMessage(const Message::EType& aMessageType)
+void Game::ReceiveMessage(const EMessageType& aMessageType)
 {
 	switch (aMessageType)
 	{
-	case Message::EType::GAME_OVER:
+	case EMessageType::GAME_OVER:
 		break;
-	case Message::EType::KEY_ESCAPE_RELEASED:
+	case EMessageType::KEY_ESCAPE_RELEASED:
 		ResetMineField();
 		break;
-	case Message::EType::TILE_FLAGGED:
-	case Message::EType::TILE_UN_FLAGGED:
+	case EMessageType::TILE_FLAGGED:
+	case EMessageType::TILE_UN_FLAGGED:
 		UpdateMineCounterText();
 		break;
 	default:
@@ -67,7 +68,7 @@ void Game::ReceiveMessage(const Message::EType& aMessageType)
 	}
 }
 
-void Game::ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType)
+void Game::ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType)
 {
 }
 

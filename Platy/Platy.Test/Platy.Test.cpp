@@ -125,8 +125,6 @@ int main()
 			}
 		}
 
-		//sf::Joystick::update();
-
 		deltaTime = tempClock.restart().asSeconds();
 
 		//////////////////////////////////////////////////////////////////

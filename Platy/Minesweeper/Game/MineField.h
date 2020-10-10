@@ -55,8 +55,8 @@ public:
 
 	///////////////////////////////
 
-	void ReceiveMessage(const Message::EType& aMessageType) override;
-	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
+	void ReceiveMessage(const EMessageType& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType) override;
 
 	void Update(const float& deltaTime);
 

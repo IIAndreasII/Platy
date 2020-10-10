@@ -26,8 +26,8 @@ public:
 
 	void Update(const float& someDeltaTime);
 
-	void ReceiveMessage(const Message::EType& aMessageType) override;
-	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
+	void ReceiveMessage(const EMessageType& aMessageType) override;
+	void ReceiveMessage(const Message& aMessage, const EMessageType& aMessageType) override;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

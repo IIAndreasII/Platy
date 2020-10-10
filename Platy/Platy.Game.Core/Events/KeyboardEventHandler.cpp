@@ -2,8 +2,8 @@
 
 #include <SFML/Window/Event.hpp>
 
-#include "Postmaster/Message.h"
 #include "Postmaster/PostMaster.h"
+#include "Postmaster/MessageType.h"
 
 namespace Platy
 {
@@ -21,10 +21,10 @@ namespace Platy
 					break;
 
 				case sf::Keyboard::Key::A:
-					PostMaster::SendMessage(Message::EType::KEY_A_PRESSED);
+					PostMaster::SendMessage(EMessageType::KEY_A_PRESSED);
 					break;
 				case sf::Keyboard::Key::D:
-					PostMaster::SendMessage(Message::EType::KEY_D_PRESSED);
+					PostMaster::SendMessage(EMessageType::KEY_D_PRESSED);
 					break;
 
 				default:
@@ -36,13 +36,13 @@ namespace Platy
 				switch (anEvent.key.code)
 				{
 				case sf::Keyboard::Key::A:
-					PostMaster::SendMessage(Message::EType::KEY_A_RELEASED);
+					PostMaster::SendMessage(EMessageType::KEY_A_RELEASED);
 					break;
 				case sf::Keyboard::Key::D:
-					PostMaster::SendMessage(Message::EType::KEY_D_RELEASED);
+					PostMaster::SendMessage(EMessageType::KEY_D_RELEASED);
 					break;
 				case sf::Keyboard::Key::Escape:
-					PostMaster::SendMessage(Message::EType::KEY_ESCAPE_RELEASED);
+					PostMaster::SendMessage(EMessageType::KEY_ESCAPE_RELEASED);
 					break;
 				default:
 					break;

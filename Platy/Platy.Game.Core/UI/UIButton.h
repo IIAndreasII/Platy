@@ -24,7 +24,7 @@
 //	UIButton(const char* aText, void (C::* aFunc)(), C* aClassPtr, sf::Vector2f aPosition, bool isActive = true);
 //	~UIButton();
 //
-//	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;
+//	void ReceiveMessage(const Message& aMessage, const Message::EMessageType& aMessageType) override;
 //
 //	void SetActive(bool aValue);
 //

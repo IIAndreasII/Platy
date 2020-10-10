@@ -1,5 +1,7 @@
 #include "Subscriber.h"
 #include "PostMaster.h"
+#include "Message.h"
+#include "MessageType.h"
 
 namespace Platy
 {
@@ -9,17 +11,17 @@ namespace Platy
 
 		Subscriber::~Subscriber() = default;
 
-		void Subscriber::SendMessage(const Message& aMessage, const Message::EType aMessageType) const
+		void Subscriber::SendMessage(const Message& aMessage, const EMessageType aMessageType) const
 		{
 			PostMaster::SendMessage(aMessage, aMessageType);
 		}
 
-		void Subscriber::SendMessage(const Message::EType aMessageType) const
+		void Subscriber::SendMessage(const EMessageType aMessageType) const
 		{
 			PostMaster::SendMessage(aMessageType);
 		}
 
-		void Subscriber::Subscribe(const Message::EType aMessageType)
+		void Subscriber::Subscribe(const EMessageType aMessageType)
 		{
 			if (!(std::find(mySubscriptions.begin(), mySubscriptions.end(), aMessageType) != mySubscriptions.end()))
 			{
@@ -30,13 +32,13 @@ namespace Platy
 
 		void Subscriber::RemoveAllSubscriptions()
 		{
-			for (Message::EType tempMsgType : mySubscriptions)
+			for (auto tempMsgType : mySubscriptions)
 			{
 				PostMaster::Unsubscribe(this, tempMsgType);
 			}
 		}
 
-		const std::vector<Message::EType>& Subscriber::GetSubscriptions() const
+		const std::vector<EMessageType>& Subscriber::GetSubscriptions() const
 		{
 			return mySubscriptions;
 		}

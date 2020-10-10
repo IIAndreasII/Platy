@@ -6,26 +6,31 @@ namespace sf
 	class Event;
 }
 
-class GamePadEventHandler
+namespace Platy
 {
-public:
-	GamePadEventHandler() = delete;
-	~GamePadEventHandler() = default;
+	namespace Game
+	{
+		class GamePadEventHandler
+		{
+		public:
+			GamePadEventHandler() = delete;
+			~GamePadEventHandler() = default;
 
-	static void HandleEvent(const sf::Event& anEvent);
+			static void HandleEvent(const sf::Event& anEvent);
 
-private:
+		private:
 
-	static void HandleButtonPressed(const sf::Event& anEvent);
-	static void HandleButtonReleased(const sf::Event& anEvent);
-	static void HandleJoystickMoved(const sf::Event& anEvent);
-	static void HandleConnected(const sf::Event& anEvent);
-	static void HandleDisconnected(const sf::Event& anEvent);
+			static void HandleButtonPressed(const sf::Event& anEvent);
+			static void HandleButtonReleased(const sf::Event& anEvent);
+			static void HandleJoystickMoved(const sf::Event& anEvent);
+			static void HandleConnected(const sf::Event& anEvent);
+			static void HandleDisconnected(const sf::Event& anEvent);
 
-	static const char* GamePadIdToCharPtr(const unsigned& id);
+			static const char* GamePadIdToCharPtr(const unsigned& id);
 
-	static bool myWasLeftDPad;
-	static bool myWasUpDPad;
-};
-
+			static bool myWasLeftDPad;
+			static bool myWasUpDPad;
+		};
+	}
+}
 #endif

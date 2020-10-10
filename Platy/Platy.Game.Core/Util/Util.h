@@ -1,7 +1,6 @@
 #ifndef GAME_UTIL_H
 #define GAME_UTIL_H
 
-#include <Platy.Core/Util/Util.h>
 #include <SFML/System/Vector2.hpp>
 
 constexpr float DEG_TO_RAD = 0.0174533f;

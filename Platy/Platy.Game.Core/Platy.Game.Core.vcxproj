@@ -125,7 +125,7 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Platy.Game.Core;$(SolutionDir)..\External Libs\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Platy.Log;$(SolutionDir)Platy.Core;$(SolutionDir)Platy.Game.Core;$(SolutionDir)..\External Libs\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="Events\GamePadDefinitions.h" />
     <ClInclude Include="Events\GamepadEventHandler.h" />
+    <ClInclude Include="Postmaster\MessageType.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="Graphics\Particles\Cloud.h" />
     <ClInclude Include="Containers\AssetContainer.h" />

@@ -88,29 +88,7 @@ namespace Platy
 		};
 
 #pragma region Helper Classes
-		class IOManager
-		{
-		public:
-			IOManager() = delete;
-			~IOManager();
 
-			static void Init();
-
-			/// <summary>
-			/// 
-			/// </summary>
-			static void Dispose();
-
-			/// <summary>
-			/// Writes line to current file stream
-			/// </summary>
-			/// <param name="line">Line to write</param>
-			static void WriteToFile(const std::string& line);
-
-		private:
-			static std::string myFileName;
-			static std::ofstream myFileStream;
-		};
 
 #pragma endregion Helper Classes
 

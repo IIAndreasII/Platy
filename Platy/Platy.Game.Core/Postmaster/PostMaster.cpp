@@ -1,5 +1,8 @@
 #include "PostMaster.h"
+
 #include "Subscriber.h"
+#include "Message.h"
+#include "MessageType.h"
 
 namespace Platy
 {
@@ -7,13 +10,11 @@ namespace Platy
 	{
 		std::vector<std::vector<SubPtr>> PostMaster::mySubscribers;
 
-		PostMaster::PostMaster() = default;
-
 		PostMaster::~PostMaster()
 		{
-			for (const std::vector<SubPtr>& it : mySubscribers)
+			for (const auto& it : mySubscribers)
 			{
-				for (SubPtr sub : it)
+				for (auto* sub : it)
 				{
 					sub = nullptr;
 				}
@@ -22,18 +23,18 @@ namespace Platy
 
 		void PostMaster::Init()
 		{
-			for (size_t i = 0; i < static_cast<size_t>(Message::EType::COUNT); i++)
+			for (size_t i = 0; i < static_cast<size_t>(EMessageType::COUNT); i++)
 			{
 				mySubscribers.emplace_back();
 			}
 		}
 
-		void PostMaster::Subscribe(const SubPtr aSubPtr, const Message::EType aMessageType)
+		void PostMaster::Subscribe(const SubPtr aSubPtr, const EMessageType aMessageType)
 		{
 			mySubscribers.at(static_cast<size_t>(aMessageType)).push_back(aSubPtr);
 		}
 
-		void PostMaster::Unsubscribe(SubPtr aSubPtr, const Message::EType aMessageType)
+		void PostMaster::Unsubscribe(const SubPtr aSubPtr, const EMessageType aMessageType)
 		{
 			mySubscribers.at(static_cast<size_t>(aMessageType)).erase(std::find(
 				mySubscribers.at(static_cast<size_t>(aMessageType)).begin(),
@@ -41,29 +42,29 @@ namespace Platy
 				aSubPtr));
 		}
 
-		void PostMaster::SendMessage(const Message& aMessage, const Message::EType& type)
+		void PostMaster::SendMessage(const Message& aMessage, EMessageType aMessageType)
 		{
-			for (SubPtr tempSub : mySubscribers.at(static_cast<size_t>(type)))
+			for (auto* it : mySubscribers.at(static_cast<size_t>(aMessageType)))
 			{
-				if (tempSub != nullptr)
+				if (it)
 				{
-					tempSub->ReceiveMessage(aMessage, type);
+					it->ReceiveMessage(aMessage, aMessageType);
 				}
 			}
 		}
 
-		void PostMaster::SendMessage(Message::EType aMessageType)
+		void PostMaster::SendMessage(EMessageType aMessageType)
 		{
-			for (SubPtr it : mySubscribers.at(static_cast<size_t>(aMessageType)))
+			for (auto* it : mySubscribers.at(static_cast<size_t>(aMessageType)))
 			{
-				if (it != nullptr)
+				if (it)
 				{
 					it->ReceiveMessage(aMessageType);
 				}
 			}
 		}
 
-		std::vector<SubPtr>& PostMaster::GetSubscribers(const Message::EType aMessageType)
+		std::vector<SubPtr>& PostMaster::GetSubscribers(const EMessageType aMessageType)
 		{
 			return mySubscribers.at(static_cast<size_t>(aMessageType));
 		}
