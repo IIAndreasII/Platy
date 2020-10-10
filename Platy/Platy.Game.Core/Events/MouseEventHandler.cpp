@@ -1,5 +1,8 @@
 #include "MouseEventHandler.h"
 
+#include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
 #include "Postmaster/PostMaster.h"
 #include "Postmaster/Message.h"
 

@@ -61,7 +61,7 @@ namespace Platy
 		WriteLogMsg(ELogHeader::INFORMATION, msg);
 	}
 
-	unsigned short Log::HeaderToColour(const ELogHeader& head)
+	uint16_t Log::HeaderToColour(const ELogHeader& head)
 	{
 		switch (head)
 		{

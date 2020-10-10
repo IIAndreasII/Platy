@@ -43,9 +43,9 @@ Game::~Game()
 	Platy::Core::Util::SafeDelete(myActiveMineField);
 }
 
-void Game::Update(const float& deltaTime)
+void Game::Update(const float& someDeltaTime)
 {
-	myActiveMineField->Update(deltaTime);
+	myActiveMineField->Update(someDeltaTime);
 	UpdateTimeCounterText();
 }
 

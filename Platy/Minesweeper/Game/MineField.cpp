@@ -15,7 +15,6 @@ using namespace Graphics;
 
 MineField::MineField(const ESize aSize, const sf::Vector2i offset) :
 	myOffset(offset),
-	mySize(aSize),
 	myState(EState::SWEEPING),
 	myNbrCols(),
 	myNbrRows(),

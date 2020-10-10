@@ -1,6 +1,9 @@
 #include "KeyboardEventHandler.h"
-#include "Postmaster/PostMaster.h"
+
+#include <SFML/Window/Event.hpp>
+
 #include "Postmaster/Message.h"
+#include "Postmaster/PostMaster.h"
 
 namespace Platy
 {

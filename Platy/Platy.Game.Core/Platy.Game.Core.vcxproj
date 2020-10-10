@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Events\GamepadEventHandler.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="Graphics\Particles\Cloud.cpp" />
     <ClCompile Include="Containers\AssetContainer.cpp" />
@@ -175,6 +176,8 @@
     <ClCompile Include="Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Events\GamePadDefinitions.h" />
+    <ClInclude Include="Events\GamepadEventHandler.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="Graphics\Particles\Cloud.h" />
     <ClInclude Include="Containers\AssetContainer.h" />

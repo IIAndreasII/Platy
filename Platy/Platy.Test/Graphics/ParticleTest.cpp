@@ -15,9 +15,9 @@ ParticleTest::ParticleTest()
 	myExplosionInterval(1)
 
 {
-	ParticleEmitterFactory::CreateCloud(10, sf::Vector2f(90, 50), C_GREY_LIGHT, 3000, 5, 2.5f,
+	ParticleEmitterFactory::CreateCloud(30, sf::Vector2f(90, 50), C_GREY_LIGHT, 3000, 5, 2.5f,
 	                                    720);
-	ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(100, 50), C_RED, 3000, 200, 2, 700,
+	ParticleEmitterFactory::CreateShower(4, EOrientation::DOWN, sf::Vector2f(100, 50), C_BLUE, 3000, 200, 2, 700,
 	                                     true,
 	                                     90, 9.82f * 2);
 	ParticleEmitterFactory::CreateFountain(4, sf::Vector2f(600, 700), C_CYAN, 1500, 200, 1.f, 270, 35);
@@ -32,7 +32,7 @@ void ParticleTest::Update(const float& someDeltaTime)
 	{
 		ParticleEmitterFactory::CreateExplosion(
 			4, sf::Vector2f(Util::RandFloat(600, 1200), Util::RandFloat(100, 600)),
-			C_ORANGE, 1000, 300, 1);
+			C_ORANGE, 1000, 300, 1, false, 9.82f * 2);
 		myExplosionTimer = myExplosionInterval;
 	}
 }

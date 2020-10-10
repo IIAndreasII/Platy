@@ -17,7 +17,6 @@ namespace Platy
 			class Animator final : public sf::Drawable
 			{
 			public:
-
 				explicit Animator(const SpriteSheet& aSpriteSheet, float aScale = DEFAULT_ANIM_SCALE,
 				                  bool shouldLoop = true);
 				~Animator() override;

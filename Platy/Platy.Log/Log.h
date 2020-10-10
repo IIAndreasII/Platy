@@ -116,7 +116,7 @@ namespace Platy
 
 #pragma region Private Helpers Methods
 
-		static unsigned short HeaderToColour(const ELogHeader& head);
+		static uint16_t HeaderToColour(const ELogHeader& head);
 		static std::string HeaderToString(const ELogHeader& head);
 
 		static void WriteInColour(const ELogHeader& head, const std::string& str);

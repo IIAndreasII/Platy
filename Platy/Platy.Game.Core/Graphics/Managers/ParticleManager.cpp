@@ -67,7 +67,7 @@ namespace Platy
 #if ASYNC
 					myFutures.push_back(std::async(std::launch::async, UpdateEmitter, it, someDeltaTime));
 #else
-		it->Update(someDeltaTime);
+					it->Update(someDeltaTime);
 #endif
 				}
 
@@ -76,7 +76,7 @@ namespace Platy
 #if ASYNC
 					myFutures.push_back(std::async(std::launch::async, UpdateEmitter, it, someDeltaTime));
 #else
-		it->Update(someDeltaTime);
+					it->Update(someDeltaTime);
 #endif
 				}
 			}

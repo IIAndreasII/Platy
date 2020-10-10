@@ -24,7 +24,7 @@ public:
 		Paused
 	};
 
-	void Update(const float& deltaTime);
+	void Update(const float& someDeltaTime);
 
 	void ReceiveMessage(const Message::EType& aMessageType) override;
 	void ReceiveMessage(const Message& aMessage, const Message::EType& aMessageType) override;

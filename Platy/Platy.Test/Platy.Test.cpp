@@ -13,6 +13,7 @@
 #include "Graphics/ParticleTest.h"
 #include "CoreTests/TestObservable.h"
 #include "CoreTests/TestObserver.h"
+#include "Events/GamePadEventHandler.h"
 #include "Graphics/Animator.h"
 #include "Graphics/Managers/ParticleManager.h"
 
@@ -82,6 +83,7 @@ int main()
 	auto tempAnimPos = sf::Vector2f(300, 300);
 	tempAnimator.Flip();
 
+
 	while (window.isOpen())
 	{
 		sf::Event tempEvent{};
@@ -111,10 +113,19 @@ int main()
 			case sf::Event::MouseButtonReleased:
 				MouseEventHandler::HandleEvent(tempEvent, window);
 				break;
+			case sf::Event::JoystickButtonPressed:
+			case sf::Event::JoystickButtonReleased:
+			case sf::Event::JoystickMoved:
+			case sf::Event::JoystickConnected:
+			case sf::Event::JoystickDisconnected:
+				GamePadEventHandler::HandleEvent(tempEvent);
+				break;
 			default:
 				break;
 			}
 		}
+
+		//sf::Joystick::update();
 
 		deltaTime = tempClock.restart().asSeconds();
 
