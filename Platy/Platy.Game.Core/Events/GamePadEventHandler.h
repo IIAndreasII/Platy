@@ -18,18 +18,20 @@ namespace Platy
 
 			static void HandleEvent(const sf::Event& anEvent);
 
+			static void SetDeadZone(const float& aValue);
+
 		private:
 
 			static void HandleButtonPressed(const sf::Event& anEvent);
 			static void HandleButtonReleased(const sf::Event& anEvent);
 			static void HandleJoystickMoved(const sf::Event& anEvent);
-			static void HandleConnected(const sf::Event& anEvent);
-			static void HandleDisconnected(const sf::Event& anEvent);
 
 			static const char* GamePadIdToCharPtr(const unsigned& id);
 
 			static bool myWasLeftDPad;
 			static bool myWasUpDPad;
+
+			static float myDeadZone;
 		};
 	}
 }

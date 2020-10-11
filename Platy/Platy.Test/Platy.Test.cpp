@@ -16,7 +16,7 @@
 #include "Events/GamePadEventHandler.h"
 #include "Graphics/Animator.h"
 #include "Graphics/Managers/ParticleManager.h"
-
+#include "Settings/GameSettings.h"
 
 using namespace Platy::Game;
 using namespace Graphics;
@@ -65,7 +65,6 @@ int main()
 	icon.loadFromFile("Assets/icon.png");
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-
 	bool isWindowInFocus;
 
 	/// Init clock for delta time
@@ -76,6 +75,7 @@ int main()
 	PostMaster::Init();
 	AssetContainer::Init();
 	ParticleManager::Init();
+	GameSettings::Init();
 
 	ParticleTest tempParticleTest;
 

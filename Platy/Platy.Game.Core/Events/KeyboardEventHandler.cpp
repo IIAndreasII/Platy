@@ -5,6 +5,7 @@
 #include "Postmaster/PostMaster.h"
 #include "Postmaster/MessageType.h"
 
+
 namespace Platy
 {
 	namespace Game
@@ -17,7 +18,7 @@ namespace Platy
 				switch (anEvent.key.code)
 				{
 				case sf::Keyboard::Key::Escape:
-					// TODO: Toggle pause game or go up a level in menus
+
 					break;
 
 				case sf::Keyboard::Key::A:

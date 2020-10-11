@@ -1,8 +1,14 @@
+#define GAME_PAD_TEST 0
+
 #include "GamePadEventHandler.h"
 
+#if GAME_PAD_TEST
+#include <iostream>
+#endif
 
 #include "Postmaster/PostMaster.h"
 #include "Postmaster/MessageType.h"
+#include "Postmaster/Message.h"
 
 #include "GamePadDefinitions.h"
 #include <SFML/Window/Event.hpp>
@@ -14,6 +20,8 @@ namespace Platy
 	{
 		bool GamePadEventHandler::myWasLeftDPad;
 		bool GamePadEventHandler::myWasUpDPad;
+
+		float GamePadEventHandler::myDeadZone;
 
 		void GamePadEventHandler::HandleEvent(const sf::Event& anEvent)
 		{
@@ -29,14 +37,19 @@ namespace Platy
 				HandleJoystickMoved(anEvent);
 				break;
 			case sf::Event::JoystickConnected:
-				HandleConnected(anEvent);
+				PostMaster::SendMessage(EMessageType::GAME_PAD_CONNECTED);
 				break;
 			case sf::Event::JoystickDisconnected:
-				HandleDisconnected(anEvent);
+				PostMaster::SendMessage(EMessageType::GAME_PAD_DISCONNECTED);
 				break;
 			default:
 				break;
 			}
+		}
+
+		void GamePadEventHandler::SetDeadZone(const float& aValue)
+		{
+			myDeadZone = aValue;
 		}
 
 		void GamePadEventHandler::HandleButtonPressed(const sf::Event& anEvent)
@@ -61,6 +74,12 @@ namespace Platy
 			case GAME_PAD_RB:
 				PostMaster::SendMessage(EMessageType::GAME_PAD_RB_PRESSED);
 				break;
+			case GAME_PAD_OPTION:
+				PostMaster::SendMessage(EMessageType::GAME_PAD_OPTION_PRESSED);
+				break;
+			case GAME_PAD_START:
+				PostMaster::SendMessage(EMessageType::GAME_PAD_START_PRESSED);
+				break;
 			case GAME_PAD_LS:
 				PostMaster::SendMessage(EMessageType::GAME_PAD_LS_PRESSED);
 				break;
@@ -68,9 +87,11 @@ namespace Platy
 				PostMaster::SendMessage(EMessageType::GAME_PAD_RS_PRESSED);
 				break;
 			default:
-
 				break;
 			}
+#if GAME_PAD_TEST
+			std::cout << "Button id: " << GamePadIdToCharPtr(anEvent.joystickButton.button) << " pressed" << std::endl;
+#endif
 		}
 
 		void GamePadEventHandler::HandleButtonReleased(const sf::Event& anEvent)
@@ -95,6 +116,12 @@ namespace Platy
 			case GAME_PAD_RB:
 				PostMaster::SendMessage(EMessageType::GAME_PAD_RB_RELEASED);
 				break;
+			case GAME_PAD_OPTION:
+				PostMaster::SendMessage(EMessageType::GAME_PAD_OPTION_RELEASED);
+				break;
+			case GAME_PAD_START:
+				PostMaster::SendMessage(EMessageType::GAME_PAD_START_RELEASED);
+				break;
 			case GAME_PAD_LS:
 				PostMaster::SendMessage(EMessageType::GAME_PAD_LS_RELEASED);
 				break;
@@ -102,103 +129,105 @@ namespace Platy
 				PostMaster::SendMessage(EMessageType::GAME_PAD_RS_RELEASED);
 				break;
 			default:
-
 				break;
 			}
+#if GAME_PAD_TEST
+			std::cout << "Button id: " << GamePadIdToCharPtr(anEvent.joystickButton.button) << " released" << std::endl;
+#endif
 		}
 
 		void GamePadEventHandler::HandleJoystickMoved(const sf::Event& anEvent)
 		{
-			// TODO: Add axis stuff for Xbox controller
+			Message tempMessage;
 			switch (anEvent.joystickMove.axis)
 			{
 			case sf::Joystick::X: // Left stick left/right
-				// TODO: Change dead zone to adjustable constant or something
-				if (anEvent.joystickMove.position >= 25 || anEvent.joystickMove.position <= -25)
+				if (anEvent.joystickMove.position >= myDeadZone || anEvent.joystickMove.position <= -myDeadZone)
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f);
 				}
 				else
 				{
-					// TODO: Send 0
+					tempMessage.SetFloat(0);
 				}
+				PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_LS_LR_CHANGED);
 				break;
 			case sf::Joystick::Y: // Left stick up/down
-				// TODO: Change dead zone to adjustable constant or something
-				if (anEvent.joystickMove.position >= 25 || anEvent.joystickMove.position <= -25)
+				if (anEvent.joystickMove.position >= myDeadZone || anEvent.joystickMove.position <= -myDeadZone)
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f);
 				}
 				else
 				{
-					// TODO: Send 0
+					tempMessage.SetFloat(0);
 				}
+				PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_LS_UD_CHANGED);
 				break;
-			case sf::Joystick::Z: // Triggers
 
-				// < 0 = RT
-				// > 0 = LT
-				if (anEvent.joystickMove.position < 0) // RT
+				// This may be buggy as SFML put the triggers on the same axis. This will not be fixed by the developers, sadly
+			case sf::Joystick::Z: // Triggers
+				if (anEvent.joystickMove.position < -myDeadZone) // RT < 0
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f * -1);
+					PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_RT_CHANGED);
 				}
-				else if (anEvent.joystickMove.position < 0) // LT
+				else if (anEvent.joystickMove.position > myDeadZone) // LT > 0
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f);
+					PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_LT_CHANGED);
 				}
 				else
 				{
-					// TODO: Send 0 to both LT and RT listeners
+					tempMessage.SetFloat(0);
+					PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_RT_CHANGED);
+					PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_LT_CHANGED);
 				}
-
 				break;
 			case sf::Joystick::R:
+				// Don't know what this does
 				break;
 			case sf::Joystick::U: // Right stick left/right
-
-				// TODO: Change dead zone to adjustable constant or something
-				if (anEvent.joystickMove.position >= 25 || anEvent.joystickMove.position <= -25)
+				if (anEvent.joystickMove.position >= myDeadZone || anEvent.joystickMove.position <= -myDeadZone)
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f);
 				}
 				else
 				{
-					// TODO: Send 0
+					tempMessage.SetFloat(0);
 				}
+				PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_RS_LR_CHANGED);
 				break;
-			case sf::Joystick::V:
-
-				// TODO: Change dead zone to adjustable constant or something
-				if (anEvent.joystickMove.position >= 25 || anEvent.joystickMove.position <= -25)
+			case sf::Joystick::V: // Right stick up/down
+				if (anEvent.joystickMove.position >= myDeadZone || anEvent.joystickMove.position <= -myDeadZone)
 				{
-					// TODO: Send axis value divided by 100
+					tempMessage.SetFloat(anEvent.joystickMove.position / 100.f);
 				}
 				else
 				{
-					// TODO: Send 0
+					tempMessage.SetFloat(0);
 				}
+				PostMaster::SendMessage(tempMessage, EMessageType::GAME_PAD_RS_UD_CHANGED);
 				break;
 			case sf::Joystick::PovX:
-
 				if (anEvent.joystickMove.position < 0) // D-Pad Left
 				{
 					myWasLeftDPad = true;
-					// TODO: D-pad left interaction pressed
+					PostMaster::SendMessage(EMessageType::GAME_PAD_DP_L_PRESSED);
 				}
 				else if (anEvent.joystickMove.position > 0) // D-Pad Right
 				{
 					myWasLeftDPad = false;
-					// TODO: D-pad right interaction pressed
+					PostMaster::SendMessage(EMessageType::GAME_PAD_DP_R_PRESSED);
 				}
 				else
 				{
 					if (myWasLeftDPad)
 					{
-						// TODO: D-pad left interaction released
+						PostMaster::SendMessage(EMessageType::GAME_PAD_DP_L_RELEASED);
 					}
 					else
 					{
-						// TODO: D-pad right interaction released
+						PostMaster::SendMessage(EMessageType::GAME_PAD_DP_R_RELEASED);
 					}
 				}
 				break;
@@ -207,39 +236,26 @@ namespace Platy
 				if (anEvent.joystickMove.position < 0) // D-Pad Down
 				{
 					myWasUpDPad = false;
-					// TODO: D-pad down interaction pressed
+					PostMaster::SendMessage(EMessageType::GAME_PAD_DP_D_PRESSED);
 				}
 				else if (anEvent.joystickMove.position > 0) // D-Pad Up
 				{
 					myWasUpDPad = true;
-					// TODO: D-pad down interaction pressed
+					PostMaster::SendMessage(EMessageType::GAME_PAD_DP_U_PRESSED);
 				}
 				else
 				{
 					if (myWasUpDPad)
 					{
-						// TODO: D-pad up interaction released
+						PostMaster::SendMessage(EMessageType::GAME_PAD_DP_U_RELEASED);
 					}
 					else
 					{
-						// TODO: D-pad down interaction released
+						PostMaster::SendMessage(EMessageType::GAME_PAD_DP_D_RELEASED);
 					}
 				}
 				break;
-
-			default:
-				break;
 			}
-		}
-
-		void GamePadEventHandler::HandleConnected(const sf::Event& anEvent)
-		{
-			// TODO: Message some input manager
-		}
-
-		void GamePadEventHandler::HandleDisconnected(const sf::Event& anEvent)
-		{
-			// TODO: Message some input manager
 		}
 
 		const char* GamePadEventHandler::GamePadIdToCharPtr(const unsigned& id)
@@ -258,6 +274,10 @@ namespace Platy
 				return "LB";
 			case GAME_PAD_RB:
 				return "RB";
+			case GAME_PAD_OPTION:
+				return "OPTION";
+			case GAME_PAD_START:
+				return "START";
 			case GAME_PAD_LS:
 				return "LS";
 			case GAME_PAD_RS:

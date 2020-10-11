@@ -8,17 +8,19 @@ namespace Platy
 {
 	namespace Game
 	{
-		std::vector<std::vector<SubPtr>> PostMaster::mySubscribers;
+		std::vector<std::vector<Subscriber*>> PostMaster::mySubscribers;
 
 		PostMaster::~PostMaster()
 		{
-			for (const auto& it : mySubscribers)
+			for (auto& it : mySubscribers)
 			{
 				for (auto* sub : it)
 				{
 					sub = nullptr;
 				}
+				it.clear();
 			}
+			mySubscribers.clear();
 		}
 
 		void PostMaster::Init()
@@ -29,12 +31,12 @@ namespace Platy
 			}
 		}
 
-		void PostMaster::Subscribe(const SubPtr aSubPtr, const EMessageType aMessageType)
+		void PostMaster::Subscribe(Subscriber* aSubPtr, const EMessageType aMessageType)
 		{
 			mySubscribers.at(static_cast<size_t>(aMessageType)).push_back(aSubPtr);
 		}
 
-		void PostMaster::Unsubscribe(const SubPtr aSubPtr, const EMessageType aMessageType)
+		void PostMaster::Unsubscribe(const Subscriber* aSubPtr, const EMessageType aMessageType)
 		{
 			mySubscribers.at(static_cast<size_t>(aMessageType)).erase(std::find(
 				mySubscribers.at(static_cast<size_t>(aMessageType)).begin(),
@@ -64,7 +66,7 @@ namespace Platy
 			}
 		}
 
-		std::vector<SubPtr>& PostMaster::GetSubscribers(const EMessageType aMessageType)
+		std::vector<Subscriber*>& PostMaster::GetSubscribers(const EMessageType aMessageType)
 		{
 			return mySubscribers.at(static_cast<size_t>(aMessageType));
 		}

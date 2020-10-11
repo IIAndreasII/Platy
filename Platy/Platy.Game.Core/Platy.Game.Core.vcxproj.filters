@@ -26,6 +26,7 @@
     <ClCompile Include="Graphics\Factories\ParticleEmitterFactory.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="Events\GamePadEventHandler.cpp" />
+    <ClCompile Include="Settings\GameSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Postmaster\Message.h" />
@@ -51,5 +52,6 @@
     <ClInclude Include="Events\GamePadEventHandler.h" />
     <ClInclude Include="Events\GamePadDefinitions.h" />
     <ClInclude Include="Postmaster\MessageType.h" />
+    <ClInclude Include="Settings\GameSettings.h" />
   </ItemGroup>
 </Project>

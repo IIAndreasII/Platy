@@ -5,18 +5,19 @@
 #include "IO/IOManager.h"
 #include "Util/Util.h"
 
-#define CONSOLE_RED        12
-#define CONSOLE_RED_DARK    4
-#define CONSOLE_YELLOW     14
-#define CONSOLE_GREEN      10
-#define CONSOLE_GREEN_DARK  2
-#define CONSOLE_GREY        8
-#define CONSOLE_WHITE      15
-
+constexpr auto CONSOLE_RED = 12;
+constexpr auto CONSOLE_YELLOW = 14;
+constexpr auto CONSOLE_GREEN = 10;
+constexpr auto CONSOLE_GREY = 8;
+constexpr auto CONSOLE_WHITE = 15;
 
 namespace Platy
 {
 	HANDLE Log::myConsoleHandle;
+
+	Log::~Log()
+	{
+	}
 
 	void Log::Init()
 	{
@@ -60,6 +61,8 @@ namespace Platy
 		WriteLogMsg(ELogHeader::INFORMATION, msg);
 	}
 
+	Log::Log() = default;
+
 	uint16_t Log::HeaderToColour(const ELogHeader& head)
 	{
 		switch (head)
@@ -72,9 +75,8 @@ namespace Platy
 			return CONSOLE_YELLOW;
 		case ELogHeader::CRITICAL:
 			return CONSOLE_RED;
-		default:
-			return CONSOLE_WHITE;
 		}
+		return 0;
 	}
 
 	std::string Log::HeaderToString(const ELogHeader& head)
@@ -89,9 +91,8 @@ namespace Platy
 			return "WARN";
 		case ELogHeader::CRITICAL:
 			return "CRIT";
-		default:
-			return "UNDEFINED";
 		}
+		return "UNDEFINED";
 	}
 
 	void Log::WriteInColour(const ELogHeader& head, const std::string& str)

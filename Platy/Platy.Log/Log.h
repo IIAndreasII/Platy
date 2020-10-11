@@ -13,8 +13,7 @@ namespace Platy
 	class Log
 	{
 	public:
-		Log() = delete;
-		~Log() = default;
+		~Log();
 
 		/// <summary>
 		///	Initializes logger. Should only be called once in a program
@@ -76,6 +75,7 @@ namespace Platy
 #pragma endregion Information
 
 	private:
+		Log();
 
 		static HANDLE myConsoleHandle;
 

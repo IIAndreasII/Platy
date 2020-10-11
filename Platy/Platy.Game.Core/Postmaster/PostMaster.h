@@ -12,8 +12,6 @@ namespace Platy
 
 		enum class EMessageType;
 
-		typedef Subscriber* SubPtr;
-
 		class PostMaster
 		{
 		public:
@@ -22,18 +20,18 @@ namespace Platy
 
 			static void Init();
 
-			static void Subscribe(SubPtr aSubPtr, EMessageType aMessageType);
+			static void Subscribe(Subscriber* aSubPtr, EMessageType aMessageType);
 
-			static void Unsubscribe(SubPtr aSubPtr, EMessageType aMessageType);
+			static void Unsubscribe(const Subscriber* aSubPtr, EMessageType aMessageType);
 			static void SendMessage(const Message& aMessage, EMessageType aMessageType);
 
 			static void SendMessage(EMessageType aMessageType);
 
-			static std::vector<SubPtr>& GetSubscribers(EMessageType aMessageType);
+			static std::vector<Subscriber*>& GetSubscribers(EMessageType aMessageType);
 
 		private:
 
-			static std::vector<std::vector<SubPtr>> mySubscribers;
+			static std::vector<std::vector<Subscriber*>> mySubscribers;
 		};
 	}
 }
